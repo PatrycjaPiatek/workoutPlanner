@@ -131,6 +131,8 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="btn_exercises.png" />
+    <Content Include="btn_plans.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>

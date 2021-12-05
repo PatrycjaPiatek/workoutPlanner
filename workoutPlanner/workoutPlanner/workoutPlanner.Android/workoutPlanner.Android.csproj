@@ -87,13 +87,16 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\drawable\" />
+    <AndroidResource Include="Resources\drawable\btn_exercises.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\workoutPlanner\workoutPlanner.csproj">
       <Project>{08D08C55-A160-4300-926B-BB1C720D4E16}</Project>
       <Name>workoutPlanner</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\btn_plans.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

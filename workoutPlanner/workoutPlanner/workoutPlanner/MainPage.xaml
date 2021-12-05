@@ -4,8 +4,46 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="workoutPlanner.MainPage">
 
-    <StackLayout>
-        
-    </StackLayout>
+    <Grid HorizontalOptions="Center"
+              VerticalOptions="Center"
+              Margin="50">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <ImageButton x:Name="btnPlans"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Source="btn_plans.png"
+                    BackgroundColor="Transparent"/>
+        <Label Text="plans"
+                   FontSize="25"                   
+                   TextColor="#48185F"
+                   FontAttributes="Bold"               
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   Margin="0,100,0,0"
+                   Grid.Row="0"
+                   Grid.Column="0"/>
+
+        <ImageButton x:Name="btnExercises"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Source="btn_exercises.png"
+                    BackgroundColor="Transparent"/>
+        <Label Text="exercises"
+                   FontSize="25"                   
+                   TextColor="#48185F"
+                   FontAttributes="Bold"               
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   Margin="0,100,0,0"
+                   Grid.Row="1"
+                   Grid.Column="0"/>     
+    </Grid>
+    
 </ContentPage>
