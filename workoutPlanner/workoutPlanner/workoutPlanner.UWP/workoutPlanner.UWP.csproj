@@ -104,6 +104,10 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\cat2.scale-400.png" />
+    <Content Include="Assets\cat2.targetsize-256.png" />
+    <Content Include="Assets\cat2.targetsize-256_altform-lightunplated.png" />
+    <Content Include="Assets\cat2.targetsize-256_altform-unplated.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
