@@ -7,8 +7,8 @@
 
     <Grid HorizontalOptions="Center"
               VerticalOptions="Center"
-              Margin="50"          
-              >
+              Margin="50">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -17,11 +17,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        
         <ImageButton x:Name="btnPlans"
                     Grid.Row="0"
                     Grid.Column="0"
-                    Source="btn_plans3.png"
+                    Source="btn_plans4.png"
                     BackgroundColor="Transparent"
                     Clicked="btnPlans_Clicked"/>        
         <Label Text="plans"
