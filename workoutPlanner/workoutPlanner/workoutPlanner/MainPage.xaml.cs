@@ -14,5 +14,15 @@ namespace workoutPlanner
         {
             InitializeComponent();
         }
+
+        private void btnExercises_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Exercises());
+        }
+
+        private void btnPlans_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Plans());
+        }
     }
 }
