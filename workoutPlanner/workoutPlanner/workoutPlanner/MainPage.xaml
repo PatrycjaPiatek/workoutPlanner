@@ -36,7 +36,8 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     Source="btn_exercises.png"
-                    BackgroundColor="Transparent"/>
+                    BackgroundColor="Transparent"
+                    Clicked="btnExercises_Clicked"/>
         <Label Text="exercises"
                    FontSize="25"                   
                    TextColor="#48185F"
