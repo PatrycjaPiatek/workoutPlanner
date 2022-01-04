@@ -4,11 +4,11 @@ using System.Text;
 
 namespace workoutPlanner
 {
-    public class Monkey
+    public class Exercise
     {
         public string Name { get; set; }
-        public string Location { get; set; }
-        public string ImageUrl { get; set; }
+        public string Category { get; set; }
+        public string Img { get; set; }
 
         public override string ToString()
         {

@@ -17,7 +17,7 @@ namespace workoutPlanner
 
         private void btnExercises_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Exercises());
+            Navigation.PushAsync(new ExercisePage());
         }
 
         private void btnPlans_Clicked(object sender, EventArgs e)
