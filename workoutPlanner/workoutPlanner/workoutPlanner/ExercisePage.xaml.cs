@@ -29,7 +29,7 @@ namespace workoutPlanner
             {
                 Name = "Dumbbell bent-over row",
                 Category = "back",
-                Img = "dumbbellBent-overRow.png"
+                Img = "dumbbellBentOverRow.png"
             });
 
             Exercises.Add(new Exercise

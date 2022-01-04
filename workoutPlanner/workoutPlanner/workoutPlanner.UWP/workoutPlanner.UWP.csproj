@@ -142,7 +142,7 @@
     <Content Include="btn_plans1.png" />
     <Content Include="btn_plans2.png" />
     <Content Include="btn_plans3.png" />
-    <Content Include="dumbbellBent-overRow.png" />
+    <Content Include="dumbbellBentOverRow.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
