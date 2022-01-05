@@ -68,7 +68,7 @@ namespace workoutPlanner
                 selectedItem.Name = nameEntry.Text;
                 selectedItem.Age = int.Parse(ageEntry.Text);
                 await App.Database.SaveItemAsync(selectedItem);
-                //await App.Database.DeleteItemAsync(selectedItem);
+                
                 await DisplayAlert("Success", "Person Updated", "OK");
 
                 nameEntry.Text = ageEntry.Text = string.Empty;
