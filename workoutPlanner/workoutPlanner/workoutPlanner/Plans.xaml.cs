@@ -43,7 +43,8 @@ namespace workoutPlanner
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedItem = e.CurrentSelection[0] as Person;
-
+            nameEntry.Text = selectedItem.Name;
+            ageEntry.Text = selectedItem.Age.ToString();
         }
 
         async private void Button_Clicked(object sender, EventArgs e)
@@ -51,16 +52,28 @@ namespace workoutPlanner
             //del = true;
             if (selectedItem != null)
             {
-
                 //Delete Person  
                 await App.Database.DeleteItemAsync(selectedItem);
                 await DisplayAlert("Success", "Person Deleted", "OK");
 
                 //Get All Persons  
                 collectionView.ItemsSource = await App.Database.GetPeopleAsync();
-
             }
         }
-        
+
+        async private void update_Clicked(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(nameEntry.Text) && !string.IsNullOrWhiteSpace(ageEntry.Text))
+            {
+                selectedItem.Name = nameEntry.Text;
+                selectedItem.Age = int.Parse(ageEntry.Text);
+                await App.Database.SaveItemAsync(selectedItem);
+                //await App.Database.DeleteItemAsync(selectedItem);
+                await DisplayAlert("Success", "Person Updated", "OK");
+
+                nameEntry.Text = ageEntry.Text = string.Empty;
+                collectionView.ItemsSource = await App.Database.GetPeopleAsync();
+            }
+        }
     }
 }

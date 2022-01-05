@@ -13,6 +13,9 @@
         <Button x:Name ="delete"
                 Text="Delete"
                 Clicked="Button_Clicked" />
+        <Button x:Name ="update"
+                Text="Update"
+                Clicked="update_Clicked" />
         <CollectionView x:Name="collectionView"
                         SelectionMode="Single"
                         SelectionChanged="OnSelectionChanged">

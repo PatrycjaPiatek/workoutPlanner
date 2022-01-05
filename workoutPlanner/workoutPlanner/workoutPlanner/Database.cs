@@ -31,5 +31,16 @@ namespace workoutPlanner
         {
             return _database.DeleteAsync(person);
         }
+        public Task<int> SaveItemAsync(Person person)
+        {
+            if (person.ID != 0)
+            {
+                return _database.UpdateAsync(person);
+            }
+            else
+            {
+                return _database.InsertAsync(person);
+            }
+        }
     }
 }
