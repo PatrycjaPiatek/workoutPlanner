@@ -26,5 +26,10 @@ namespace workoutPlanner
         {
             return _database.InsertAsync(person);
         }
+
+        public Task<int> DeleteItemAsync(Person person)
+        {
+            return _database.DeleteAsync(person);
+        }
     }
 }
