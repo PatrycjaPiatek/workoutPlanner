@@ -21,19 +21,23 @@ namespace workoutPlanner
             Exercises = new List<Exercise>();
             Exercises.Add(new Exercise
             {
+                ID = 1,
                 Name = "bench press",
                 Category = "chest",
                 Img = "benchPress.png"
             });
 
+
             Exercises.Add(new Exercise
             {
+                ID = 2,
                 Name = "Dumbbell bent-over row",
                 Category = "back",
                 Img = "dumbbellBentOverRow.png"
             });
 
-            
+            Add();
+
 
             BindingContext = this;
         }
@@ -57,6 +61,24 @@ namespace workoutPlanner
                 await DisplayAlert("Success", "Exercise added", "OK");
                 await Navigation.PushAsync(new PlanPage());
             }
+        }
+        async void Add()
+        {
+            await App.Database.SaveExerciseAsync(new Exercise
+            {
+                ID = 1,
+                Name = "bench press",
+                Category = "chest",
+                Img = "benchPress.png"
+            });
+            await App.Database.SaveExerciseAsync(new Exercise
+            {
+                ID = 2,
+                Name = "Dumbbell bent-over row",
+                Category = "back",
+                Img = "dumbbellBentOverRow.png"
+            });
+            //await DisplayAlert("Success", "Plan added", "OK");
         }
     }
 }
