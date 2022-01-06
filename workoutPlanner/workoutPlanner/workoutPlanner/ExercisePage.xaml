@@ -22,9 +22,11 @@
     </ContentPage.Resources>
     <StackLayout Margin="20,35,20,20">
         <Entry x:Name="nameEntry"
-               Placeholder="Enter name" />
+               Placeholder="Enter name"
+               BackgroundColor="#48185f"/>
         <Entry x:Name="categoryEntry"
-               Placeholder="Enter category" />
+               Placeholder="Enter category" 
+               BackgroundColor="#48185f"/>
         <Button Text="Add new exercise"
                 Clicked="AddExerciseClicked" />
         <Button x:Name ="delete"
@@ -50,11 +52,21 @@
                                    WidthRequest="60" />
                             <Label Grid.Column="1"
                                    Text="{Binding Name}"
-                                   FontAttributes="Bold" />
+                                   FontAttributes="Bold"
+                                   TextColor="#48185f"
+                                   FontSize="Medium" />
                             <Label Grid.Row="1"
                                    Grid.Column="1"
                                    Text="{Binding Category}"
-                                   VerticalOptions="End" />
+                                   VerticalOptions="End" 
+                                   TextColor="#48185f"
+                                   FontSize="Small" />
+                            <Label Grid.RowSpan="2"
+                                   Grid.Column="2"
+                                   Text="{Binding ID}"
+                                   VerticalOptions="End" 
+                                   TextColor="#48185f"
+                                   FontSize="Small" />
                         </Grid>
                     </StackLayout>
                 </DataTemplate>

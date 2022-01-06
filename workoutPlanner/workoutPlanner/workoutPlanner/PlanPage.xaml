@@ -22,10 +22,12 @@
     </ContentPage.Resources>
     <StackLayout Margin="20,35,20,20">
         <Entry x:Name="nameEntry"
-               Placeholder="Enter name" />
+               Placeholder="Enter name"
+               BackgroundColor="#48185f"/>
         <Label x:Name="test" Text="testowanie" TextColor="Green"/>
         <Entry x:Name="detailsEntry"
-               Placeholder="Enter details" />
+               Placeholder="Enter details"
+               BackgroundColor="#48185f"/>
         <Button Text="Add new plan"
                 Clicked="AddPlanClicked" />
         <Button x:Name ="delete"
@@ -47,9 +49,14 @@
                 <DataTemplate>
                     <StackLayout>
                         <Label Text="{Binding Name}"
-                               FontSize="Medium" />
+                               FontSize="Medium" 
+                               TextColor="#48185f"
+                               FontAttributes="Bold"/>
                         <Label Text="{Binding Details}"
-                               TextColor="Black"
+                               TextColor="#48185f"
+                               FontSize="Small" />
+                        <Label Text="{Binding ID}"
+                               TextColor="#48185f"
                                FontSize="Small" />
 
                         <Label Text="{Binding ExercisesInPlan}"/>
