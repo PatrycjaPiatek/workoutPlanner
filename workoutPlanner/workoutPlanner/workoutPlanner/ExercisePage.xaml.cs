@@ -6,54 +6,70 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using SQLiteNetExtensionsAsync;
 
 namespace workoutPlanner
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ExercisePage : ContentPage
     {
-        public IList<Exercise> Exercises { get; private set; }
+        //variable that represents the selected exercise
+        public static Exercise selectedExercise = null;
         public ExercisePage()
         {
             InitializeComponent();
-
-            Exercises = new List<Exercise>();
-            Exercises.Add(new Exercise
+        }
+        async private void Add()
+        {
+            await App.Database.SaveExerciseAsync(new Exercise
             {
-                ID = 1,
                 Name = "bench press",
                 Category = "chest",
                 Img = "benchPress.png"
-            });
 
+            });            
+            
+            exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+        }
 
-            Exercises.Add(new Exercise
+        //method that shows current data in table
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+        }
+
+        //adding new exercise
+        async void AddExerciseClicked(object sender, EventArgs e)
+        {
+            //when name isn't empty
+            if (!string.IsNullOrWhiteSpace(nameEntry.Text))
             {
-                ID = 2,
-                Name = "Dumbbell bent-over row",
-                Category = "back",
-                Img = "dumbbellBentOverRow.png"
-            });
+                await App.Database.SaveExerciseAsync(new Exercise
+                {
+                    Name = nameEntry.Text,
+                    Category = categoryEntry.Text
+                });
+                await DisplayAlert("Success", "Exercise added", "OK");
 
-            Add();
-
-
-            BindingContext = this;
+                nameEntry.Text = categoryEntry.Text = string.Empty;
+                exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+            }
         }
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //wybrane cwiczenie
-            Exercise selectedItem = e.CurrentSelection[0] as Exercise;
+            selectedExercise = e.CurrentSelection[0] as Exercise;
+            nameEntry.Text = selectedExercise.Name;
+            categoryEntry.Text = selectedExercise.Category;
             //Navigation.PushAsync(new PlanPage());
 
             if (PlanPage.addToThePlan)
             {
-                PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { selectedItem };
+                PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { selectedExercise };
 
-                //Delete Person  
+                //Update Plan  
                 await App.Database.UpdatePlanAsync(PlanPage.selectedItem);
-                //Get All Persons  
+                //////////////  
                 PlanPage.addToThePlan = false;
 
                 //person1.ExercisesInPlan = new List<Event> { event1 };
@@ -62,23 +78,38 @@ namespace workoutPlanner
                 await Navigation.PushAsync(new PlanPage());
             }
         }
-        async void Add()
+
+        async private void DeleteClicked(object sender, EventArgs e)
         {
-            await App.Database.SaveExerciseAsync(new Exercise
+            if (selectedExercise != null)
             {
-                ID = 1,
-                Name = "bench press",
-                Category = "chest",
-                Img = "benchPress.png"
-            });
-            await App.Database.SaveExerciseAsync(new Exercise
-            {
-                ID = 2,
-                Name = "Dumbbell bent-over row",
-                Category = "back",
-                Img = "dumbbellBentOverRow.png"
-            });
-            //await DisplayAlert("Success", "Plan added", "OK");
+                //Delete exercise  
+                await App.Database.DeleteExerciseAsync(selectedExercise);
+                await DisplayAlert("Success", "Exercise deleted", "OK");
+
+                //Get All Exercises  
+                exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+            }
         }
+
+        async private void UpdateClicked(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(nameEntry.Text))
+            {
+                selectedExercise.Name = nameEntry.Text;
+                selectedExercise.Category = categoryEntry.Text;
+                await App.Database.UpdateExerciseAsync(selectedExercise);
+
+                await DisplayAlert("Success", "Exercise updated", "OK");
+
+                nameEntry.Text = categoryEntry.Text = string.Empty;
+                exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+            }
+        }
+
+        //private void addExerciseToThePlan_Clicked(object sender, EventArgs e)
+        //{            
+        //    Navigation.PushAsync(new ExercisePage());
+        //}
     }
 }

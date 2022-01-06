@@ -53,9 +53,16 @@ namespace workoutPlanner
             nameEntry.Text = selectedItem.Name;
             detailsEntry.Text = selectedItem.Details;
 
+            //dla testu
+            if (selectedItem.ExercisesInPlan != null)
+            {
+                test.Text = selectedItem.ExercisesInPlan[0].Category.ToString();
+            }
+            
+
             //dla testu, czy dziala dodawanie cwiczen do planu
             //Get All Persons  
-            //collectionView.ItemsSource = await App.Database.GetPlansAsync();
+            //exerciseCollectionView.ItemsSource = await App.Database.GetPlansAsync();
         }
 
         async private void DeleteClicked(object sender, EventArgs e)

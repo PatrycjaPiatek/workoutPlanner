@@ -21,29 +21,44 @@
         </Style>
     </ContentPage.Resources>
     <StackLayout Margin="20,35,20,20">
-        <CollectionView ItemsSource="{Binding Exercises}"
-                SelectionMode="Single"
-                SelectionChanged="OnSelectionChanged">
+        <Entry x:Name="nameEntry"
+               Placeholder="Enter name" />
+        <Entry x:Name="categoryEntry"
+               Placeholder="Enter category" />
+        <Button Text="Add new exercise"
+                Clicked="AddExerciseClicked" />
+        <Button x:Name ="delete"
+                Text="Delete selected exercise"
+                Clicked="DeleteClicked" />
+        <Button x:Name ="update"
+                Text="Update selected exercise"
+                Clicked="UpdateClicked" />
+
+        <CollectionView x:Name="exerciseCollectionView"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSelectionChanged">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10"
-                  RowDefinitions="Auto, *"
-                  ColumnDefinitions="Auto, *">
-                        <Image Grid.RowSpan="2"
-                       Source="{Binding Img}"
-                       Aspect="AspectFill"
-                       HeightRequest="60"
-                       WidthRequest="60" />
-                        <Label Grid.Column="1"
-                       Text="{Binding Name}"
-                       FontAttributes="Bold" />
-                        <Label Grid.Row="1"
-                       Grid.Column="1"
-                       Text="{Binding Category}"
-                       VerticalOptions="End" />
-                    </Grid>
+                    <StackLayout>
+                        <Grid Padding="10"
+                              RowDefinitions="Auto, *"
+                              ColumnDefinitions="Auto, *">
+                            <Image Grid.RowSpan="2"
+                                   Source="{Binding Img}"
+                                   Aspect="AspectFill"
+                                   HeightRequest="60"
+                                   WidthRequest="60" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Name}"
+                                   FontAttributes="Bold" />
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding Category}"
+                                   VerticalOptions="End" />
+                        </Grid>
+                    </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
     </StackLayout>
-</ContentPage>    
+</ContentPage>
