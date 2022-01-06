@@ -144,21 +144,21 @@ namespace workoutPlanner
         {
             //wybrane cwiczenie
             Exercise selectedItem = e.CurrentSelection[0] as Exercise;
-            //Navigation.PushAsync(new Plans());
+            //Navigation.PushAsync(new PlanPage());
 
-            if (Plans.addToThePlan)
+            if (PlanPage.addToThePlan)
             {
-                Plans.selectedItem.Events = new List<Exercise> { selectedItem };
+                PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { selectedItem };
 
                 //Delete Person  
-                await App.Database.SaveItemAsync(Plans.selectedItem);
+                await App.Database.UpdatePlanAsync(PlanPage.selectedItem);
                 //Get All Persons  
+                PlanPage.addToThePlan = false;
 
-
-                //person1.Events = new List<Event> { event1 };
+                //person1.ExercisesInPlan = new List<Event> { event1 };
                 //db.UpdateWithChildren(person1);
                 await DisplayAlert("Success", "Exercise added", "OK");
-                await Navigation.PushAsync(new Plans());
+                await Navigation.PushAsync(new PlanPage());
             }
         }
     }

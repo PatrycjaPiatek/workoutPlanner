@@ -4,7 +4,7 @@
              x:Class="workoutPlanner.ExercisePage"
              Background="#e0adf8">
     <ContentPage.Resources>
-        <Style TargetType="Grid">
+        <Style TargetType="StackLayout">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CommonStates">

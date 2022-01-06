@@ -15,35 +15,67 @@ namespace workoutPlanner
         public Database(string dbPath)
         {
             _database = new SQLiteAsyncConnection(dbPath);
-            _database.CreateTableAsync<Person>().Wait();
+            _database.CreateTableAsync<Plan>().Wait();
             _database.CreateTableAsync<Exercise>().Wait();
+            _database.CreateTableAsync<PlanExercise>().Wait();
         }
 
-        public Task<List<Person>> GetPeopleAsync()
+        //shows plans
+        public Task<List<Plan>> GetPlansAsync()
         {
-            return _database.Table<Person>().ToListAsync();
+            return _database.Table<Plan>().ToListAsync();
         }
-
-        public Task<int> SavePersonAsync(Person person)
+        //shows exercises
+        public Task<List<Exercise>> GetExercisesAsync()
         {
-            return _database.InsertAsync(person);
+            return _database.Table<Exercise>().ToListAsync();
         }
-
-        public Task<int> DeleteItemAsync(Person person)
+        //save plan
+        public Task<int> SavePlanAsync(Plan plan)
         {
-            return _database.DeleteAsync(person);
+            return _database.InsertAsync(plan);
         }
-        public Task<int> SaveItemAsync(Person person)
+        //save exercise
+        public Task<int> SaveExerciseAsync(Exercise exercise)
         {
-            if (person.ID != 0)
+            return _database.InsertAsync(exercise);
+        }
+        //delete plan
+        public Task<int> DeletePlanAsync(Plan plan)
+        {
+            return _database.DeleteAsync(plan);
+        }
+        //delete exercise
+        public Task<int> DeleteExerciseAsync(Exercise exercise)
+        {
+            return _database.DeleteAsync(exercise);
+        }
+        //update plan
+        public Task<int> UpdatePlanAsync(Plan plan)
+        {
+            if (plan.ID != 0)
             {
                 //return _database.
-                //_database.UpdateWithChildren(person);
-                return _database.UpdateAsync(person);
+                //_database.UpdateWithChildren(plan);
+                return _database.UpdateAsync(plan);
             }
             else
             {
-                return _database.InsertAsync(person);
+                return _database.InsertAsync(plan);
+            }
+        }
+        //update exercise
+        public Task<int> UpdateExerciseAsync(Exercise exercise)
+        {
+            if (exercise.ID != 0)
+            {
+                //return _database.
+                //_database.UpdateWithChildren(exercise);
+                return _database.UpdateAsync(exercise);
+            }
+            else
+            {
+                return _database.InsertAsync(exercise);
             }
         }
     }

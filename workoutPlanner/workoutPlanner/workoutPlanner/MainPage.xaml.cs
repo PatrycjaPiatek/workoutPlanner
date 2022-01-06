@@ -22,7 +22,7 @@ namespace workoutPlanner
 
         private void btnPlans_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Plans());
+            Navigation.PushAsync(new PlanPage());
         }
     }
 }

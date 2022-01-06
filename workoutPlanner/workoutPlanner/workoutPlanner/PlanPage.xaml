@@ -1,21 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="workoutPlanner.Plans"
+             x:Class="workoutPlanner.PlanPage"
              Background="#e0adf8">
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#8952b4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
     <StackLayout Margin="20,35,20,20">
         <Entry x:Name="nameEntry"
                Placeholder="Enter name" />
-        <Entry x:Name="ageEntry"
-               Placeholder="Enter age" />
-        <Button Text="Add to Database"
-                Clicked="OnButtonClicked" />
+        <Entry x:Name="detailsEntry"
+               Placeholder="Enter details" />
+        <Button Text="Add new plan"
+                Clicked="AddPlanClicked" />
         <Button x:Name ="delete"
-                Text="Delete"
-                Clicked="Button_Clicked" />
+                Text="Delete selected plan"
+                Clicked="DeleteClicked" />
         <Button x:Name ="update"
-                Text="Update"
-                Clicked="update_Clicked" />
+                Text="Update selected plan"
+                Clicked="UpdateClicked" />
         <Button x:Name ="addExerciseToThePlan"
                 Text="add exercise to the plan"
                 Clicked="addExerciseToThePlan_Clicked"/>
@@ -27,10 +44,10 @@
                     <StackLayout>
                         <Label Text="{Binding Name}"
                                FontSize="Medium" />
-                        <Label Text="{Binding Age}"
+                        <Label Text="{Binding Details}"
                                TextColor="Black"
                                FontSize="Small" />
-                        <Label Text="{Binding Events}"
+                        <Label Text="{Binding ExercisesInPlan}"
                                TextColor="Black"
                                FontSize="Small" />
                     </StackLayout>
