@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SQLite;
 
-
 namespace workoutPlanner
 {
     public class Database
@@ -18,7 +17,32 @@ namespace workoutPlanner
             _dbdb.CreateTableAsync<Plan>().Wait();
             _dbdb.CreateTableAsync<Exercise>().Wait();
             _dbdb.CreateTableAsync<PlanExercise>().Wait();
+
+            ////////////////////////////////////////////////////
+            //testowanie
+            var plan1 = new Plan
+            {
+                Name = "Plan Test",
+                Details = "details Plan Test"
+            };
+
+            var exercise1 = new Exercise
+            {
+                Name = "Exercise Test",
+                Category = "category Exercise Test"
+            };
+
+            _dbdb.InsertAsync(plan1);
+            _dbdb.InsertAsync(exercise1);
+
+            plan1.ExercisesInPlan = new List<Exercise> { exercise1 };
+            _dbdb.UpdateAsync(plan1);
+
+            var personStored = _dbdb.GetAsync<Plan>(plan1.ID);
+            var eventStored = _dbdb.GetAsync<Exercise>(exercise1.ID);
         }
+        //testowanie
+        ////////////////////////////////////////////////////
 
         //shows plans
         public Task<List<Plan>> GetPlansAsync()
