@@ -16,6 +16,9 @@
         <Button x:Name ="update"
                 Text="Update"
                 Clicked="update_Clicked" />
+        <Button x:Name ="addExerciseToThePlan"
+                Text="add exercise to the plan"
+                Clicked="addExerciseToThePlan_Clicked"/>
         <CollectionView x:Name="collectionView"
                         SelectionMode="Single"
                         SelectionChanged="OnSelectionChanged">
@@ -25,7 +28,10 @@
                         <Label Text="{Binding Name}"
                                FontSize="Medium" />
                         <Label Text="{Binding Age}"
-                               TextColor="Silver"
+                               TextColor="Black"
+                               FontSize="Small" />
+                        <Label Text="{Binding Events}"
+                               TextColor="Black"
                                FontSize="Small" />
                     </StackLayout>
                 </DataTemplate>

@@ -13,7 +13,8 @@ namespace workoutPlanner
     public partial class Plans : ContentPage
     {
         static public bool del = false;
-        Person selectedItem = null;
+        public static bool addToThePlan = false;
+        public static Person selectedItem = null;
         public Plans()
         {
             InitializeComponent();
@@ -45,6 +46,10 @@ namespace workoutPlanner
             selectedItem = e.CurrentSelection[0] as Person;
             nameEntry.Text = selectedItem.Name;
             ageEntry.Text = selectedItem.Age.ToString();
+
+            //dla testu
+            //Get All Persons  
+            collectionView.ItemsSource = await App.Database.GetPeopleAsync();
         }
 
         async private void Button_Clicked(object sender, EventArgs e)
@@ -74,6 +79,12 @@ namespace workoutPlanner
                 nameEntry.Text = ageEntry.Text = string.Empty;
                 collectionView.ItemsSource = await App.Database.GetPeopleAsync();
             }
+        }
+
+        private void addExerciseToThePlan_Clicked(object sender, EventArgs e)
+        {            
+            addToThePlan = true;
+            Navigation.PushAsync(new ExercisePage());            
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SQLite;
 
+
 namespace workoutPlanner
 {
     public class Database
@@ -15,6 +16,7 @@ namespace workoutPlanner
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Person>().Wait();
+            _database.CreateTableAsync<Exercise>().Wait();
         }
 
         public Task<List<Person>> GetPeopleAsync()
@@ -35,6 +37,8 @@ namespace workoutPlanner
         {
             if (person.ID != 0)
             {
+                //return _database.
+                //_database.UpdateWithChildren(person);
                 return _database.UpdateAsync(person);
             }
             else

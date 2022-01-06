@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using SQLiteNetExtensionsAsync;
 
 namespace workoutPlanner
 {
@@ -139,10 +140,26 @@ namespace workoutPlanner
 
             BindingContext = this;
         }
-        void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //wybrane cwiczenie
             Exercise selectedItem = e.CurrentSelection[0] as Exercise;
-            Navigation.PushAsync(new Plans());
+            //Navigation.PushAsync(new Plans());
+
+            if (Plans.addToThePlan)
+            {
+                Plans.selectedItem.Events = new List<Exercise> { selectedItem };
+
+                //Delete Person  
+                await App.Database.SaveItemAsync(Plans.selectedItem);
+                //Get All Persons  
+
+
+                //person1.Events = new List<Event> { event1 };
+                //db.UpdateWithChildren(person1);
+                await DisplayAlert("Success", "Exercise added", "OK");
+                await Navigation.PushAsync(new Plans());
+            }
         }
     }
 }
