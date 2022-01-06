@@ -19,9 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ExercisePage.xaml.cs">
-      <DependentUpon>ExercisePage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="PlanPage.xaml.cs">
       <DependentUpon>PlanPage.xaml</DependentUpon>
     </Compile>
