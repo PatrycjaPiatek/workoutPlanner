@@ -23,7 +23,7 @@ namespace workoutPlanner
         {
             await App.Database.SaveExerciseAsync(new Exercise
             {
-                Name = "bench press",
+                NameExercise = "bench press",
                 Category = "chest",
                 Img = "benchPress.png"
 
@@ -47,7 +47,7 @@ namespace workoutPlanner
             {
                 await App.Database.SaveExerciseAsync(new Exercise
                 {
-                    Name = nameEntry.Text,
+                    NameExercise = nameEntry.Text,
                     Category = categoryEntry.Text
                 });
                 await DisplayAlert("Success", "Exercise added", "OK");
@@ -60,7 +60,7 @@ namespace workoutPlanner
         {            
             //wybrane cwiczenie
             selectedExercise = e.CurrentSelection[0] as Exercise;
-            nameEntry.Text = selectedExercise.Name;
+            nameEntry.Text = selectedExercise.NameExercise;
             categoryEntry.Text = selectedExercise.Category;
             //Navigation.PushAsync(new PlanPage());
 
@@ -70,8 +70,8 @@ namespace workoutPlanner
                 //PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { selectedExercise };
 
                 //nowy sposob
-                PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { };
-                PlanPage.selectedItem.ExercisesInPlan.Add(selectedExercise);
+                //PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { };
+                //PlanPage.selectedItem.ExercisesInPlan.Add(selectedExercise);
 
                 //plan1.ExercisesInPlan = new List<Exercise> { };
                 //plan1.ExercisesInPlan.Add(exercise1);
@@ -112,7 +112,7 @@ namespace workoutPlanner
         {
             if (!string.IsNullOrWhiteSpace(nameEntry.Text))
             {
-                selectedExercise.Name = nameEntry.Text;
+                selectedExercise.NameExercise = nameEntry.Text;
                 selectedExercise.Category = categoryEntry.Text;
                 await App.Database.UpdateExerciseAsync(selectedExercise);
 

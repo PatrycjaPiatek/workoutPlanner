@@ -27,7 +27,7 @@ namespace workoutPlanner
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            collectionView.ItemsSource = await App.Database.GetPlansAsync();
+            exCollectionView.ItemsSource = await App.Database.GetExcercisesOfPlan("1Plan Test");
         }
 
         //adding new plan
@@ -38,27 +38,27 @@ namespace workoutPlanner
             {
                 await App.Database.SavePlanAsync(new Plan
                 {
-                    Name = nameEntry.Text,
+                    NamePlan = nameEntry.Text,
                     Details = detailsEntry.Text
                 });
                 await DisplayAlert("Success", "Plan added", "OK");
 
                 nameEntry.Text = detailsEntry.Text = string.Empty;
-                collectionView.ItemsSource = await App.Database.GetPlansAsync();
+                //collectionView.ItemsSource = await App.Database.GetPlansAsync();
             }
         }
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedItem = e.CurrentSelection[0] as Plan;
             //when selected, name and details show in entry
-            nameEntry.Text = selectedItem.Name;
+            nameEntry.Text = selectedItem.NamePlan;
             detailsEntry.Text = selectedItem.Details;
 
             //dla testu
-            if (selectedItem.ExercisesInPlan != null)
-            {
-                test.Text = selectedItem.ExercisesInPlan[0].Category.ToString();
-            }
+            //if (selectedItem.ExercisesInPlan != null)
+            //{
+            //    test.Text = selectedItem.ExercisesInPlan[0].Category.ToString();
+            //}
             var databasePath = Path.Combine(FileSystem.AppDataDirectory, "_dbdb.db");
 
             Console.WriteLine(databasePath);
@@ -79,7 +79,7 @@ namespace workoutPlanner
                 await DisplayAlert("Success", "Plan deleted", "OK");
 
                 //Get All Persons  
-                collectionView.ItemsSource = await App.Database.GetPlansAsync();
+                //collectionView.ItemsSource = await App.Database.GetPlansAsync();
             }
         }
 
@@ -87,14 +87,14 @@ namespace workoutPlanner
         {
             if (!string.IsNullOrWhiteSpace(nameEntry.Text))
             {
-                selectedItem.Name = nameEntry.Text;
+                selectedItem.NamePlan = nameEntry.Text;
                 selectedItem.Details = detailsEntry.Text;
                 await App.Database.UpdatePlanAsync(selectedItem);
                 
                 await DisplayAlert("Success", "Plan updated", "OK");
 
                 nameEntry.Text = detailsEntry.Text = string.Empty;
-                collectionView.ItemsSource = await App.Database.GetPlansAsync();
+                //collectionView.ItemsSource = await App.Database.GetPlansAsync();
             }
         }
 

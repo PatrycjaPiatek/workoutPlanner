@@ -11,13 +11,16 @@ namespace workoutPlanner
     public class Plan
     {
         [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
-        public string Name { get; set; }
+        public int IDPlan { get; set; }
+        //unique na probe
+        //[Unique]
+        public string NamePlan { get; set; }
         public string Details { get; set; }
+        public int ExerciseID { get; set; }
 
-        [ManyToMany(typeof(PlanExercise))]
-        public List<Exercise> ExercisesInPlan { get; set; }       
+        //[ManyToMany(typeof(PlanExercise))]
+        //public List<Exercise> ExercisesInPlan { get; set; }       
         
-        public int test { get; set; }
+        //public int test { get; set; }
     }
 }
