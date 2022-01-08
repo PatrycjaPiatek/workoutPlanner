@@ -44,7 +44,7 @@
         <CollectionView x:Name="exCollectionView"
                         SelectionMode="Single"
                         SelectionChanged="OnSelectionChanged"
-                        ItemsSource="{Binding Exercise}">
+                        >
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
@@ -57,7 +57,7 @@
                                    HeightRequest="60"
                                    WidthRequest="60" />
                             <Label Grid.Column="1"
-                                   Text="{Binding NamePlan}"
+                                   Text="{Binding NameExercise}"
                                    FontAttributes="Bold"
                                    TextColor="#48185f"
                                    FontSize="Medium" />
