@@ -9,37 +9,38 @@ namespace workoutPlanner
 {
     public class Database
     {
-        readonly SQLiteAsyncConnection _dbdb;
+        readonly SQLiteAsyncConnection _plansDataBase;
 
         public Database(string dbPath)
         {
-            _dbdb = new SQLiteAsyncConnection(dbPath);
-            _dbdb.CreateTableAsync<Plan>().Wait();
-            _dbdb.CreateTableAsync<Exercise>().Wait();
-            _dbdb.CreateTableAsync<PlanExercise>().Wait();
+            _plansDataBase = new SQLiteAsyncConnection(dbPath);
+            //_plansDataBase.CreateTableAsync<Plan>().Wait();
+            _plansDataBase.CreateTableAsync<Exercise>().Wait();
+            //_plansDataBase.
+            //_plansDataBase.CreateTableAsync<PlanExercise>().Wait();
 
             ////////////////////////////////////////////////////
             //testowanie
-            var plan1 = new Plan
-            {
-                Name = "Plan Test",
-                Details = "details Plan Test"
-            };
+            //var plan1 = new Plan
+            //{
+            //    Name = "Plan Test",
+            //    Details = "details Plan Test"
+            //};
 
             var exercise1 = new Exercise
             {
-                Name = "Exercise Test",
-                Category = "category Exercise Test"
+                Name = "First exercise test",
+                Category = "First category exercise test"
             };
 
-            _dbdb.InsertAsync(plan1);
-            _dbdb.InsertAsync(exercise1);
+            //_plansDataBase.InsertAsync(plan1);
+            _plansDataBase.InsertAsync(exercise1);
 
-            plan1.ExercisesInPlan = new List<Exercise> { exercise1 };
-            _dbdb.UpdateAsync(plan1);
+            //plan1.ExercisesInPlan = new List<Exercise> { exercise1 };
+            //_plansDataBase.UpdateAsync(plan1);
 
-            var personStored = _dbdb.GetAsync<Plan>(plan1.ID);
-            var eventStored = _dbdb.GetAsync<Exercise>(exercise1.ID);
+            //var personStored = _plansDataBase.GetAsync<Plan>(plan1.ID);
+            //var eventStored = _plansDataBase.GetAsync<Exercise>(exercise1.ID);
         }
         //testowanie
         ////////////////////////////////////////////////////
@@ -47,45 +48,45 @@ namespace workoutPlanner
         //shows plans
         public Task<List<Plan>> GetPlansAsync()
         {
-            return _dbdb.Table<Plan>().ToListAsync();
+            return _plansDataBase.Table<Plan>().ToListAsync();
         }
         //shows exercises
         public Task<List<Exercise>> GetExercisesAsync()
         {
-            return _dbdb.Table<Exercise>().ToListAsync();
+            return _plansDataBase.Table<Exercise>().ToListAsync();
         }
         //save plan
         public Task<int> SavePlanAsync(Plan plan)
         {
-            return _dbdb.InsertAsync(plan);
+            return _plansDataBase.InsertAsync(plan);
         }
         //save exercise
         public Task<int> SaveExerciseAsync(Exercise exercise)
         {
-            return _dbdb.InsertAsync(exercise);
+            return _plansDataBase.InsertAsync(exercise);
         }
         //delete plan
         public Task<int> DeletePlanAsync(Plan plan)
         {
-            return _dbdb.DeleteAsync(plan);
+            return _plansDataBase.DeleteAsync(plan);
         }
         //delete exercise
         public Task<int> DeleteExerciseAsync(Exercise exercise)
         {
-            return _dbdb.DeleteAsync(exercise);
+            return _plansDataBase.DeleteAsync(exercise);
         }
         //update plan
         public Task<int> UpdatePlanAsync(Plan plan)
         {
             if (plan.ID != 0)
             {
-                //return _dbdb.
-                //_dbdb.UpdateWithChildren(plan);
-                return _dbdb.UpdateAsync(plan);
+                //return _plansDataBase.
+                //_plansDataBase.UpdateWithChildren(plan);
+                return _plansDataBase.UpdateAsync(plan);
             }
             else
             {
-                return _dbdb.InsertAsync(plan);
+                return _plansDataBase.InsertAsync(plan);
             }
         }
         //update exercise
@@ -93,13 +94,13 @@ namespace workoutPlanner
         {
             if (exercise.ID != 0)
             {
-                //return _dbdb.
-                //_dbdb.UpdateWithChildren(exercise);
-                return _dbdb.UpdateAsync(exercise);
+                //return _plansDataBase.
+                //_plansDataBase.UpdateWithChildren(exercise);
+                return _plansDataBase.UpdateAsync(exercise);
             }
             else
             {
-                return _dbdb.InsertAsync(exercise);
+                return _plansDataBase.InsertAsync(exercise);
             }
         }
     }
