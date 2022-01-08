@@ -16,6 +16,8 @@ namespace workoutPlanner
         public string Details { get; set; }
 
         [ManyToMany(typeof(PlanExercise))]
-        public List<Exercise> ExercisesInPlan { get; set; }        
+        public List<Exercise> ExercisesInPlan { get; set; }       
+        
+        public int test { get; set; }
     }
 }

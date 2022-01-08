@@ -4,6 +4,8 @@ using System.Text;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SQLite;
+using System.IO;
+using Xamarin.Essentials;
 
 namespace workoutPlanner
 {
@@ -13,10 +15,13 @@ namespace workoutPlanner
 
         public Database(string dbPath)
         {
+            
             _dbdb = new SQLiteAsyncConnection(dbPath);
             _dbdb.CreateTableAsync<Plan>().Wait();
             _dbdb.CreateTableAsync<Exercise>().Wait();
             _dbdb.CreateTableAsync<PlanExercise>().Wait();
+
+
 
             ////////////////////////////////////////////////////
             //testowanie

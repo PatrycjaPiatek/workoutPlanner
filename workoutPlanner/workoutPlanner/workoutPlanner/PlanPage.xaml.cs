@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -58,8 +59,12 @@ namespace workoutPlanner
             {
                 test.Text = selectedItem.ExercisesInPlan[0].Category.ToString();
             }
-            
+            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "_dbdb.db");
 
+            Console.WriteLine(databasePath);
+            test.Text = databasePath;
+            //C:\Users\pipat\AppData\Local\Packages\9edf7a7b-9cf2-4878-9e67-59ad451d441a_0f9wbgk7cg3pc\LocalState\_dbdb.db
+            //C:\Users\pipat\AppData\Local\Packages\9edf7a7b-9cf2-4878-9e67-59ad451d441a_0f9wbgk7cg3pc\LocalState\_dbdb.db
             //dla testu, czy dziala dodawanie cwiczen do planu
             //Get All Persons  
             //exerciseCollectionView.ItemsSource = await App.Database.GetPlansAsync();

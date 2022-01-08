@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -57,6 +58,7 @@ namespace workoutPlanner
         }
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             //wybrane cwiczenie
             selectedExercise = e.CurrentSelection[0] as Exercise;
             nameEntry.Text = selectedExercise.Name;

@@ -24,7 +24,7 @@
         <Entry x:Name="nameEntry"
                Placeholder="Enter name"
                BackgroundColor="#48185f"/>
-        <Label x:Name="test" Text="testowanie" TextColor="Green"/>
+        <Entry x:Name="test" Text="testowanie" TextColor="Green"/>
         <Entry x:Name="detailsEntry"
                Placeholder="Enter details"
                BackgroundColor="#48185f"/>
