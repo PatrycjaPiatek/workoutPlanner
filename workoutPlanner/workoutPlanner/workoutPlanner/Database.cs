@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using SQLite;
 using System.IO;
 using Xamarin.Essentials;
+using SQLiteNetExtensionsAsync.Extensions;
 
 namespace workoutPlanner
 {
     public class Database
     {
-        readonly SQLiteAsyncConnection _dbdb;
+        public readonly SQLiteAsyncConnection _dbdb;
 
         public Database(string dbPath)
         {
@@ -21,30 +22,88 @@ namespace workoutPlanner
             _dbdb.CreateTableAsync<Exercise>().Wait();
             _dbdb.CreateTableAsync<PlanExercise>().Wait();
 
-
-
             ////////////////////////////////////////////////////
             //testowanie
             var plan1 = new Plan
             {
-                Name = "Plan Test",
-                Details = "details Plan Test"
+                Name = "1Plan Test",
+                Details = "1details Plan Test"
+            };
+
+            var plan2 = new Plan
+            {
+                Name = "2Plan Test",
+                Details = "2details Plan Test"
+            };
+
+            var plan3 = new Plan
+            {
+                Name = "3Plan Test",
+                Details = "3details Plan Test"
             };
 
             var exercise1 = new Exercise
             {
-                Name = "Exercise Test",
-                Category = "category Exercise Test"
+                Name = "1Exercise Test",
+                Category = "1category Exercise Test"
             };
 
-            _dbdb.InsertAsync(plan1);
+            var exercise2 = new Exercise
+            {
+                Name = "2Exercise Test",
+                Category = "2category Exercise Test"
+            };
+
+            var exercise3 = new Exercise
+            {
+                Name = "3Exercise Test",
+                Category = "3category Exercise Test"
+            };
+
+            var exercise4 = new Exercise
+            {
+                Name = "4Exercise Test",
+                Category = "4category Exercise Test"
+            };
+
             _dbdb.InsertAsync(exercise1);
+            _dbdb.InsertAsync(exercise2);
+            _dbdb.InsertAsync(exercise3);
+            _dbdb.InsertAsync(exercise4);
 
-            plan1.ExercisesInPlan = new List<Exercise> { exercise1 };
-            _dbdb.UpdateAsync(plan1);
+            _dbdb.InsertAsync(plan1);
+            _dbdb.InsertAsync(plan2);
+            _dbdb.InsertAsync(plan3);
 
-            var personStored = _dbdb.GetAsync<Plan>(plan1.ID);
-            var eventStored = _dbdb.GetAsync<Exercise>(exercise1.ID);
+
+            plan1.ExercisesInPlan = new List<Exercise> {};
+            plan1.ExercisesInPlan.Add(exercise1);
+            plan1.ExercisesInPlan.Add(exercise2);
+
+            plan2.ExercisesInPlan = new List<Exercise> { };
+            plan2.ExercisesInPlan.Add(exercise3);
+            plan2.ExercisesInPlan.Add(exercise4);
+
+            plan3.ExercisesInPlan = new List<Exercise> { };
+            plan3.ExercisesInPlan.Add(exercise1);
+            plan3.ExercisesInPlan.Add(exercise2);
+            plan3.ExercisesInPlan.Add(exercise3);
+            plan3.ExercisesInPlan.Add(exercise4);
+
+            //plan1.ExercisesInPlan = new List<Exercise> { exercise1 };            
+            //_dbdb.UpdateAsync(plan1);
+            _dbdb.UpdateWithChildrenAsync(plan1);
+            _dbdb.UpdateWithChildrenAsync(plan2);
+            _dbdb.UpdateWithChildrenAsync(plan3);
+
+            //to jest nawet chyba niepotrzebne
+            var personStored1 = _dbdb.GetWithChildrenAsync<Plan>(plan1.ID);
+            var personStored2 = _dbdb.GetWithChildrenAsync<Plan>(plan2.ID);
+            var personStored3 = _dbdb.GetWithChildrenAsync<Plan>(plan3.ID);
+            var eventStored1 = _dbdb.GetWithChildrenAsync<Exercise>(exercise1.ID);
+            var eventStored2 = _dbdb.GetWithChildrenAsync<Exercise>(exercise2.ID);
+            var eventStored3 = _dbdb.GetWithChildrenAsync<Exercise>(exercise3.ID);
+            var eventStored4 = _dbdb.GetWithChildrenAsync<Exercise>(exercise4.ID);
         }
         //testowanie
         ////////////////////////////////////////////////////

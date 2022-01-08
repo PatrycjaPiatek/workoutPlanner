@@ -57,8 +57,7 @@ namespace workoutPlanner
             }
         }
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
+        {            
             //wybrane cwiczenie
             selectedExercise = e.CurrentSelection[0] as Exercise;
             nameEntry.Text = selectedExercise.Name;
@@ -67,10 +66,25 @@ namespace workoutPlanner
 
             if (PlanPage.addToThePlan)
             {
-                PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { selectedExercise };
+                //stary sposob
+                //PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { selectedExercise };
+
+                //nowy sposob
+                PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { };
+                PlanPage.selectedItem.ExercisesInPlan.Add(selectedExercise);
+
+                //plan1.ExercisesInPlan = new List<Exercise> { };
+                //plan1.ExercisesInPlan.Add(exercise1);
+                ////plan1.ExercisesInPlan = new List<Exercise> { exercise1 };            
+                //_dbdb.UpdateAsync(plan1);
 
                 //Update Plan  
                 await App.Database.UpdatePlanAsync(PlanPage.selectedItem);
+
+                //moze dac tak jeszcze
+                //App.Database._
+                //var personStored = App.Database.GetPlansAsync();
+                //var eventStored = App.Database.GetExercisesAsync();
                 //////////////  
                 PlanPage.addToThePlan = false;
 
