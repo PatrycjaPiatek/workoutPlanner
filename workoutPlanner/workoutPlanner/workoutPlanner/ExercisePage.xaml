@@ -32,14 +32,15 @@
                               ColumnDefinitions="Auto, *">
                             <Image Grid.RowSpan="2"
                                    Source="{Binding Img}"
-                                   Aspect="AspectFill"
+                                   Aspect="AspectFit"
                                    HeightRequest="60"
                                    WidthRequest="60" />
                             <Label Grid.Column="1"
                                    Text="{Binding Name}"
                                    FontAttributes="Bold"
                                    TextColor="#48185f"
-                                   FontSize="Medium" />
+                                   FontSize="Medium" 
+                                   Grid.ColumnSpan="3"/>
                             <Label Grid.Row="1"
                                    Grid.Column="1"
                                    Text="{Binding Category}"

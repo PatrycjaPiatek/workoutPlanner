@@ -132,16 +132,17 @@ namespace workoutPlanner
         //update exercise
         public Task<int> UpdateExerciseAsync(Exercise exercise)
         {
-            if (exercise.ID != 0)
-            {
-                //return _dbdb.
-                //_dbdb.UpdateWithChildren(exercise);
-                return _dbdb.UpdateAsync(exercise);
-            }
-            else
-            {
-                return _dbdb.InsertAsync(exercise);
-            }
+            return _dbdb.UpdateAsync(exercise); // nowa zmiana
+            //if (exercise.ID != 0)
+            //{
+            //    //return _dbdb.
+            //    //_dbdb.UpdateWithChildren(exercise);
+            //    return _dbdb.UpdateAsync(exercise);
+            //}
+            //else
+            //{
+            //    return _dbdb.InsertAsync(exercise);
+            //}
         }
         //zwraca liste nazw
         public Task<List<Exercise>> ExcerciseQuery()

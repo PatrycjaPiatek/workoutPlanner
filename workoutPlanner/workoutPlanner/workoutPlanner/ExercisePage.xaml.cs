@@ -19,8 +19,8 @@ namespace workoutPlanner
         public static List<string> ListOfNames = new List<string> { "bench press", "dumbbell bent-over row on bench", "hip trust" };
         //public string selectedCategory = "Accessories";
         public string selectedSource = "photo.png";
-        public bool addBool = false;
-        public bool updateBool = false;
+        public static bool addBool = false;
+        public static bool updateBool = false;
 
         public ExercisePage()
         {
@@ -32,14 +32,13 @@ namespace workoutPlanner
         {
             base.OnAppearing();
             exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+            selectedExercise = null;
         }
         //select excercise
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //wybrane cwiczenie
             selectedExercise = e.CurrentSelection[0] as Exercise;
-            //nameEntry.Text = selectedExercise.Name;
-            //categoryEntry.Text = selectedExercise.Category;
 
             if (PlanPage.addToThePlan)
             {
@@ -78,71 +77,18 @@ namespace workoutPlanner
         {
             addBool = true;
             await Navigation.PushAsync(new AddUpdateExcercise());
-
-
-            ////when name isn't empty
-            //if (!string.IsNullOrWhiteSpace(nameEntry.Text))
-            //{
-            //    //different names
-            //    foreach(string n in ListOfNames)
-            //    {
-            //        if (nameEntry.Text == n)
-            //        {
-            //            nameEntry.Text += "1";
-            //        }
-            //    }
-            //    //if (selectedSource.Equals("photo.png"))
-            //    //{
-            //    //    await DisplayAlert("", "Please pick an image first", "ok");
-            //    //}
-            //    //else { }
-            //    await App.Database.SaveExerciseAsync(new Exercise
-            //    {
-            //        Name = nameEntry.Text,
-            //        //kategoria wybierana z listy
-            //        Category = categoryEntry.Text,
-            //        Img = selectedSource
-
-            //    });
-            //    await DisplayAlert("Success", "Exercise added", "OK");
-
-            //    resultImage.Source = "photo.png";
-            //    selectedSource = "photo.png";
-            //    nameEntry.Text = categoryEntry.Text = string.Empty;
-            //    exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
-            //}
         }
         async private void UpdateClicked(object sender, EventArgs e)
         {
-            //if (!string.IsNullOrWhiteSpace(nameEntry.Text))
-            //{
-            //    selectedExercise.Name = nameEntry.Text;
-            //    selectedExercise.Category = categoryEntry.Text;
-            //    await App.Database.UpdateExerciseAsync(selectedExercise);
-
-            //    await DisplayAlert("Success", "Exercise updated", "OK");
-
-            //    nameEntry.Text = categoryEntry.Text = string.Empty;
-            //    exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
-            //}
-        }
-
-        private async void pickImg_Clicked_1(object sender, EventArgs e)
-        {
-            //var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
-            //{
-            //    Title = "Please pick a photo"
-            //});
-
-            //if (result != null)
-            //{
-            //    var stream = await result.OpenReadAsync();
-            //    resultImage.Source = ImageSource.FromStream(() => stream);
-            //    selectedSource = result.FullPath;
-            //    //String myPath = result.FullPath;
-            //    //lblText.Text = myPath;
-            //    //pickedImage.Source = myPath;
-            //}
+            updateBool = true;
+            if (selectedExercise != null)
+            {
+                await Navigation.PushAsync(new AddUpdateExcercise());
+            }
+            else
+            {
+                //await DisplayAlert(":)", "Select excercise first", "OK");
+            }
         }
 
         private void details_Clicked(object sender, EventArgs e)

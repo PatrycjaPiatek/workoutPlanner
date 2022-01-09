@@ -29,7 +29,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Image x:Name="resultImage"
+                <Image x:Name="defaultImage"
                        Margin="10,10,10,1"
                        HeightRequest="250"
                        WidthRequest="250"
@@ -42,7 +42,7 @@
                 </Image>
                 <Button x:Name ="pickImg"
                         Text="pick image"
-                    
+                        Clicked="pickImg_Clicked"
                         BackgroundColor="#8952b4"
                         CornerRadius="7"
                         BorderColor="#48185f"
