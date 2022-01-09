@@ -105,17 +105,17 @@ namespace workoutPlanner
         {
             return _dbdb.Table<Exercise>().ToListAsync();
         }
-        //save plan
-        public Task<int> SavePlanAsync(Name plan)
+        //save name
+        public Task<int> SaveNameAsync(Name name)
         {
-            return _dbdb.InsertAsync(plan);
+            return _dbdb.InsertAsync(name);
         }
         //save exercise
         public Task<int> SaveExerciseAsync(Exercise exercise)
         {
             return _dbdb.InsertAsync(exercise);
         }
-        //delete plan
+        //delete name
         public Task<int> DeletePlanAsync(Name plan)
         {
             return _dbdb.DeleteAsync(plan);
@@ -125,18 +125,18 @@ namespace workoutPlanner
         {
             return _dbdb.DeleteAsync(exercise);
         }
-        //update plan
-        public Task<int> UpdatePlanAsync(Name plan)
+        //update name
+        public Task<int> UpdateNameAsync(Name name)
         {
-            if (plan.IDExcerciseInPlan != 0)
+            if (name.IDExcerciseInPlan != 0)
             {
                 //return _dbdb.
-                //_dbdb.UpdateWithChildren(plan);
-                return _dbdb.UpdateAsync(plan);
+                //_dbdb.UpdateWithChildren(name);
+                return _dbdb.UpdateAsync(name);
             }
             else
             {
-                return _dbdb.InsertAsync(plan);
+                return _dbdb.InsertAsync(name);
             }
         }
         //update exercise

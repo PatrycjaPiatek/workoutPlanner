@@ -66,6 +66,13 @@ namespace workoutPlanner
 
             if (PlanPage.addToThePlan)
             {
+                //JEDEN PLAN SPOSÓB
+                var n = new Name
+                {
+                    ExcerciseName = selectedExercise.Name
+                };
+                App.Database.SaveNameAsync(n);
+                //App.Database.UpdateNameAsync(n);
                 //stary sposob
                 //PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { selectedExercise };
 
@@ -78,8 +85,8 @@ namespace workoutPlanner
                 ////plan1.ExercisesInPlan = new List<Exercise> { exercise1 };            
                 //_dbdb.UpdateAsync(plan1);
 
-                //Update Plan  
-                await App.Database.UpdatePlanAsync(PlanPage.selectedItem);
+                ////Update Plan  
+                //await App.Database.UpdateNameAsync(PlanPage.selectedItem);
 
                 //moze dac tak jeszcze
                 //App.Database._

@@ -36,7 +36,7 @@ namespace workoutPlanner
             ////when name isn't empty
             //if (!string.IsNullOrWhiteSpace(nameEntry.Text))
             //{
-            //    await App.Database.SavePlanAsync(new Plan
+            //    await App.Database.SaveNameAsync(new Plan
             //    {
             //        ExcerciseName = nameEntry.Text,
             //        Details = detailsEntry.Text
@@ -89,7 +89,7 @@ namespace workoutPlanner
             //{
             //    selectedItem.ExcerciseName = nameEntry.Text;
             //    selectedItem.Details = detailsEntry.Text;
-            //    await App.Database.UpdatePlanAsync(selectedItem);
+            //    await App.Database.UpdateNameAsync(selectedItem);
                 
             //    await DisplayAlert("Success", "Plan updated", "OK");
 
@@ -99,9 +99,9 @@ namespace workoutPlanner
         }
 
         private void addExerciseToThePlan_Clicked(object sender, EventArgs e)
-        {            
-            //addToThePlan = true;
-            //Navigation.PushAsync(new ExercisePage());
+        {
+            addToThePlan = true;
+            Navigation.PushAsync(new ExercisePage());
         }
     }
 }
