@@ -17,9 +17,10 @@ namespace workoutPlanner
         public static Exercise selectedExercise = null;
         //list of names, fajnie gdyby byla robiona z zapytania sql
         public static List<string> ListOfNames = new List<string> { "bench press", "dumbbell bent-over row on bench", "hip trust" };
-
         //public string selectedCategory = "Accessories";
         public string selectedSource = "photo.png";
+        public bool addBool = false;
+        public bool updateBool = false;
 
         public ExercisePage()
         {
@@ -32,10 +33,53 @@ namespace workoutPlanner
             base.OnAppearing();
             exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
         }
+        //select excercise
+        async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //wybrane cwiczenie
+            selectedExercise = e.CurrentSelection[0] as Exercise;
+            //nameEntry.Text = selectedExercise.Name;
+            //categoryEntry.Text = selectedExercise.Category;
+
+            if (PlanPage.addToThePlan)
+            {
+                //JEDEN PLAN SPOSÓB
+                var n = new Name
+                {
+                    ExcerciseName = selectedExercise.Name
+                };
+                //albo jedno albo drugie
+                App.Database.SaveNameAsync(n);
+                //App.Database.UpdateNameAsync(n);
+
+                //////////////  
+                PlanPage.addToThePlan = false;
+
+                await DisplayAlert("Success", "Exercise added", "OK");
+                await Navigation.PushAsync(new PlanPage());
+            }
+        }
+        //delete excercise
+        async private void DeleteClicked(object sender, EventArgs e)
+        {
+            if (selectedExercise != null)
+            {
+                //Delete exercise  
+                await App.Database.DeleteExerciseAsync(selectedExercise);
+                await DisplayAlert("Success", "Exercise deleted", "OK");
+
+                //Get All Exercises  
+                exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+            }
+        }
 
         //adding new exercise
         async void AddExerciseClicked(object sender, EventArgs e)
         {
+            addBool = true;
+            await Navigation.PushAsync(new AddUpdateExcercise());
+
+
             ////when name isn't empty
             //if (!string.IsNullOrWhiteSpace(nameEntry.Text))
             //{
@@ -68,46 +112,6 @@ namespace workoutPlanner
             //    exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
             //}
         }
-        async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {            
-            //wybrane cwiczenie
-            selectedExercise = e.CurrentSelection[0] as Exercise;
-            //nameEntry.Text = selectedExercise.Name;
-            //categoryEntry.Text = selectedExercise.Category;
-            Navigation.PushAsync(new PlanPage());
-
-            if (PlanPage.addToThePlan)
-            {
-                //JEDEN PLAN SPOSÓB
-                var n = new Name
-                {
-                    ExcerciseName = selectedExercise.Name
-                };
-                //albo jedno albo drugie
-                App.Database.SaveNameAsync(n);
-                //App.Database.UpdateNameAsync(n);
-
-                //////////////  
-                PlanPage.addToThePlan = false;
-
-                await DisplayAlert("Success", "Exercise added", "OK");
-                await Navigation.PushAsync(new PlanPage());
-            }
-        }
-
-        async private void DeleteClicked(object sender, EventArgs e)
-        {
-            if (selectedExercise != null)
-            {
-                //Delete exercise  
-                await App.Database.DeleteExerciseAsync(selectedExercise);
-                await DisplayAlert("Success", "Exercise deleted", "OK");
-
-                //Get All Exercises  
-                exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
-            }
-        }
-
         async private void UpdateClicked(object sender, EventArgs e)
         {
             //if (!string.IsNullOrWhiteSpace(nameEntry.Text))

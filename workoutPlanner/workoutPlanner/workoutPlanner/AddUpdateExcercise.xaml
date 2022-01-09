@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="workoutPlanner.AddUpdateExcercise"
+             Background="#e0adf8">
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#8952b4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Margin="20,35,20,20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image x:Name="resultImage"
+                       Margin="10,10,10,1"
+                       HeightRequest="250"
+                       WidthRequest="250"
+                       BackgroundColor="Transparent"
+                       Source="photo.png"
+                       Grid.Row ="0"
+                       Grid.Column ="0"
+                       Grid.ColumnSpan="3"
+                       Grid.RowSpan="6">
+                </Image>
+                <Button x:Name ="pickImg"
+                        Text="pick image"
+                    
+                        BackgroundColor="#8952b4"
+                        CornerRadius="7"
+                        BorderColor="#48185f"
+                        BorderWidth="3"
+                        TextColor="#48185f"
+                        FontAttributes="Bold"
+                        Grid.Row ="7"
+                        Grid.Column ="1"
+                        VerticalOptions="Start"/>
+                <Entry x:Name="nameEntry"
+                       Placeholder="Enter name"
+                       BackgroundColor="Transparent"
+                       Grid.Row ="8"
+                       Grid.Column ="0"
+                       Grid.ColumnSpan="3"/>
+                <Entry x:Name="categoryEntry"
+                       Placeholder="Enter category" 
+                       BackgroundColor="Transparent"
+                       Grid.Row ="9"
+                       Grid.Column ="0"
+                       Grid.ColumnSpan="3"/>
+                <Entry x:Name="detailsEntry"
+                       Placeholder="Enter details" 
+                       BackgroundColor="Transparent"
+                       Grid.Row ="10"
+                       Grid.Column ="0"
+                       Grid.ColumnSpan="3"/>
+                <Button x:Name ="saveBtn"
+                        Text="Save"
+                        Clicked="saveBtn_Clicked" 
+                        BackgroundColor="#8952b4"
+                        CornerRadius="7"
+                        BorderColor="#48185f"
+                        BorderWidth="3"
+                        TextColor="#48185f"
+                        FontAttributes="Bold"
+                        Grid.Row ="11"
+                        Grid.Column ="1"
+                        />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
