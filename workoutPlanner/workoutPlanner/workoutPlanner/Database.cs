@@ -68,6 +68,8 @@ namespace workoutPlanner
             //    Img = "sidePlankLegLift.png"
             //};
 
+            //if(Exercise!=null) //bez wstawiania kazdorazowego
+
             _dbdb.InsertAsync(exercise1);
             _dbdb.InsertAsync(exercise2);
             _dbdb.InsertAsync(exercise3);
@@ -152,9 +154,9 @@ namespace workoutPlanner
             //}
         }
         //zwraca liste nazw
-        public Task<List<Exercise>> ExcerciseQuery()
-        {
-            return _dbdb.QueryAsync<Exercise>("SELECT Name FROM [Excercise]");
-        }
+        //public Task<List<string>> ExcerciseQuery()
+        //{
+        //    return _dbdb.QueryAsync<List<string>>("SELECT Name FROM [Excercise]");
+        //}
     }
 }
