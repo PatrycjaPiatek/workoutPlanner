@@ -59,9 +59,13 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
             <Button Text="Add new exercise"
                     Clicked="AddExerciseClicked" 
                     Grid.Column="0"
+                    Grid.Row="0"
                     BackgroundColor="#8952b4"
                     CornerRadius="7"
                     BorderColor="#48185f"
@@ -89,7 +93,7 @@
                     TextColor="#48185f"
                     FontAttributes="Bold"/>
             <Button x:Name ="details"
-                    Text="details"
+                    Text="Details"
                     Clicked="details_Clicked"
                     Grid.Column="3"
                     BackgroundColor="#8952b4"

@@ -24,26 +24,33 @@ namespace workoutPlanner
             //testowanie
             var exercise1 = new Exercise
             {
-                Name = "bench press",
-                Category = "chest",
+                Name = "Bench press",
+                Category = "Chest",
                 Img = "benchPress.png",
                 Details = "The bench press helps build many muscles in the upper body. You can do this exercise with either a barbell or dumbbells. Perform bench presses regularly as part of an upper-body workout for increased strength and muscle development."
             };
 
             var exercise2 = new Exercise
             {
-                Name = "dumbbell bent-over row on bench",
-                Category = "back",
+                Name = "Dumbbell bent-over row on bench",
+                Category = "Back",
                 Img = "dumbbellBentOverRow.png",
                 Details = "The one-arm dumbbell row is a good addition to any dumbbell workout. This movement targets the upper and lower back, shoulders, biceps, and hips while improving core stability.1 Five different joint actions take place in this compound exercise. Beginners can use light weights as they build strength. This is also a good exercise to do as part of a circuit training routine."
             };
 
             var exercise3 = new Exercise
             {
-                Name = "hip thrust",
-                Category = "lower body",
+                Name = "Hip thrust",
+                Category = "Lower body",
                 Img = "pants.png",
-                Details = "The hip thruster is effective for improving hip extension by engaging the hamstrings and gluteal muscles. Your hips extend when they move from a flexed position (where the hips are lower than or behind the shoulders and knees) to a fully extended position where the hips, shoulders, and knees are in line."
+                Details = "Also Known As: Hip thruster, weighted hip bridge, weighted glute bridge\n\n" +
+                "Targets: Gluteus minimus, gluteus medius, gluteus maximus, hamstrings, adductors, and quadriceps\n\n" +
+                "Equipment Needed: Barbell, weight plates, dumbbell, or kettlebell\n\n" +
+                "Level: Intermediate\n\n" +
+                "The hip thrust, or hip thruster, has gained widespread popularity over the past few years. The move is a variation of a glute bridge, but it is performed using a barbell and with the body lifted off the floor. It targets the gluteal muscles better than many other lower-body movements. " +
+                "The hip thruster is effective for improving hip extension by engaging the hamstrings and gluteal muscles.Your hips extend when they move from a flexed position(where the hips are lower than or behind the shoulders and knees) to a fully extended position where the hips, shoulders, and knees are in line. " +
+                "Some popular variations of hip thruster also engage the gluteal muscles that wrap around the sides of the hips, the abductors. To do these moves, you'll need to use a circular resistance band (sometimes called a hip thruster band).\n\n" +
+                "Benefits: There are a few solid reasons that the hip thruster is becoming an essential movement for leg day at the gym."
             };
 
             ////dodawane
