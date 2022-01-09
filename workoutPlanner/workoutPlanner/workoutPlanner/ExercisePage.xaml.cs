@@ -103,9 +103,17 @@ namespace workoutPlanner
             }
         }
 
-        private void details_Clicked(object sender, EventArgs e)
+        private async void details_Clicked(object sender, EventArgs e)
         {
-
+            //updateBool = true;
+            if (selectedExercise != null)
+            {
+                await Navigation.PushAsync(new ExcerciseDetails());
+            }
+            else
+            {
+                await DisplayAlert(":)", "Select excercise first", "OK");
+            }
         }
 
         //private void addExerciseToThePlan_Clicked(object sender, EventArgs e)
