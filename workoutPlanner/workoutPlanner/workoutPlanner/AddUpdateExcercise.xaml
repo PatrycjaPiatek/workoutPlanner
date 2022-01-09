@@ -31,14 +31,14 @@
 
                 <Image x:Name="defaultImage"
                        Margin="10,10,10,1"
-                       HeightRequest="250"
-                       WidthRequest="250"
+                       HeightRequest="200"
+                       WidthRequest="200"
                        BackgroundColor="Transparent"
                        Source="photo.png"
                        Grid.Row ="0"
                        Grid.Column ="0"
                        Grid.ColumnSpan="3"
-                       Grid.RowSpan="6">
+                       Grid.RowSpan="4">
                 </Image>
                 <Button x:Name ="pickImg"
                         Text="pick image"
@@ -49,27 +49,39 @@
                         BorderWidth="3"
                         TextColor="#48185f"
                         FontAttributes="Bold"
-                        Grid.Row ="7"
+                        Grid.Row ="5"
                         Grid.Column ="1"
                         VerticalOptions="Start"/>
                 <Entry x:Name="nameEntry"
                        Placeholder="Enter name"
                        BackgroundColor="Transparent"
-                       Grid.Row ="8"
+                       Grid.Row ="6"
                        Grid.Column ="0"
-                       Grid.ColumnSpan="3"/>
-                <Entry x:Name="categoryEntry"
+                       Grid.ColumnSpan="3"
+                       TextColor="#48185f"/>
+                <Picker x:Name="MainPicker"
+                        SelectedIndexChanged="MainPicker_SelectedIndexChanged"
+                        BackgroundColor="Transparent"
+                        Grid.Row ="7"
+                        Grid.Column ="0"
+                        Grid.ColumnSpan="3"
+                        TextColor="#48185f"/>
+                <!--<Entry x:Name="categoryEntry"
                        Placeholder="Enter category" 
                        BackgroundColor="Transparent"
                        Grid.Row ="9"
                        Grid.Column ="0"
                        Grid.ColumnSpan="3"/>
-                <Entry x:Name="detailsEntry"
+                -->
+                <Editor x:Name="detailsEntry"
                        Placeholder="Enter details" 
                        BackgroundColor="Transparent"
-                       Grid.Row ="10"
+                       Grid.Row ="8"
+                       Grid.RowSpan ="5"
                        Grid.Column ="0"
-                       Grid.ColumnSpan="3"/>
+                       Grid.ColumnSpan="3"
+                       TextColor="#48185f"
+                       />
                 <Button x:Name ="saveBtn"
                         Text="Save"
                         Clicked="saveBtn_Clicked" 
@@ -79,9 +91,8 @@
                         BorderWidth="3"
                         TextColor="#48185f"
                         FontAttributes="Bold"
-                        Grid.Row ="11"
-                        Grid.Column ="1"
-                        />
+                        Grid.Row ="13"
+                        Grid.Column ="1"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

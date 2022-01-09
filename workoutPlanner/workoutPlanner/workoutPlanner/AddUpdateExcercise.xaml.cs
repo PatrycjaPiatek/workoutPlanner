@@ -12,15 +12,28 @@ namespace workoutPlanner
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddUpdateExcercise : ContentPage
     {
-        public string selectedSource = "photo.png";
+        public string selectedSource = "photo.png";        
+        public string selectedCategory = "";
         public AddUpdateExcercise()
         {
             InitializeComponent();
+
+            defaultImage.Source = "photo.png";
+
+            MainPicker.Items.Add("Arms");
+            MainPicker.Items.Add("Chest");
+            MainPicker.Items.Add("Lower body");
+            MainPicker.Items.Add("Abs");
+            MainPicker.Items.Add("Legs");
+            MainPicker.Items.Add("Other");
+            MainPicker.Items.Add("Back");
+            MainPicker.SelectedItem = "Other";
+
             if (ExercisePage.updateBool)
             {
                 defaultImage.Source = ExercisePage.selectedExercise.Img;
                 nameEntry.Text = ExercisePage.selectedExercise.Name;
-                categoryEntry.Text = ExercisePage.selectedExercise.Category;
+                MainPicker.SelectedItem = ExercisePage.selectedExercise.Category;
                 detailsEntry.Text = ExercisePage.selectedExercise.Details;
             }
         }
@@ -45,20 +58,22 @@ namespace workoutPlanner
                     //    await DisplayAlert("", "Please pick an image first", "ok");
                     //}
                     //else { }
+                    
                     await App.Database.SaveExerciseAsync(new Exercise
                     {
                         Name = nameEntry.Text,
                         //kategoria wybierana z listy moze 
-                        Category = categoryEntry.Text,
+                        Category = selectedCategory,
                         Details = detailsEntry.Text,
                         Img = selectedSource
 
                     });
                     await DisplayAlert("Success", "Exercise added", "OK");
 
-                    defaultImage.Source = "photo.png";
+                    //defaultImage.Source = "photo.png";
                     selectedSource = "";
-                    nameEntry.Text = categoryEntry.Text = detailsEntry.Text = string.Empty;
+                    //categoryEntry.Text = string.Empty;
+                    nameEntry.Text = detailsEntry.Text = string.Empty;
                     ExercisePage.addBool = false; 
                     await Navigation.PushAsync(new ExercisePage());
                 }
@@ -77,15 +92,16 @@ namespace workoutPlanner
                         ExercisePage.selectedExercise.Img = selectedSource;
                     }                 
                     ExercisePage.selectedExercise.Name = nameEntry.Text;
-                    ExercisePage.selectedExercise.Category = categoryEntry.Text;
+                    ExercisePage.selectedExercise.Category = selectedCategory;
                     ExercisePage.selectedExercise.Details = detailsEntry.Text;
 
                     await App.Database.UpdateExerciseAsync(ExercisePage.selectedExercise);
                     await DisplayAlert("Success", "Exercise updated", "OK");
                 }
-                defaultImage.Source = "photo.png";
+                //defaultImage.Source = "photo.png";
                 selectedSource = "";
-                nameEntry.Text = categoryEntry.Text = detailsEntry.Text = "";
+                //categoryEntry.Text = "";
+                nameEntry.Text = detailsEntry.Text = "";
                 ExercisePage.updateBool = false;
                 await Navigation.PushAsync(new ExercisePage());
             }
@@ -104,6 +120,11 @@ namespace workoutPlanner
                 defaultImage.Source = ImageSource.FromStream(() => stream);
                 selectedSource = result.FullPath;
             }
+        }
+
+        private void MainPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedCategory = MainPicker.Items[MainPicker.SelectedIndex];
         }
     }
 }
