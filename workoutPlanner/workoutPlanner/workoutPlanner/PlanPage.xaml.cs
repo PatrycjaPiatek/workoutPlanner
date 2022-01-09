@@ -17,7 +17,7 @@ namespace workoutPlanner
         public static bool addToThePlan = false;
 
         //variable that represents the selected plan
-        public static Plan selectedItem = null;
+        public static Name selectedItem = null;
         public PlanPage()
         {
             InitializeComponent();
@@ -33,41 +33,41 @@ namespace workoutPlanner
         //adding new plan
         async void AddPlanClicked(object sender, EventArgs e)
         {
-            //when name isn't empty
-            if (!string.IsNullOrWhiteSpace(nameEntry.Text))
-            {
-                await App.Database.SavePlanAsync(new Plan
-                {
-                    Name = nameEntry.Text,
-                    Details = detailsEntry.Text
-                });
-                await DisplayAlert("Success", "Plan added", "OK");
+            ////when name isn't empty
+            //if (!string.IsNullOrWhiteSpace(nameEntry.Text))
+            //{
+            //    await App.Database.SavePlanAsync(new Plan
+            //    {
+            //        ExcerciseName = nameEntry.Text,
+            //        Details = detailsEntry.Text
+            //    });
+            //    await DisplayAlert("Success", "Plan added", "OK");
 
-                nameEntry.Text = detailsEntry.Text = string.Empty;
-                collectionView.ItemsSource = await App.Database.GetPlansAsync();
-            }
+            //    nameEntry.Text = detailsEntry.Text = string.Empty;
+            //    collectionView.ItemsSource = await App.Database.GetPlansAsync();
+            //}
         }
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedItem = e.CurrentSelection[0] as Plan;
-            //when selected, name and details show in entry
-            nameEntry.Text = selectedItem.Name;
-            detailsEntry.Text = selectedItem.Details;
+            //selectedItem = e.CurrentSelection[0] as Plan;
+            ////when selected, name and details show in entry
+            //nameEntry.Text = selectedItem.ExcerciseName;
+            //detailsEntry.Text = selectedItem.Details;
 
-            //dla testu
-            if (selectedItem.ExercisesInPlan != null)
-            {
-                test.Text = selectedItem.ExercisesInPlan[0].Category.ToString();
-            }
-            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "_dbdb.db");
+            ////dla testu
+            //if (selectedItem.ExercisesInPlan != null)
+            //{
+            //    test.Text = selectedItem.ExercisesInPlan[0].Category.ToString();
+            //}
+            //var databasePath = Path.Combine(FileSystem.AppDataDirectory, "_dbdb.db");
 
-            Console.WriteLine(databasePath);
-            test.Text = databasePath;
-            //C:\Users\pipat\AppData\Local\Packages\9edf7a7b-9cf2-4878-9e67-59ad451d441a_0f9wbgk7cg3pc\LocalState\_dbdb.db
-            //C:\Users\pipat\AppData\Local\Packages\9edf7a7b-9cf2-4878-9e67-59ad451d441a_0f9wbgk7cg3pc\LocalState\_dbdb.db
-            //dla testu, czy dziala dodawanie cwiczen do planu
-            //Get All Persons  
-            //exerciseCollectionView.ItemsSource = await App.Database.GetPlansAsync();
+            //Console.WriteLine(databasePath);
+            //test.Text = databasePath;
+            ////C:\Users\pipat\AppData\Local\Packages\9edf7a7b-9cf2-4878-9e67-59ad451d441a_0f9wbgk7cg3pc\LocalState\_dbdb.db
+            ////C:\Users\pipat\AppData\Local\Packages\9edf7a7b-9cf2-4878-9e67-59ad451d441a_0f9wbgk7cg3pc\LocalState\_dbdb.db
+            ////dla testu, czy dziala dodawanie cwiczen do planu
+            ////Get All Persons  
+            ////exerciseCollectionView.ItemsSource = await App.Database.GetPlansAsync();
         }
 
         async private void DeleteClicked(object sender, EventArgs e)
@@ -85,23 +85,23 @@ namespace workoutPlanner
 
         async private void UpdateClicked(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(nameEntry.Text))
-            {
-                selectedItem.Name = nameEntry.Text;
-                selectedItem.Details = detailsEntry.Text;
-                await App.Database.UpdatePlanAsync(selectedItem);
+            //if (!string.IsNullOrWhiteSpace(nameEntry.Text))
+            //{
+            //    selectedItem.ExcerciseName = nameEntry.Text;
+            //    selectedItem.Details = detailsEntry.Text;
+            //    await App.Database.UpdatePlanAsync(selectedItem);
                 
-                await DisplayAlert("Success", "Plan updated", "OK");
+            //    await DisplayAlert("Success", "Plan updated", "OK");
 
-                nameEntry.Text = detailsEntry.Text = string.Empty;
-                collectionView.ItemsSource = await App.Database.GetPlansAsync();
-            }
+            //    nameEntry.Text = detailsEntry.Text = string.Empty;
+            //    collectionView.ItemsSource = await App.Database.GetPlansAsync();
+            //}
         }
 
         private void addExerciseToThePlan_Clicked(object sender, EventArgs e)
         {            
-            addToThePlan = true;
-            Navigation.PushAsync(new ExercisePage());
+            //addToThePlan = true;
+            //Navigation.PushAsync(new ExercisePage());
         }
     }
 }

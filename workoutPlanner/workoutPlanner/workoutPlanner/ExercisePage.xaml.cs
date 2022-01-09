@@ -19,18 +19,18 @@ namespace workoutPlanner
         {
             InitializeComponent();
         }
-        async private void Add()
-        {
-            await App.Database.SaveExerciseAsync(new Exercise
-            {
-                Name = "bench press",
-                Category = "chest",
-                Img = "benchPress.png"
+        //async private void Add()
+        //{
+        //    await App.Database.SaveExerciseAsync(new Exercise
+        //    {
+        //        Name = "bench press",
+        //        Category = "chest",
+        //        Img = "benchPress.png"
 
-            });            
+        //    });            
             
-            exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
-        }
+        //    exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+        //}
 
         //method that shows current data in table
         protected override async void OnAppearing()
@@ -69,9 +69,9 @@ namespace workoutPlanner
                 //stary sposob
                 //PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { selectedExercise };
 
-                //nowy sposob
-                PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { };
-                PlanPage.selectedItem.ExercisesInPlan.Add(selectedExercise);
+                ////nowy sposob
+                //PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { };
+                //PlanPage.selectedItem.ExercisesInPlan.Add(selectedExercise);
 
                 //plan1.ExercisesInPlan = new List<Exercise> { };
                 //plan1.ExercisesInPlan.Add(exercise1);

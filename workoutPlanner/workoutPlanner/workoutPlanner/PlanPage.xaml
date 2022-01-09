@@ -39,8 +39,7 @@
         <Button x:Name ="addExerciseToThePlan"
                 Text="add exercise to the plan"
                 Clicked="addExerciseToThePlan_Clicked"/>
-        
-        
+       
         
         <CollectionView x:Name="collectionView"
                         SelectionMode="Single"
@@ -48,45 +47,13 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
-                        <Label Text="{Binding Name}"
+                        <Label Text="{Binding ExcerciseName}"
                                FontSize="Medium" 
                                TextColor="#48185f"
                                FontAttributes="Bold"/>
-                        <Label Text="{Binding Details}"
+                        <Label Text="{Binding IDExcerciseInPlan}"
                                TextColor="#48185f"
                                FontSize="Small" />
-                        <Label Text="{Binding ID}"
-                               TextColor="#48185f"
-                               FontSize="Small" />
-
-                        <Label Text="{Binding ExercisesInPlan}"/>
-                        <ListView x:Name="listView">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Grid Padding="10"
-                                                  RowDefinitions="Auto, *"
-                                                  ColumnDefinitions="Auto, *">
-                                                <Image Grid.RowSpan="2"
-                                                       Source="{Binding Img}"
-                                                       Aspect="AspectFill"
-                                                       HeightRequest="60"
-                                                       WidthRequest="60" />
-                                                <Label Grid.Column="1"
-                                                       Text="{Binding Name}"
-                                                       FontAttributes="Bold" />
-                                                <Label Grid.Row="1"
-                                                       Grid.Column="1"
-                                                       Text="{Binding Category}"
-                                                       VerticalOptions="End" />
-                                            </Grid>
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                        
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
