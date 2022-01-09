@@ -88,6 +88,8 @@ namespace workoutPlanner
             categoryEntry.Text = selectedExercise.Category;
             //Navigation.PushAsync(new PlanPage());
 
+            await Navigation.PushAsync(new ExcerciseDetails());
+
             if (PlanPage.addToThePlan)
             {
                 //JEDEN PLAN SPOSÓB
@@ -147,11 +149,13 @@ namespace workoutPlanner
             {
                 selectedExercise.Name = nameEntry.Text;
                 selectedExercise.Category = categoryEntry.Text;
+                selectedExercise.Img = selectedSource;
+                selectedExercise.Details = detailsEntry.Text;
                 await App.Database.UpdateExerciseAsync(selectedExercise);
 
                 await DisplayAlert("Success", "Exercise updated", "OK");
 
-                nameEntry.Text = categoryEntry.Text = string.Empty;
+                nameEntry.Text = categoryEntry.Text = detailsEntry.Text = string.Empty;
                 exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
             }
         }

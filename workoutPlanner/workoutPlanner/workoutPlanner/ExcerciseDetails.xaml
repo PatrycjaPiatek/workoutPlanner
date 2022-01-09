@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="workoutPlanner.ExcerciseDetails"
+             Background="#e0adf8">
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#8952b4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout Margin="20,35,20,20">
+            <Image x:Name="excerciseImg"
+                       Margin="10,10,10,1"
+                       HeightRequest="250"
+                       WidthRequest="50"
+                       BackgroundColor="Transparent"
+                       Source="photo.png">
+            </Image>
+            <Label x:Name="excerciseName"
+                   BackgroundColor="Transparent"
+                   FontAttributes="Bold"
+                   TextColor="#48185f"
+                   FontSize="Header" />
+            <Label x:Name="excerciseCategory"
+                   BackgroundColor="Transparent"
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Start"
+                   TextColor="#48185f"
+                   FontSize="Micro"/>
+            <Label x:Name="excerciseDetails"
+                   BackgroundColor="Transparent"
+                   VerticalOptions="End" 
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="#48185f"
+                   FontSize="Small"/>        
+        
+            <Button x:Name ="pickImg"
+                    Text="pick image"
+                    Clicked="pickImg_Clicked"/>        
+            <Button x:Name ="update"
+                    Text="Update exercise"
+                    Clicked="update_Clicked"/> 
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
