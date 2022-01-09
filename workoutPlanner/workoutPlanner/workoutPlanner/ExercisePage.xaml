@@ -62,7 +62,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Button Text="Add new exercise"
+            <Button Text="Add"
                     Clicked="AddExerciseClicked" 
                     Grid.Column="0"
                     Grid.Row="0"
@@ -73,7 +73,7 @@
                     TextColor="#48185f"
                     FontAttributes="Bold"/>
             <Button x:Name ="update"
-                    Text="Update selected exercise"
+                    Text="Edit"
                     Clicked="UpdateClicked" 
                     Grid.Column="1"
                     BackgroundColor="#8952b4"
@@ -83,7 +83,7 @@
                     TextColor="#48185f"
                     FontAttributes="Bold"/>
             <Button x:Name ="delete"
-                    Text="Delete selected exercise"
+                    Text="Delete"
                     Clicked="DeleteClicked"
                     Grid.Column="2"
                     BackgroundColor="#8952b4"
