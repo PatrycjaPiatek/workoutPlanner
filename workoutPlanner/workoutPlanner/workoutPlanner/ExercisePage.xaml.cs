@@ -15,6 +15,12 @@ namespace workoutPlanner
     {
         //variable that represents the selected exercise
         public static Exercise selectedExercise = null;
+        //list of names, fajnie gdyby byla robiona z zapytania sql
+        public static List<string> ListOfNames = new List<string> { "bench press", "dumbbell bent-over row on bench", "hip trust" };
+
+        //public string selectedCategory = "Accessories";
+        public string selectedSource = "photo.png";
+
         public ExercisePage()
         {
             InitializeComponent();
@@ -45,13 +51,31 @@ namespace workoutPlanner
             //when name isn't empty
             if (!string.IsNullOrWhiteSpace(nameEntry.Text))
             {
+                //different names
+                foreach(string n in ListOfNames)
+                {
+                    if (nameEntry.Text == n)
+                    {
+                        nameEntry.Text += "1";
+                    }
+                }
+                //if (selectedSource.Equals("photo.png"))
+                //{
+                //    await DisplayAlert("", "Please pick an image first", "ok");
+                //}
+                //else { }
                 await App.Database.SaveExerciseAsync(new Exercise
                 {
                     Name = nameEntry.Text,
-                    Category = categoryEntry.Text
+                    //kategoria wybierana z listy
+                    Category = categoryEntry.Text,
+                    Img = selectedSource
+
                 });
                 await DisplayAlert("Success", "Exercise added", "OK");
 
+                resultImage.Source = "photo.png";
+                selectedSource = "photo.png";
                 nameEntry.Text = categoryEntry.Text = string.Empty;
                 exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
             }
@@ -71,8 +95,10 @@ namespace workoutPlanner
                 {
                     ExcerciseName = selectedExercise.Name
                 };
+                //albo jedno albo drugie
                 App.Database.SaveNameAsync(n);
                 //App.Database.UpdateNameAsync(n);
+
                 //stary sposob
                 //PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { selectedExercise };
 
@@ -127,6 +153,24 @@ namespace workoutPlanner
 
                 nameEntry.Text = categoryEntry.Text = string.Empty;
                 exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+            }
+        }
+
+        private async void pickImg_Clicked_1(object sender, EventArgs e)
+        {
+            var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
+            {
+                Title = "Please pick a photo"
+            });
+
+            if (result != null)
+            {
+                var stream = await result.OpenReadAsync();
+                resultImage.Source = ImageSource.FromStream(() => stream);
+                selectedSource = result.FullPath;
+                //String myPath = result.FullPath;
+                //lblText.Text = myPath;
+                //pickedImage.Source = myPath;
             }
         }
 

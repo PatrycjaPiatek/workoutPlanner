@@ -21,12 +21,25 @@
         </Style>
     </ContentPage.Resources>
     <StackLayout Margin="20,35,20,20">
+        <Image x:Name="resultImage"
+                   Margin="10,10,10,1"
+                   HeightRequest="250"
+                   WidthRequest="50"
+                   BackgroundColor="#E8D1FF"
+                   Source="photo.png">
+        </Image>
         <Entry x:Name="nameEntry"
                Placeholder="Enter name"
                BackgroundColor="#48185f"/>
         <Entry x:Name="categoryEntry"
                Placeholder="Enter category" 
                BackgroundColor="#48185f"/>
+        <Entry x:Name="detailsEntry"
+               Placeholder="Enter details" 
+               BackgroundColor="#48185f"/>
+        <Button x:Name ="pickImg"
+                Text="pick image"
+                Clicked="pickImg_Clicked_1" />
         <Button Text="Add new exercise"
                 Clicked="AddExerciseClicked" />
         <Button x:Name ="delete"
@@ -35,6 +48,7 @@
         <Button x:Name ="update"
                 Text="Update selected exercise"
                 Clicked="UpdateClicked" />
+        
 
         <CollectionView x:Name="exerciseCollectionView"
                         SelectionMode="Single"

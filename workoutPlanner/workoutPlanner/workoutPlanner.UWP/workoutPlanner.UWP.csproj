@@ -136,6 +136,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="benchPress.png" />
+    <Content Include="bicycleCrunches.png" />
     <Content Include="btn_exercises.png" />
     <Content Include="btn_plans4.png" />
     <Content Include="btn_plans.png" />
@@ -143,7 +144,10 @@
     <Content Include="btn_plans2.png" />
     <Content Include="btn_plans3.png" />
     <Content Include="dumbbellBentOverRow.png" />
+    <Content Include="pants.png" />
+    <Content Include="photo.png" />
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="sidePlankLegLift.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
