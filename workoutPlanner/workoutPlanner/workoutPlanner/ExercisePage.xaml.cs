@@ -21,6 +21,7 @@ namespace workoutPlanner
         public string selectedSource = "photo.png";
         public static bool addBool = false;
         public static bool updateBool = false;
+        bool deleteBool = false;
 
         public ExercisePage()
         {
@@ -33,6 +34,8 @@ namespace workoutPlanner
             base.OnAppearing();
             exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
             selectedExercise = null;
+            addBool = false;
+            updateBool = false;
         }
         //select excercise
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -63,31 +66,40 @@ namespace workoutPlanner
         {
             if (selectedExercise != null)
             {
-                //Delete exercise  
-                await App.Database.DeleteExerciseAsync(selectedExercise);
-                await DisplayAlert("Success", "Exercise deleted", "OK");
+                deleteBool = await DisplayAlert("Are you sure?", "Exercise will be deleted", "OK", "NO");
+                if (deleteBool)
+                {
+                    //Delete exercise  
+                    await App.Database.DeleteExerciseAsync(selectedExercise);
+                    await DisplayAlert("Success", "Exercise deleted", "OK");
 
-                //Get All Exercises  
-                exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+                    //Get All Exercises  
+                    exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+                }
+            }
+            else
+            {
+                await DisplayAlert(":)", "Select excercise first", "OK");
             }
         }
 
         //adding new exercise
-        async void AddExerciseClicked(object sender, EventArgs e)
+        async private void AddExerciseClicked(object sender, EventArgs e)
         {
             addBool = true;
             await Navigation.PushAsync(new AddUpdateExcercise());
         }
         async private void UpdateClicked(object sender, EventArgs e)
         {
-            updateBool = true;
+            //updateBool = true;
             if (selectedExercise != null)
             {
+                updateBool = true;
                 await Navigation.PushAsync(new AddUpdateExcercise());
             }
             else
             {
-                //await DisplayAlert(":)", "Select excercise first", "OK");
+                await DisplayAlert(":)", "Select excercise first", "OK");
             }
         }
 
