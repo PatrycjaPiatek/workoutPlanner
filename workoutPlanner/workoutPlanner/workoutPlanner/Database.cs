@@ -76,9 +76,12 @@ namespace workoutPlanner
             //_dbdb.InsertAsync(exercise4);
             //_dbdb.InsertAsync(exercise5);
 
+            string listOfNames = exercise1.Name + exercise2.Name;
+
             var name1 = new Plan
             {
-                ListOfExcercisesName = exercise1.Name
+                NamePlan = "Plan1",
+                ListOfExcercisesName = listOfNames
             };
 
             var name2 = new Plan();
@@ -86,7 +89,8 @@ namespace workoutPlanner
             _dbdb.InsertAsync(name1);
             _dbdb.InsertAsync(name2);
 
-            name2.ListOfExcercisesName = exercise2.Name;
+            name2.NamePlan = "Plan2";
+            name2.ListOfExcercisesName = exercise2.Name + exercise3.Name;
 
             _dbdb.UpdateAsync(name1);
             _dbdb.UpdateAsync(name2);
