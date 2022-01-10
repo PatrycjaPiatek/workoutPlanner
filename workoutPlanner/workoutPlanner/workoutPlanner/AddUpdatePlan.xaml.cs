@@ -24,8 +24,7 @@ namespace workoutPlanner
             InitializeComponent();
             //SemicoloneveryName = "";
             if (PlanPage.addBool)
-            {
-                
+            {                
                 PlanPage.updateBool = false;
                 planName.Text = "";
                 planID.Text = "";
@@ -39,7 +38,6 @@ namespace workoutPlanner
                     {
                         SemicoloneveryName = SemicoloneveryName.Substring(1);
                     }
-
                 }
 
                 NamesList = SemicoloneveryName.Split(';').ToList();

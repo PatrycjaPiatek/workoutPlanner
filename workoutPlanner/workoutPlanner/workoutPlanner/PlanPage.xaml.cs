@@ -126,6 +126,7 @@ namespace workoutPlanner
 
         private async void update_Clicked(object sender, EventArgs e)
         {
+            addBool = false;
             //updateBool = true;
             if (selectedPlan != null)
             {
