@@ -21,39 +21,19 @@
         </Style>
     </ContentPage.Resources>
     <StackLayout Margin="20,35,20,20">
-        <CollectionView x:Name="exerciseCollectionView"
+        <CollectionView x:Name="collectionView"
                         SelectionMode="Single"
                         SelectionChanged="OnSelectionChanged">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
-                        <Grid Padding="10"
-                              RowDefinitions="Auto, *"
-                              ColumnDefinitions="Auto, *">
-                            <Image Grid.RowSpan="2"
-                                   Source="{Binding Img}"
-                                   Aspect="AspectFit"
-                                   HeightRequest="60"
-                                   WidthRequest="60" />
-                            <Label Grid.Column="1"
-                                   Text="{Binding Name}"
-                                   FontAttributes="Bold"
-                                   TextColor="#48185f"
-                                   FontSize="Medium" 
-                                   Grid.ColumnSpan="3"/>
-                            <Label Grid.Row="1"
-                                   Grid.Column="1"
-                                   Text="{Binding Category}"
-                                   VerticalOptions="End" 
-                                   TextColor="#48185f"
-                                   FontSize="Small" />
-                            <Label Grid.RowSpan="2"
-                                   Grid.Column="2"
-                                   Text="{Binding ID}"
-                                   VerticalOptions="End" 
-                                   TextColor="#48185f"
-                                   FontSize="Small" />
-                        </Grid>
+                        <Label Text="{Binding NamePlan}"
+                               FontSize="Medium" 
+                               TextColor="#48185f"
+                               FontAttributes="Bold"/>
+                        <Label Text="{Binding IDPlan}"
+                               TextColor="#48185f"
+                               FontSize="Small" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

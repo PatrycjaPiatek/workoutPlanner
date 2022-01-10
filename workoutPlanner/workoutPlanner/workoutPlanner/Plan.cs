@@ -11,8 +11,8 @@ namespace workoutPlanner
     public class Plan
     {
         [PrimaryKey, AutoIncrement]
-        public int IDExcerciseInPlan { get; set; }
-        public int NamePlan { get; set; }
+        public int IDPlan { get; set; }
+        public string NamePlan { get; set; }
         public string ListOfExcercisesName { get; set; }
         //public string Details { get; set; }
 

@@ -131,7 +131,7 @@ namespace workoutPlanner
         //update name
         public Task<int> UpdateNameAsync(Plan name)
         {
-            if (name.IDExcerciseInPlan != 0)
+            if (name.IDPlan != 0)
             {
                 //return _dbdb.
                 //_dbdb.UpdateWithChildren(name);
