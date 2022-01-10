@@ -18,6 +18,8 @@ namespace workoutPlanner
 
         //variable that represents the selected plan
         public static Name selectedItem = null;
+
+        public static bool newPlanBool = false;
         public PlanPage()
         {
             InitializeComponent();
@@ -33,6 +35,11 @@ namespace workoutPlanner
         //adding new plan
         async void AddPlanClicked(object sender, EventArgs e)
         {
+            newPlanBool = await DisplayAlert("Are you sure?", "This plan must be archived for a new plan to be created", "OK", "NO");
+            if (newPlanBool)
+            {
+                Navigation.PushAsync(new ExercisePage());
+            }
             ////when name isn't empty
             //if (!string.IsNullOrWhiteSpace(nameEntry.Text))
             //{
