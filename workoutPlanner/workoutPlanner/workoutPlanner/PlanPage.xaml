@@ -38,24 +38,32 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <CollectionView x:Name="collectionView"
+            </Grid.ColumnDefinitions>            
+            <Frame
+                Margin="0,0,0,7"
+                Padding="10"
+                CornerRadius ="7"
+                IsClippedToBounds="True"
+                BorderColor="Transparent"
+                BackgroundColor="#8952b4">
+                <CollectionView x:Name="collectionView"
                             SelectionMode="Single"
                             SelectionChanged="OnSelectionChanged">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Label Text="{Binding ExcerciseName}"
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Text="{Binding ExcerciseName}"
                                    FontSize="Medium" 
                                    TextColor="#48185f"
                                    FontAttributes="Bold"/>
-                            <Label Text="{Binding IDExcerciseInPlan}"
+                                <Label Text="{Binding IDExcerciseInPlan}"
                                    TextColor="#48185f"
                                    FontSize="Small" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
             <Frame
                 Margin="0,0,0,7"
                 Padding="10"
