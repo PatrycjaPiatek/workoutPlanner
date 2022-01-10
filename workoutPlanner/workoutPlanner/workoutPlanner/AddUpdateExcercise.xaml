@@ -21,25 +21,33 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Margin="20,35,20,0">
+        <StackLayout Margin="20,20,20,20">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-
-                <Image x:Name="defaultImage"
-                       Margin="10,10,10,1"
-                       HeightRequest="200"
-                       WidthRequest="200"
-                       BackgroundColor="Transparent"
-                       Source="photo.png"
-                       Grid.Row ="0"
-                       Grid.Column ="0"
-                       Grid.ColumnSpan="3"
-                       Grid.RowSpan="4">
-                </Image>
+                <Frame
+                    Margin="0,0,0,7"
+                    Padding="10"
+                    CornerRadius ="7"
+                    IsClippedToBounds="True"
+                    BorderColor="Transparent"
+                    BackgroundColor="#8952b4"
+                    Background="photo.png"
+                    Grid.Row ="0"
+                    Grid.Column ="0"
+                    Grid.ColumnSpan="3"
+                    Grid.RowSpan="4">
+                        <Image x:Name="defaultImage"
+                               Margin="10,10,10,10"
+                               HeightRequest="200"
+                               WidthRequest="200"
+                               BackgroundColor="Transparent"
+                               Source="photo.png">
+                        </Image>
+                </Frame>
                 <Button x:Name ="pickImg"
                         Text="pick image"
                         Clicked="pickImg_Clicked"
@@ -49,20 +57,20 @@
                         BorderWidth="3"
                         TextColor="#48185f"
                         FontAttributes="Bold"
-                        Grid.Row ="5"
+                        Grid.Row ="4"
                         Grid.Column ="1"
-                        VerticalOptions="Start"/>
+                        VerticalOptions="Center"/>
                 <Entry x:Name="nameEntry"
                        Placeholder="Enter name"
                        BackgroundColor="Transparent"
-                       Grid.Row ="6"
+                       Grid.Row ="5"
                        Grid.Column ="0"
                        Grid.ColumnSpan="3"
                        TextColor="#48185f"/>
                 <Picker x:Name="MainPicker"
                         SelectedIndexChanged="MainPicker_SelectedIndexChanged"
                         BackgroundColor="Transparent"
-                        Grid.Row ="7"
+                        Grid.Row ="6"
                         Grid.Column ="0"
                         Grid.ColumnSpan="3"
                         TextColor="#48185f"/>
@@ -79,18 +87,17 @@
                    IsClippedToBounds="true"
                    BorderColor="#48185f"
                    BackgroundColor="white"
-                   Grid.Row ="8"
+                   Grid.Row ="7"
                    Grid.RowSpan ="5"
                    Grid.Column ="0"
-                   Grid.ColumnSpan="3"
-                   >
+                   Grid.ColumnSpan="3">
                     <Editor x:Name="detailsEntry"
                        Placeholder="Enter details" 
                        BackgroundColor="Transparent"
                        TextColor="#48185f"/>
                 </Frame>
             </Grid>
-            <Grid Margin="20,7,20,20">
+            <Grid Margin="20,7,20,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
