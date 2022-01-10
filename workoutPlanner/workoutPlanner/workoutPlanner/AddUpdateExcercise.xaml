@@ -21,7 +21,7 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Margin="20,35,20,20">
+        <StackLayout Margin="20,35,20,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -73,15 +73,29 @@
                        Grid.Column ="0"
                        Grid.ColumnSpan="3"/>
                 -->
-                <Editor x:Name="detailsEntry"
+                <Frame
+                   Padding="0"
+                   CornerRadius ="7"
+                   IsClippedToBounds="true"
+                   BorderColor="#48185f"
+                   BackgroundColor="white"
+                   Grid.Row ="8"
+                   Grid.RowSpan ="5"
+                   Grid.Column ="0"
+                   Grid.ColumnSpan="3"
+                   >
+                    <Editor x:Name="detailsEntry"
                        Placeholder="Enter details" 
                        BackgroundColor="Transparent"
-                       Grid.Row ="8"
-                       Grid.RowSpan ="5"
-                       Grid.Column ="0"
-                       Grid.ColumnSpan="3"
-                       TextColor="#48185f"
-                       />
+                       TextColor="#48185f"/>
+                </Frame>
+            </Grid>
+            <Grid Margin="20,7,20,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
                 <Button x:Name ="saveBtn"
                         Text="Save"
                         Clicked="saveBtn_Clicked" 
@@ -91,7 +105,7 @@
                         BorderWidth="3"
                         TextColor="#48185f"
                         FontAttributes="Bold"
-                        Grid.Row ="13"
+                        Grid.Row ="0"
                         Grid.Column ="1"/>
             </Grid>
         </StackLayout>
