@@ -29,7 +29,7 @@
             BackgroundColor="#8952b4"
             Background="photo.png">
             <Image x:Name="excerciseImg"
-                   Margin="10,10,10,1"
+                   Margin="10,10,10,10"
                    HeightRequest="250"
                    WidthRequest="50"
                    BackgroundColor="Transparent">
