@@ -12,7 +12,7 @@
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
                                 <Setter Property="BackgroundColor"
-                                        Value="#e0adf8" />
+                                        Value="#8952b4" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -20,219 +20,105 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
-    <StackLayout>
-        <ScrollView>
-            <StackLayout Margin="20,35,20,35">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label
-                        Text="Your Plan"
-                        FontSize="Large" 
-                        TextColor="#48185f"
-                        FontAttributes="Bold"
-                        Grid.Column="0"
-                        Grid.Row="0"/>
-                    <Frame
-                        Margin="0,0,0,0"
-                        Padding="10"
-                        CornerRadius ="7"
-                        IsClippedToBounds="True"
-                        BorderColor="Transparent"
-                        BackgroundColor="#8952b4"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="1"
-                        Grid.RowSpan="11">
-                        <CollectionView x:Name="collectionView"
-                                    SelectionMode="Single"
-                                    SelectionChanged="OnSelectionChanged">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackLayout>
-                                        <Label Text="{Binding ExcerciseName}"
-                                           FontSize="Medium" 
-                                           TextColor="#48185f"
-                                           FontAttributes="Bold"/>
-                                        <Label Text="{Binding IDExcerciseInPlan}"
-                                           TextColor="#48185f"
-                                           FontSize="Small" />
-                                    </StackLayout>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </Frame>
-                    <Frame
-                        Margin="0,0,0,0"
-                        Padding="10"
-                        CornerRadius ="7"
-                        IsClippedToBounds="True"
-                        BorderColor="Transparent"
-                        BackgroundColor="#8952b4"
-                        Grid.Row ="12"
-                        Grid.Column ="0"
-                        Grid.ColumnSpan="2"
-                        Grid.RowSpan ="4">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Frame Margin="0,0,0,0"
-                                   Padding="10"
-                                   CornerRadius ="7"
-                                   IsClippedToBounds="True"
-                                   BackgroundColor="#e0adf8"
-                                   Grid.Row="0"
-                                   Grid.RowSpan="2"
-                                   Grid.ColumnSpan="3"
-                                   Grid.Column="0">
-                                <StackLayout>
-                                    <Label
-                                        Text="Done:"
-                                        FontSize="Small" 
-                                        TextColor="#48185f"
-                                        FontAttributes="Bold"/>
-                                    <Label 
-                                        Text="Yes"
-                                        FontSize="Micro" 
-                                        TextColor="#48185f"
-                                        FontAttributes="None"/>
-                                </StackLayout>
-                            </Frame>
+    <StackLayout Margin="20,35,20,20">
+        <CollectionView x:Name="exerciseCollectionView"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Grid Padding="10"
+                              RowDefinitions="Auto, *"
+                              ColumnDefinitions="Auto, *">
+                            <Image Grid.RowSpan="2"
+                                   Source="{Binding Img}"
+                                   Aspect="AspectFit"
+                                   HeightRequest="60"
+                                   WidthRequest="60" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Name}"
+                                   FontAttributes="Bold"
+                                   TextColor="#48185f"
+                                   FontSize="Medium" 
+                                   Grid.ColumnSpan="3"/>
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding Category}"
+                                   VerticalOptions="End" 
+                                   TextColor="#48185f"
+                                   FontSize="Small" />
+                            <Label Grid.RowSpan="2"
+                                   Grid.Column="2"
+                                   Text="{Binding ID}"
+                                   VerticalOptions="End" 
+                                   TextColor="#48185f"
+                                   FontSize="Small" />
                         </Grid>
-                    </Frame>
-                    <Frame
-                        Margin="0,0,0,0"
-                        Padding="10"
-                        CornerRadius ="7"
-                        IsClippedToBounds="True"
-                        BorderColor="Transparent"
-                        BackgroundColor="#8952b4"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="16"
-                        Grid.RowSpan="10">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Frame Margin="0,0,0,0"
-                                   Padding="10"
-                                   CornerRadius ="7"
-                                   IsClippedToBounds="True"
-                                   BackgroundColor="#e0adf8"
-                                   Grid.Row="0"
-                                   Grid.RowSpan="2"
-                                   Grid.ColumnSpan="3"
-                                   Grid.Column="0">
-                                <StackLayout>
-                                    <Label
-                                        Text="Number of weeks:"
-                                        FontSize="Small" 
-                                        TextColor="#48185f"
-                                        FontAttributes="Bold"/>
-                                    <Label 
-                                        Text="10"
-                                        FontSize="Micro" 
-                                        TextColor="#48185f"
-                                        FontAttributes="None"/>
-                                </StackLayout>
-                            </Frame>
-                            <Frame Margin="0,0,0,0"
-                                   Padding="10"
-                                   CornerRadius ="7"
-                                   IsClippedToBounds="True"
-                                   BackgroundColor="#e0adf8"
-                                   Grid.Row="2"
-                                   Grid.RowSpan="2"
-                                   Grid.ColumnSpan="3"
-                                   Grid.Column="0">
-                                <StackLayout>
-                                    <Label
-                                        Text="Streak:"
-                                        FontSize="Small" 
-                                        TextColor="#48185f"
-                                        FontAttributes="Bold"/>
-                                    <Label 
-                                        Text="5"
-                                        FontSize="Micro" 
-                                        TextColor="#48185f"
-                                        FontAttributes="None"/>
-                                </StackLayout>
-                            </Frame>
-                            <Frame Margin="0,0,0,0"
-                                   Padding="10"
-                                   CornerRadius ="7"
-                                   IsClippedToBounds="True"
-                                   BackgroundColor="#e0adf8"
-                                   Grid.Row="4"
-                                   Grid.RowSpan="2"
-                                   Grid.ColumnSpan="3"
-                                   Grid.Column="0">
-                                <StackLayout>
-                                    <Label
-                                        Text="Average time:"
-                                        FontSize="Small" 
-                                        TextColor="#48185f"
-                                        FontAttributes="Bold"/>
-                                    <Label 
-                                        Text="55:40"
-                                        FontSize="Micro" 
-                                        TextColor="#48185f"
-                                        FontAttributes="None"/>
-                                </StackLayout>
-                            </Frame>
-                        </Grid>
-                    </Frame>
-                </Grid>
-            </StackLayout>
-        </ScrollView>
-        <StackLayout Margin="10,10,10,10">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Button Text="Archieve this plan and create new"
-                    Clicked="AddPlanClicked" 
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Button Text="Add"
                     Grid.Column="0"
                     Grid.Row="0"
-                    Grid.ColumnSpan="4"
                     BackgroundColor="#8952b4"
                     CornerRadius="7"
                     BorderColor="#48185f"
                     BorderWidth="3"
                     TextColor="#48185f"
                     FontAttributes="Bold"/>
-            </Grid>
-        </StackLayout>
+            <Button x:Name ="update"
+                    Text="Edit"
+                    Grid.Column="1"
+                    BackgroundColor="#8952b4"
+                    CornerRadius="7"
+                    BorderColor="#48185f"
+                    BorderWidth="3"
+                    TextColor="#48185f"
+                    FontAttributes="Bold"/>
+            <Button x:Name ="delete"
+                    Text="Delete"
+                    Grid.Column="2"
+                    BackgroundColor="#8952b4"
+                    CornerRadius="7"
+                    BorderColor="#48185f"
+                    BorderWidth="3"
+                    TextColor="#48185f"
+                    FontAttributes="Bold"/>
+            <Button x:Name ="details"
+                    Text="Details"
+                    Grid.Column="3"
+                    BackgroundColor="#8952b4"
+                    CornerRadius="7"
+                    BorderColor="#48185f"
+                    BorderWidth="3"
+                    TextColor="#48185f"
+                    FontAttributes="Bold"/>
+            <!--
+            <Image x:Name="resultImage"
+                   Margin="10,10,10,1"
+                   HeightRequest="150"
+                   WidthRequest="150"
+                   BackgroundColor="Transparent"
+                   Source="photo.png">
+            </Image>
+            <Button x:Name ="pickImg"
+                    Text="pick image"
+                    Clicked="pickImg_Clicked_1" />
+            <Entry x:Name="nameEntry"
+                   Placeholder="Enter name"
+                   BackgroundColor="Transparent"/>
+            <Entry x:Name="categoryEntry"
+                   Placeholder="Enter category" 
+                   BackgroundColor="Transparent"/>
+            <Entry x:Name="detailsEntry"
+                   Placeholder="Enter details" 
+                   BackgroundColor="Transparent"/>
+            -->
+        </Grid>
     </StackLayout>
 </ContentPage>

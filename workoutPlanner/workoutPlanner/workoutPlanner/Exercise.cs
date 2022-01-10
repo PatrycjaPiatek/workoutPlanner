@@ -21,7 +21,7 @@ namespace workoutPlanner
 
         //public override string ToString()
         //{
-        //    return ExcerciseName;
+        //    return ListOfExcercisesName;
         //}
     }
 }

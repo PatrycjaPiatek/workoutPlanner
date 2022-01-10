@@ -17,7 +17,7 @@ namespace workoutPlanner
         public static bool addToThePlan = false;
 
         //variable that represents the selected plan
-        public static Name selectedItem = null;
+        public static Plan selectedItem = null;
 
         public static bool newPlanBool = false;
         public PlanPage()
@@ -29,7 +29,7 @@ namespace workoutPlanner
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            collectionView.ItemsSource = await App.Database.GetPlansAsync();
+            ///collectionView.ItemsSource = await App.Database.GetPlansAsync();
         }
 
         //adding new plan
@@ -45,7 +45,7 @@ namespace workoutPlanner
             //{
             //    await App.Database.SaveNameAsync(new Plan
             //    {
-            //        ExcerciseName = nameEntry.Text,
+            //        ListOfExcercisesName = nameEntry.Text,
             //        Details = detailsEntry.Text
             //    });
             //    await DisplayAlert("Success", "Plan added", "OK");
@@ -58,7 +58,7 @@ namespace workoutPlanner
         {
             //selectedItem = e.CurrentSelection[0] as Plan;
             ////when selected, name and details show in entry
-            //nameEntry.Text = selectedItem.ExcerciseName;
+            //nameEntry.Text = selectedItem.ListOfExcercisesName;
             //detailsEntry.Text = selectedItem.Details;
 
             ////dla testu
@@ -86,7 +86,7 @@ namespace workoutPlanner
                 await DisplayAlert("Success", "Plan deleted", "OK");
 
                 //Get All Persons  
-                collectionView.ItemsSource = await App.Database.GetPlansAsync();
+                //collectionView.ItemsSource = await App.Database.GetPlansAsync();
             }
         }
 
@@ -94,7 +94,7 @@ namespace workoutPlanner
         {
             //if (!string.IsNullOrWhiteSpace(nameEntry.Text))
             //{
-            //    selectedItem.ExcerciseName = nameEntry.Text;
+            //    selectedItem.ListOfExcercisesName = nameEntry.Text;
             //    selectedItem.Details = detailsEntry.Text;
             //    await App.Database.UpdateNameAsync(selectedItem);
                 

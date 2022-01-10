@@ -46,9 +46,9 @@ namespace workoutPlanner
             if (PlanPage.addToThePlan)
             {
                 //JEDEN PLAN SPOSÓB
-                var n = new Name
+                var n = new Plan
                 {
-                    ExcerciseName = selectedExercise.Name
+                    ListOfExcercisesName = selectedExercise.Name
                 };
                 //albo jedno albo drugie
                 App.Database.SaveNameAsync(n);

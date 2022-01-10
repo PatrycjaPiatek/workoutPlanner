@@ -8,11 +8,12 @@ using SQLiteNetExtensionsAsync;
 
 namespace workoutPlanner
 {
-    public class Name
+    public class Plan
     {
         [PrimaryKey, AutoIncrement]
         public int IDExcerciseInPlan { get; set; }
-        public string ExcerciseName { get; set; }
+        public int NamePlan { get; set; }
+        public string ListOfExcercisesName { get; set; }
         //public string Details { get; set; }
 
         //[ManyToMany(typeof(PlanExercise))]

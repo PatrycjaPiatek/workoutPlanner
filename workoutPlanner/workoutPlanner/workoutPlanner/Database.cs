@@ -17,7 +17,7 @@ namespace workoutPlanner
         public Database(string dbPath)
         {
             _dbdb = new SQLiteAsyncConnection(dbPath);
-            _dbdb.CreateTableAsync<Name>().Wait();
+            _dbdb.CreateTableAsync<Plan>().Wait();
             _dbdb.CreateTableAsync<Exercise>().Wait();
 
             ////////////////////////////////////////////////////
@@ -76,17 +76,17 @@ namespace workoutPlanner
             //_dbdb.InsertAsync(exercise4);
             //_dbdb.InsertAsync(exercise5);
 
-            var name1 = new Name
+            var name1 = new Plan
             {
-                ExcerciseName = exercise1.Name
+                ListOfExcercisesName = exercise1.Name
             };
 
-            var name2 = new Name();
+            var name2 = new Plan();
 
             _dbdb.InsertAsync(name1);
             _dbdb.InsertAsync(name2);
 
-            name2.ExcerciseName = exercise2.Name;
+            name2.ListOfExcercisesName = exercise2.Name;
 
             _dbdb.UpdateAsync(name1);
             _dbdb.UpdateAsync(name2);
@@ -95,9 +95,9 @@ namespace workoutPlanner
         ////////////////////////////////////////////////////
 
         //shows plans
-        public Task<List<Name>> GetPlansAsync()
+        public Task<List<Plan>> GetPlansAsync()
         {
-            return _dbdb.Table<Name>().ToListAsync();
+            return _dbdb.Table<Plan>().ToListAsync();
         }
         //shows exercises
         public Task<List<Exercise>> GetExercisesAsync()
@@ -105,7 +105,7 @@ namespace workoutPlanner
             return _dbdb.Table<Exercise>().ToListAsync();
         }
         //save name
-        public Task<int> SaveNameAsync(Name name)
+        public Task<int> SaveNameAsync(Plan name)
         {
             return _dbdb.InsertAsync(name);
         }
@@ -115,7 +115,7 @@ namespace workoutPlanner
             return _dbdb.InsertAsync(exercise);
         }
         //delete name
-        public Task<int> DeletePlanAsync(Name plan)
+        public Task<int> DeletePlanAsync(Plan plan)
         {
             return _dbdb.DeleteAsync(plan);
         }
@@ -125,7 +125,7 @@ namespace workoutPlanner
             return _dbdb.DeleteAsync(exercise);
         }
         //update name
-        public Task<int> UpdateNameAsync(Name name)
+        public Task<int> UpdateNameAsync(Plan name)
         {
             if (name.IDExcerciseInPlan != 0)
             {
