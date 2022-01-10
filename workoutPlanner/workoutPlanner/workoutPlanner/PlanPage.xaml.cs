@@ -17,7 +17,7 @@ namespace workoutPlanner
         public static bool addToThePlan = false;
 
         //variable that represents the selected plan
-        public static Plan selectedItem = null;
+        public static Plan selectedPlan = null;
 
         public static bool newPlanBool = false;
         public PlanPage()
@@ -56,15 +56,15 @@ namespace workoutPlanner
         }
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //selectedItem = e.CurrentSelection[0] as Plan;
+            selectedPlan = e.CurrentSelection[0] as Plan;
             ////when selected, name and details show in entry
-            //nameEntry.Text = selectedItem.ListOfExcercisesName;
-            //detailsEntry.Text = selectedItem.Details;
+            //nameEntry.Text = selectedPlan.ListOfExcercisesName;
+            //detailsEntry.Text = selectedPlan.Details;
 
             ////dla testu
-            //if (selectedItem.ExercisesInPlan != null)
+            //if (selectedPlan.ExercisesInPlan != null)
             //{
-            //    test.Text = selectedItem.ExercisesInPlan[0].Category.ToString();
+            //    test.Text = selectedPlan.ExercisesInPlan[0].Category.ToString();
             //}
             //var databasePath = Path.Combine(FileSystem.AppDataDirectory, "_dbdb.db");
 
@@ -79,10 +79,10 @@ namespace workoutPlanner
 
         async private void DeleteClicked(object sender, EventArgs e)
         {
-            if (selectedItem != null)
+            if (selectedPlan != null)
             {
                 //Delete Person  
-                await App.Database.DeletePlanAsync(selectedItem);
+                await App.Database.DeletePlanAsync(selectedPlan);
                 await DisplayAlert("Success", "Plan deleted", "OK");
 
                 //Get All Persons  
@@ -94,9 +94,9 @@ namespace workoutPlanner
         {
             //if (!string.IsNullOrWhiteSpace(nameEntry.Text))
             //{
-            //    selectedItem.ListOfExcercisesName = nameEntry.Text;
-            //    selectedItem.Details = detailsEntry.Text;
-            //    await App.Database.UpdateNameAsync(selectedItem);
+            //    selectedPlan.ListOfExcercisesName = nameEntry.Text;
+            //    selectedPlan.Details = detailsEntry.Text;
+            //    await App.Database.UpdateNameAsync(selectedPlan);
                 
             //    await DisplayAlert("Success", "Plan updated", "OK");
 
@@ -109,6 +109,20 @@ namespace workoutPlanner
         {
             addToThePlan = true;
             Navigation.PushAsync(new ExercisePage());
+        }
+
+
+        private async void planDetails_Clicked(object sender, EventArgs e)
+        {
+            //updateBool = true;
+            if (selectedPlan != null)
+            {
+                await Navigation.PushAsync(new PlanDetails());
+            }
+            else
+            {
+                await DisplayAlert(":)", "Select plan first", "OK");
+            }
         }
     }
 }

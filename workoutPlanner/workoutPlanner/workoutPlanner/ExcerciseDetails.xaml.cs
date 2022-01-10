@@ -16,6 +16,11 @@ namespace workoutPlanner
         public ExcerciseDetails()
         {
             InitializeComponent();
+            //if (PlanDetails.exName)
+            //{
+
+            //    PlanDetails.exName = false;
+            //}
             excerciseImg.Source = ExercisePage.selectedExercise.Img;
             excerciseName.Text = ExercisePage.selectedExercise.Name;
             excerciseCategory.Text = ExercisePage.selectedExercise.Category;
