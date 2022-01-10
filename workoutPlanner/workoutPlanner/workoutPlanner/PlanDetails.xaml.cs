@@ -29,7 +29,7 @@ namespace workoutPlanner
 
             everyName = PlanPage.selectedPlan.ListOfExcercisesName;
             NamesList = everyName.Split(';').ToList();
-            for( int i = 0; i < NamesList.Count(); i++)
+            for(int i = 0; i < NamesList.Count(); i++)
             {
                 NamesList[i] = (i+1).ToString() +". "+ NamesList[i];
             }
