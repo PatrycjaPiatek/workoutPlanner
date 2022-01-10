@@ -20,49 +20,48 @@
             </Setter>
         </Style>
     </ContentPage.Resources>
-    <ScrollView Margin="0,0,0,40">
-        <StackLayout Margin="20,35,20,20">
-            <Frame
-                   Padding="10"
-                   CornerRadius ="7"
-                   IsClippedToBounds="True"
-                   BorderColor="Transparent"
-                   BackgroundColor="#8952b4"
-                Background="photo.png">
-                <Image x:Name="excerciseImg"
-                       Margin="10,10,10,1"
-                       HeightRequest="250"
-                       WidthRequest="50"
-                       BackgroundColor="Transparent"
-                       >
-                </Image>
-            </Frame>
-            <Frame
-                   Padding="10"
-                   CornerRadius ="7"
-                   IsClippedToBounds="True"
-                   BorderColor="#48185f"
+    <StackLayout Margin="20,20,20,20">
+        <Frame
+            Padding="10"
+            CornerRadius ="7"
+            IsClippedToBounds="True"
+            BorderColor="Transparent"
+            BackgroundColor="#8952b4"
+            Background="photo.png">
+            <Image x:Name="excerciseImg"
+                   Margin="10,10,10,1"
+                   HeightRequest="250"
+                   WidthRequest="50"
                    BackgroundColor="Transparent">
+            </Image>
+        </Frame>
+        <Frame
+            Padding="10"
+            CornerRadius ="7"
+            IsClippedToBounds="True"
+            BorderColor="#48185f"
+            BackgroundColor="Transparent">
+            <ScrollView Margin="0,0,0,0">
                 <StackLayout>
-                <Label x:Name="excerciseName"
-                       BackgroundColor="Transparent"
-                       FontAttributes="Bold"
-                       TextColor="#48185f"
-                       FontSize="Title" />
-                <Label x:Name="excerciseCategory"
-                       BackgroundColor="Transparent"
-                       VerticalOptions="Center" 
-                       HorizontalOptions="Start"
-                       TextColor="#48185f"
-                       FontSize="Subtitle"/>
-                <Label x:Name="excerciseDetails"
-                       BackgroundColor="Transparent"
-                       VerticalOptions="End" 
-                       HorizontalOptions="CenterAndExpand"
-                       TextColor="#48185f"
-                       FontSize="Default"/>
+                    <Label x:Name="excerciseName"
+                               BackgroundColor="Transparent"
+                               FontAttributes="Bold"
+                               TextColor="#48185f"
+                               FontSize="Title" />
+                    <Label x:Name="excerciseCategory"
+                               BackgroundColor="Transparent"
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Start"
+                               TextColor="#48185f"
+                               FontSize="Subtitle"/>
+                    <Label x:Name="excerciseDetails"
+                               BackgroundColor="Transparent"
+                               VerticalOptions="End" 
+                               HorizontalOptions="CenterAndExpand"
+                               TextColor="#48185f"
+                               FontSize="Default"/>
                 </StackLayout>
-            </Frame>
-        </StackLayout>
-    </ScrollView>
+            </ScrollView>
+        </Frame>
+    </StackLayout>
 </ContentPage>
