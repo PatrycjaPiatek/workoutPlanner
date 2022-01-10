@@ -19,10 +19,24 @@ namespace workoutPlanner
         //variable that represents the selected plan
         public static Plan selectedPlan = null;
 
+        //do usuniecia
         public static bool newPlanBool = false;
+
+        public static bool updateBool = false;
+
+        public static bool deleteBool = false;
+
+        public static bool addBool = false;
+
         public PlanPage()
         {
             InitializeComponent();
+            AddUpdatePlan.SemicoloneveryName = string.Empty;
+            AddUpdatePlan.newEx = string.Empty;
+            AddUpdatePlan.NamesList.Clear();
+            updateBool = false;
+            addBool = false;
+            selectedPlan = null;
         }
 
         //method that shows current data in table
@@ -32,28 +46,28 @@ namespace workoutPlanner
             collectionView.ItemsSource = await App.Database.GetPlansAsync();
         }
 
-        //adding new plan
-        async void AddPlanClicked(object sender, EventArgs e)
-        {
-            newPlanBool = await DisplayAlert("Are you sure?", "This plan must be archived for a new plan to be created", "OK", "NO");
-            if (newPlanBool)
-            {
-                Navigation.PushAsync(new ExercisePage());
-            }
-            ////when name isn't empty
-            //if (!string.IsNullOrWhiteSpace(nameEntry.Text))
-            //{
-            //    await App.Database.SaveNameAsync(new Plan
-            //    {
-            //        ListOfExcercisesName = nameEntry.Text,
-            //        Details = detailsEntry.Text
-            //    });
-            //    await DisplayAlert("Success", "Plan added", "OK");
+        ////adding new plan
+        //async void AddPlanClicked(object sender, EventArgs e)
+        //{
+        //    //newPlanBool = await DisplayAlert("Are you sure?", "This plan must be archived for a new plan to be created", "OK", "NO");
+        //    //if (newPlanBool)
+        //    //{
+        //    //    Navigation.PushAsync(new ExercisePage());
+        //    //}
+        //    ////when name isn't empty
+        //    //if (!string.IsNullOrWhiteSpace(nameEntry.Text))
+        //    //{
+        //    //    await App.Database.SavePlanAsync(new Plan
+        //    //    {
+        //    //        ListOfExcercisesName = nameEntry.Text,
+        //    //        Details = detailsEntry.Text
+        //    //    });
+        //    //    await DisplayAlert("Success", "Plan added", "OK");
 
-            //    nameEntry.Text = detailsEntry.Text = string.Empty;
-            //    collectionView.ItemsSource = await App.Database.GetPlansAsync();
-            //}
-        }
+        //    //    nameEntry.Text = detailsEntry.Text = string.Empty;
+        //    //    collectionView.ItemsSource = await App.Database.GetPlansAsync();
+        //    //}
+        //}
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedPlan = e.CurrentSelection[0] as Plan;
@@ -89,22 +103,7 @@ namespace workoutPlanner
                 //collectionView.ItemsSource = await App.Database.GetPlansAsync();
             }
         }
-
-        async private void UpdateClicked(object sender, EventArgs e)
-        {
-            //if (!string.IsNullOrWhiteSpace(nameEntry.Text))
-            //{
-            //    selectedPlan.ListOfExcercisesName = nameEntry.Text;
-            //    selectedPlan.Details = detailsEntry.Text;
-            //    await App.Database.UpdateNameAsync(selectedPlan);
-                
-            //    await DisplayAlert("Success", "Plan updated", "OK");
-
-            //    nameEntry.Text = detailsEntry.Text = string.Empty;
-            //    collectionView.ItemsSource = await App.Database.GetPlansAsync();
-            //}
-        }
-
+        //do usuniecia
         private void addExerciseToThePlan_Clicked(object sender, EventArgs e)
         {
             addToThePlan = true;
@@ -123,6 +122,49 @@ namespace workoutPlanner
             {
                 await DisplayAlert(":)", "Select plan first", "OK");
             }
+        }
+
+        private async void update_Clicked(object sender, EventArgs e)
+        {
+            //updateBool = true;
+            if (selectedPlan != null)
+            {
+                updateBool = true;
+                await Navigation.PushAsync(new AddUpdatePlan());
+            }
+            else
+            {
+                await DisplayAlert(":)", "Select plan first", "OK");
+            }
+        }
+
+        private async void delete_Clicked(object sender, EventArgs e)
+        {
+            if (selectedPlan != null)
+            {
+                deleteBool = await DisplayAlert("Are you sure?", "Exercise will be deleted", "OK", "NO");
+                if (deleteBool)
+                {
+                    //Delete exercise  
+                    await App.Database.DeletePlanAsync(selectedPlan);
+                    await DisplayAlert("Success", "Plan deleted", "OK");
+
+                    //Get All Exercises  
+                    collectionView.ItemsSource = await App.Database.GetPlansAsync();
+                }
+            }
+            else
+            {
+                await DisplayAlert(":)", "Select excercise first", "OK");
+            }
+        }
+
+        private async void AddPlan_Clicked(object sender, EventArgs e)
+        {
+            selectedPlan = null;
+            AddUpdatePlan.SemicoloneveryName = String.Empty;
+            addBool = true;
+            await Navigation.PushAsync(new AddUpdatePlan());
         }
     }
 }

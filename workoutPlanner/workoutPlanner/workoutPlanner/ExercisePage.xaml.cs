@@ -42,23 +42,26 @@ namespace workoutPlanner
         {
             //wybrane cwiczenie
             selectedExercise = e.CurrentSelection[0] as Exercise;
+            //string newName = "";
+            //newName = selectedExercise.Name;
 
-            if (PlanPage.addToThePlan)
+            if (AddUpdatePlan.addExerciseToThePlan)
             {
-                //JEDEN PLAN SPOSÓB
-                var n = new Plan
+                if (PlanPage.updateBool)
                 {
-                    ListOfExcercisesName = selectedExercise.Name
-                };
-                //albo jedno albo drugie
-                App.Database.SaveNameAsync(n);
-                //App.Database.UpdateNameAsync(n);
+                    AddUpdatePlan.newEx += ';' + selectedExercise.Name;
+                }
+                if (PlanPage.addBool)
+                {
+                    AddUpdatePlan.newEx = ';' + selectedExercise.Name;
+                }
+                
 
                 //////////////  
-                PlanPage.addToThePlan = false;
+                AddUpdatePlan.addExerciseToThePlan = false;
 
                 await DisplayAlert("Success", "Exercise added", "OK");
-                await Navigation.PushAsync(new PlanPage());
+                await Navigation.PushAsync(new AddUpdatePlan());
             }
         }
         //delete excercise

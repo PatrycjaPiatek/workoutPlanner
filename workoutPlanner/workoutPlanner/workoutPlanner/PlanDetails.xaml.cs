@@ -27,13 +27,21 @@ namespace workoutPlanner
             planName.Text = PlanPage.selectedPlan.NamePlan;
             planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
 
-            everyName = PlanPage.selectedPlan.ListOfExcercisesName;
+            everyName = PlanPage.selectedPlan.ListOfExcercisesName;            
+
+            if (everyName[0] == ';')
+            {
+                everyName = everyName.Substring(1);
+            }
             NamesList = everyName.Split(';').ToList();
-            for(int i = 0; i < NamesList.Count(); i++)
+
+            for (int i = 0; i < NamesList.Count(); i++)
             {
                 NamesList[i] = (i+1).ToString() +". "+ NamesList[i];
             }
             myList.ItemsSource = NamesList;
+
+            PlanPage.selectedPlan = null;
         }
 
         //private void myList_SelectionChanged(object sender, SelectionChangedEventArgs e)
