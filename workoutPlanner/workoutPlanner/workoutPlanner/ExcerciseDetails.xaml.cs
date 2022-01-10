@@ -12,7 +12,7 @@ namespace workoutPlanner
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ExcerciseDetails : ContentPage
     {
-        public string selectedSource = "photo.png";
+        //public string selectedSource = "photo.png";
         public ExcerciseDetails()
         {
             InitializeComponent();
