@@ -83,27 +83,6 @@
                     BorderWidth="3"
                     TextColor="#48185f"
                     FontAttributes="Bold"/>
-            <!--
-            <Image x:Name="resultImage"
-                   Margin="10,10,10,1"
-                   HeightRequest="150"
-                   WidthRequest="150"
-                   BackgroundColor="Transparent"
-                   Source="photo.png">
-            </Image>
-            <Button x:Name ="pickImg"
-                    Text="pick image"
-                    Clicked="pickImg_Clicked_1" />
-            <Entry x:Name="nameEntry"
-                   Placeholder="Enter name"
-                   BackgroundColor="Transparent"/>
-            <Entry x:Name="categoryEntry"
-                   Placeholder="Enter category" 
-                   BackgroundColor="Transparent"/>
-            <Entry x:Name="detailsEntry"
-                   Placeholder="Enter details" 
-                   BackgroundColor="Transparent"/>
-            -->
         </Grid>
     </StackLayout>
 </ContentPage>
