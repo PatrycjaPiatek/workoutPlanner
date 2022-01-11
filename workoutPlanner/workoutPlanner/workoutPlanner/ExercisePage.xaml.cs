@@ -47,11 +47,11 @@ namespace workoutPlanner
 
             if (AddUpdatePlan.addExerciseToThePlan)
             {
-                if (PlanPage.updateBool)
+                if (PlanPage.updateSelectedPlanBool)
                 {
                     AddUpdatePlan.newEx += ';' + selectedExercise.Name;
                 }
-                if (PlanPage.addBool)
+                if (PlanPage.addNewPlanBool)
                 {
                     AddUpdatePlan.newEx = ';' + selectedExercise.Name;
                 }
@@ -94,7 +94,7 @@ namespace workoutPlanner
         }
         async private void UpdateClicked(object sender, EventArgs e)
         {
-            //updateBool = true;
+            //updateSelectedPlanBool = true;
             if (selectedExercise != null)
             {
                 updateBool = true;
@@ -108,7 +108,7 @@ namespace workoutPlanner
 
         private async void details_Clicked(object sender, EventArgs e)
         {
-            //updateBool = true;
+            //updateSelectedPlanBool = true;
             if (selectedExercise != null)
             {
                 await Navigation.PushAsync(new ExcerciseDetails());

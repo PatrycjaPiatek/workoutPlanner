@@ -23,9 +23,9 @@ namespace workoutPlanner
         {
             InitializeComponent();
             //SemicoloneveryName = "";
-            if (PlanPage.addBool)
+            if (PlanPage.addNewPlanBool)
             {                
-                PlanPage.updateBool = false;
+                PlanPage.updateSelectedPlanBool = false;
                 planName.Text = "";
                 planID.Text = "";
 
@@ -48,9 +48,9 @@ namespace workoutPlanner
                 myList.ItemsSource = NamesList;
             }
 
-            if (PlanPage.updateBool)
+            if (PlanPage.updateSelectedPlanBool)
             {
-                PlanPage.addBool = false;
+                PlanPage.addNewPlanBool = false;
                 planName.Text = PlanPage.selectedPlan.NamePlan;
                 planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
 
@@ -75,7 +75,7 @@ namespace workoutPlanner
         }
         private async void saveBtn_Clicked(object sender, EventArgs e)
         {
-            if (PlanPage.addBool)
+            if (PlanPage.addNewPlanBool)
             {
                 //when name isn't empty
                 if (!string.IsNullOrWhiteSpace(planName.Text))
@@ -107,8 +107,8 @@ namespace workoutPlanner
                     SemicoloneveryName = "";
                     newEx = "";
                     NamesList.Clear();
-                    PlanPage.updateBool = false;
-                    PlanPage.addBool = false;
+                    PlanPage.updateSelectedPlanBool = false;
+                    PlanPage.addNewPlanBool = false;
                     await Navigation.PushAsync(new PlanPage());
                 }
                 else
@@ -118,7 +118,7 @@ namespace workoutPlanner
             }
 
             //plan name const?
-            if (PlanPage.updateBool)
+            if (PlanPage.updateSelectedPlanBool)
             {
                 if (!string.IsNullOrWhiteSpace(planName.Text))
                 {
@@ -139,8 +139,8 @@ namespace workoutPlanner
                 SemicoloneveryName = "";
                 newEx = "";
                 NamesList.Clear();
-                PlanPage.updateBool = false;
-                PlanPage.addBool = false;
+                PlanPage.updateSelectedPlanBool = false;
+                PlanPage.addNewPlanBool = false;
                 await Navigation.PushAsync(new PlanPage());
             }
         }
