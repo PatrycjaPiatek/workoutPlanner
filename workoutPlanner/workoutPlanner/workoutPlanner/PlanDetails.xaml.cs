@@ -27,8 +27,8 @@ namespace workoutPlanner
             planName.Text = PlanPage.selectedPlan.NamePlan;
             planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
 
-            everyName = PlanPage.selectedPlan.ListOfExcercisesName;            
-            if(everyName.Length>0)
+            everyName = PlanPage.selectedPlan.ListOfExcercisesName;
+            if (everyName.Length > 0)
             {
                 if (everyName[0] == ';')
                 {
@@ -41,11 +41,9 @@ namespace workoutPlanner
                     NamesList[i] = (i + 1).ToString() + ". " + NamesList[i];
                 }
             }
-            else
-            {
+            else { 
                 //NamesList.Add(everyName);
             }
-            
             myList.ItemsSource = NamesList;
 
             PlanPage.selectedPlan = null;
@@ -58,5 +56,6 @@ namespace workoutPlanner
         //    //exName = true;
         //    //Navigation.PushAsync(new ExcerciseDetails());
         //}
+
     }
 }

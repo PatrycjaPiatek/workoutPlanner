@@ -23,8 +23,6 @@ namespace workoutPlanner
         public static bool updateBool = false;
         bool deleteBool = false;
 
-        //public static Plan sP = null;
-
         public ExercisePage()
         {
             InitializeComponent();
@@ -38,7 +36,6 @@ namespace workoutPlanner
             selectedExercise = null;
             addBool = false;
             updateBool = false;
-            //sP = null;
         }
         //select excercise
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,60 +56,12 @@ namespace workoutPlanner
                     AddUpdatePlan.newEx = ';' + selectedExercise.Name;
                 }
                 
+
                 //////////////  
-                AddUpdatePlan.addExerciseToThePlan = false;
+                //AddUpdatePlan.addExerciseToThePlan = false;
 
-                if (PlanPage.updateSelectedPlanBool)
-                {
-                    PlanPage.addNewPlanBool = false;
-                    //AddUpdatePlan.planName.Text = PlanPage.selectedPlan.NamePlan;
-                    //planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
-
-                    AddUpdatePlan.SemicoloneveryName = PlanPage.selectedPlan.ListOfExcercisesName + AddUpdatePlan.newEx;
-
-                    //if first ex is added by user
-                    if (AddUpdatePlan.SemicoloneveryName != "")
-                    {
-                        if (AddUpdatePlan.SemicoloneveryName[0] == ';')
-                        {
-                            AddUpdatePlan.SemicoloneveryName = AddUpdatePlan.SemicoloneveryName.Substring(1);
-                        }
-                    }
-
-                    AddUpdatePlan.NamesList = AddUpdatePlan.SemicoloneveryName.Split(';').ToList();
-                    for (int i = 0; i < AddUpdatePlan.NamesList.Count(); i++)
-                    {
-                        AddUpdatePlan.NamesList[i] = (i + 1).ToString() + ". " + AddUpdatePlan.NamesList[i];
-                    }
-                    //AddUpdatePlan.myList.ItemsSource = AddUpdatePlan.NamesList;
-                }
-                //plan name const?
-                if (PlanPage.updateSelectedPlanBool)
-                {
-                    //if (!string.IsNullOrWhiteSpace(AddUpdatePlan.planName.Text))
-                    //{
-                        //PlanPage.selectedPlan.NamePlan = planName.Text;
-                        //string names = "";
-
-                        PlanPage.selectedPlan.ListOfExcercisesName = AddUpdatePlan.SemicoloneveryName;
-
-                        await App.Database.UpdatePlanAsync(PlanPage.selectedPlan);
-                        await DisplayAlert("Success", "Plan updated", "OK");
-                    //}
-
-                    ////clear the data
-                    //AddUpdatePlan.planName.Text = "";
-                    //AddUpdatePlan.SemicoloneveryName = "";
-                    //AddUpdatePlan.newEx = "";
-                    //AddUpdatePlan.NamesList.Clear();
-                    PlanPage.updateSelectedPlanBool = false;
-                    PlanPage.addNewPlanBool = false;
-                    //await Navigation.PushAsync(new PlanPage());
-                }
-
-                //await DisplayAlert("Success", "Exercise added", "OK");
-                //sP = PlanPage.selectedPlan;
-                await Navigation.PopAsync();
+                await DisplayAlert("Success", "Exercise added", "OK");
+                await Navigation.PushAsync(new AddUpdatePlan());
             }
         }
         //delete excercise
