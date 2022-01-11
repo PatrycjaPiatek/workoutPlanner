@@ -14,21 +14,17 @@ namespace workoutPlanner
     {
         public static List<string> NamesList = new List<string> {};
         public static string SemicoloneveryName = "";
+        public static string newEx = "";       
+        public static string selectedExcerciseFromThePlan = null;
+        private bool deleteExerciseFromThePlan = false;
         //allows to execute appropriate code from excercisePage.cs
         public static bool addExerciseToThePlan = false;
-        public static string newEx = "";
-        public static string selectedItem = null;
-        private bool deleteBool = false;
         public AddUpdatePlan()
         {
             InitializeComponent();
-            //SemicoloneveryName = "";
+
             if (PlanPage.addNewPlanBool)
             {                
-                PlanPage.updateSelectedPlanBool = false;
-                planName.Text = "";
-                planID.Text = "";
-
                 SemicoloneveryName += newEx;
 
                 //if first ex is added by user
@@ -130,9 +126,6 @@ namespace workoutPlanner
                     await App.Database.UpdatePlanAsync(PlanPage.selectedPlan);
                     await DisplayAlert("Success", "Plan updated", "OK");
                 }
-                //defaultImage.Source = "photo.png";
-                //selectedSource = "";
-                //categoryEntry.Text = "";
 
                 //clear the data
                 planName.Text = "";
@@ -151,16 +144,16 @@ namespace workoutPlanner
         }
         private async void deleteNewExcerciseBtn_Clicked(object sender, EventArgs e)
         {
-            if (selectedItem != null)
+            if (selectedExcerciseFromThePlan != null)
             {
-                deleteBool = await DisplayAlert("Are you sure?", "Exercise will be deleted", "OK", "NO");
-                if (deleteBool)
+                deleteExerciseFromThePlan = await DisplayAlert("Are you sure?", "Exercise will be deleted", "OK", "NO");
+                if (deleteExerciseFromThePlan)
                 {
                     //Delete exercise
-                    //selectedItem = selectedItem.Substring(3);
-                    //selectedItem = ';' + selectedItem;
-                    if (NamesList.Contains("selectedItem")){
-                        NamesList.Remove("selectedItem");
+                    //selectedExcerciseFromThePlan = selectedExcerciseFromThePlan.Substring(3);
+                    //selectedExcerciseFromThePlan = ';' + selectedExcerciseFromThePlan;
+                    if (NamesList.Contains("selectedExcerciseFromThePlan")){
+                        NamesList.Remove("selectedExcerciseFromThePlan");
                     }
 
                     SemicoloneveryName = NamesList[0].Substring(3);
@@ -185,15 +178,9 @@ namespace workoutPlanner
 
             //await Navigation.PushAsync(new PlanPage());
         }
-
         private void myList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedItem = e.CurrentSelection[0] as string;
-        }
-
-        private void newList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            selectedExcerciseFromThePlan = e.CurrentSelection[0] as string;
         }
     }
 }
