@@ -190,5 +190,10 @@ namespace workoutPlanner
         {
             selectedItem = e.CurrentSelection[0] as string;
         }
+
+        private void newList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

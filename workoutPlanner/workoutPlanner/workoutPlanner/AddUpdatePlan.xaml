@@ -4,11 +4,17 @@
              x:Class="workoutPlanner.AddUpdatePlan"
              Background="#e0adf8">
     <ContentPage.Resources>
-        <Style TargetType="CollectionView">
+        <Style TargetType="StackLayout">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CommonStates">
                         <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Focused">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#8952b4"/>
+                            </VisualState.Setters>
+                        </VisualState>
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
                                 <Setter Property="BackgroundColor"
@@ -54,7 +60,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Button x:Name ="addNewExcerciseBtn"
-                    Text="Add new excercise"
+                    Text="Add a new excercise"
                     Clicked="addNewExcerciseBtn_Clicked"
                     BackgroundColor="#8952b4"
                     CornerRadius="7"
@@ -65,7 +71,7 @@
                     Grid.Row ="0"
                     Grid.Column ="0"/>
             <Button x:Name ="deleteNewExcerciseBtn"
-                    Text="Delete selecte excercise"
+                    Text="Delete the selected exercise"
                     Clicked="deleteNewExcerciseBtn_Clicked"
                     BackgroundColor="#8952b4"
                     CornerRadius="7"
@@ -75,24 +81,28 @@
                     FontAttributes="Bold"
                     Grid.Row ="1"
                     Grid.Column ="0"/>
-        </Grid>
-        
+        </Grid>        
         <Frame
             Padding="10"
             CornerRadius ="7"
             IsClippedToBounds="True"
             BorderColor="Transparent"
-            BackgroundColor="#48185f">
-            <StackLayout>
+            BackgroundColor="#48185f">            
                 <CollectionView x:Name="myList"
                           SelectionMode="Single"
                           SelectionChanged="myList_SelectionChanged">
-                    <!--SelectionChanged="myList_SelectionChanged"-->
-                    <!--ItemsSource="{Binding NamesList}"-->
-                </CollectionView>
-            </StackLayout>
-        </Frame>
-            
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Margin="0,8,0,8">
+                                <Label Text="{Binding .}"
+                                       FontAttributes="None"
+                                       TextColor="white"
+                                       FontSize="Small"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+            </CollectionView>            
+        </Frame>            
         <Grid Margin="20,7,20,5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
