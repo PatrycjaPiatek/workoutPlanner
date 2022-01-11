@@ -19,6 +19,7 @@ namespace workoutPlanner
         private bool deleteExerciseFromThePlan = false;
         //allows to execute appropriate code from excercisePage.cs
         public static bool addExerciseToThePlan = false;
+        //public static bool add = false;
         public AddUpdatePlan()
         {
             InitializeComponent();
@@ -46,6 +47,11 @@ namespace workoutPlanner
 
             if (PlanPage.updateSelectedPlanBool)
             {
+                //if (add)
+                //{
+                //    PlanPage.selectedPlan = ExercisePage.sP;
+                //    add = false;
+                //}
                 PlanPage.addNewPlanBool = false;
                 planName.Text = PlanPage.selectedPlan.NamePlan;
                 planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
@@ -69,6 +75,11 @@ namespace workoutPlanner
                 myList.ItemsSource = NamesList;
             }
         }
+        //protected override async void OnAppearing()
+        //{
+        //    base.OnAppearing();
+            
+        //}
         private async void saveBtn_Clicked(object sender, EventArgs e)
         {
             if (PlanPage.addNewPlanBool)
@@ -140,35 +151,70 @@ namespace workoutPlanner
         private async void addNewExcerciseBtn_Clicked(object sender, EventArgs e)
         {
             addExerciseToThePlan = true;
+            //add = true;
             await Navigation.PushAsync(new ExercisePage());
         }
         private async void deleteNewExcerciseBtn_Clicked(object sender, EventArgs e)
         {
             if (selectedExcerciseFromThePlan != null)
             {
+                addExerciseToThePlan = false;
                 deleteExerciseFromThePlan = await DisplayAlert("Are you sure?", "Exercise will be deleted", "OK", "NO");
                 if (deleteExerciseFromThePlan)
                 {
+                    //test
+                    string lt = "";
+                    test.Text = selectedExcerciseFromThePlan; //1. Dmb
+                    for (int i = 0; i < NamesList.Count; i++)
+                    {
+                        lt+= NamesList[i];
+                    }
+
+                    listTest.Text = lt; //1. Dmb2. Hip
+                    // test
+
                     //Delete exercise
                     //selectedExcerciseFromThePlan = selectedExcerciseFromThePlan.Substring(3);
                     //selectedExcerciseFromThePlan = ';' + selectedExcerciseFromThePlan;
-                    if (NamesList.Contains("selectedExcerciseFromThePlan")){
-                        NamesList.Remove("selectedExcerciseFromThePlan");
+                    if (NamesList.Contains(selectedExcerciseFromThePlan)){
+                        //test.Text = selectedExcerciseFromThePlan;
+                        NamesList.Remove(selectedExcerciseFromThePlan);
                     }
 
-                    SemicoloneveryName = NamesList[0].Substring(3);
-                    for (int i = 1; i < NamesList.Count; i++)
-                    {                        
-                        SemicoloneveryName += ';' + NamesList[i].Substring(3);
+                    if (NamesList.Count()>=1)
+                    {
+                        SemicoloneveryName = NamesList[0].Substring(3);
+                        for (int i = 1; i < NamesList.Count; i++)
+                        {
+                            SemicoloneveryName += ';' + NamesList[i].Substring(3);
+                        }
                     }
+                    if (NamesList.Count() == 0)
+                    {
+                        SemicoloneveryName = "";
+                    }
+                    //List<string> NL = new List<string> {};
+                    //NL = NamesList;
+                    //myList.ItemsSource = NL;
+                    
+                    myList.ItemsSource = NamesList;
+                    //selectedExcerciseFromThePlan = "deleted";
 
                     //im lost 
-                    PlanPage.selectedPlan.ListOfExcercisesName = SemicoloneveryName;
-                    await App.Database.UpdatePlanAsync(PlanPage.selectedPlan);
-                    await DisplayAlert("Success", "Exercise deleted", "OK");
-
+                    if (PlanPage.selectedPlan!=null)
+                    {
+                        PlanPage.selectedPlan.ListOfExcercisesName = SemicoloneveryName;
+                        await App.Database.UpdatePlanAsync(PlanPage.selectedPlan);
+                        //await App.Database.UpdatePlanAsync(PlanPage.selectedPlan);
+                        //myList.ItemsSource = NamesList;
+                    }
+                    //else { }
+                    await DisplayAlert("Success", "Exercise deleted from the plan, NO click \"save\" to save changes", "OK");
+                    
+                    await Navigation.PushAsync(new AddUpdatePlan());
+                    
                     //Get All Exercises  
-                    myList.ItemsSource = NamesList;
+                    //myList.ItemsSource = NamesList;
                 }
             }
             else
@@ -180,7 +226,13 @@ namespace workoutPlanner
         }
         private void myList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedExcerciseFromThePlan = e.CurrentSelection[0] as string;
+            selectedExcerciseFromThePlan = e.CurrentSelection[0] as string;            
+        }
+
+        private async void refreshBtn_Clicked(object sender, EventArgs e)
+        {
+            
+            await Navigation.PushAsync(new AddUpdatePlan());
         }
     }
 }

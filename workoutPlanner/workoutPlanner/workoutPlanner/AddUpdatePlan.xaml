@@ -34,6 +34,20 @@
             BorderColor="Transparent"
             BackgroundColor="White">
             <StackLayout>
+                <Label x:Name="test"
+                       Text="test"
+                       FontAttributes="Bold"
+                       TextColor="#48185f"
+                       FontSize="Title"
+                       BackgroundColor="Transparent">
+                </Label>
+                <Label x:Name="listTest"
+                       Text="listTest"
+                       FontAttributes="Bold"
+                       TextColor="#48185f"
+                       FontSize="Title"
+                       BackgroundColor="Transparent">
+                </Label>
                 <Entry x:Name="planName"
                        Text="PlanName"
                        Placeholder="Enter name"
@@ -58,6 +72,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Button x:Name ="addNewExcerciseBtn"
                     Text="Add a new excercise"
@@ -80,6 +95,17 @@
                     TextColor="#48185f"
                     FontAttributes="Bold"
                     Grid.Row ="1"
+                    Grid.Column ="0"/>
+            <Button x:Name ="refreshBtn"
+                    Text="Refresh"
+                    Clicked="refreshBtn_Clicked"
+                    BackgroundColor="#8952b4"
+                    CornerRadius="7"
+                    BorderColor="#48185f"
+                    BorderWidth="3"
+                    TextColor="#48185f"
+                    FontAttributes="Bold"
+                    Grid.Row ="2"
                     Grid.Column ="0"/>
         </Grid>        
         <Frame
