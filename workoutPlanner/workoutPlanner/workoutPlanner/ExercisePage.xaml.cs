@@ -58,7 +58,7 @@ namespace workoutPlanner
                 
 
                 //////////////  
-                AddUpdatePlan.addExerciseToThePlan = false;
+                //AddUpdatePlan.addExerciseToThePlan = false;
 
                 await DisplayAlert("Success", "Exercise added", "OK");
                 await Navigation.PushAsync(new AddUpdatePlan());

@@ -27,17 +27,22 @@ namespace workoutPlanner
             planName.Text = PlanPage.selectedPlan.NamePlan;
             planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
 
-            everyName = PlanPage.selectedPlan.ListOfExcercisesName;            
-
-            if (everyName[0] == ';')
+            everyName = PlanPage.selectedPlan.ListOfExcercisesName;
+            if (everyName.Length > 0)
             {
-                everyName = everyName.Substring(1);
+                if (everyName[0] == ';')
+                {
+                    everyName = everyName.Substring(1);
+                }
+                NamesList = everyName.Split(';').ToList();
+
+                for (int i = 0; i < NamesList.Count(); i++)
+                {
+                    NamesList[i] = (i + 1).ToString() + ". " + NamesList[i];
+                }
             }
-            NamesList = everyName.Split(';').ToList();
-
-            for (int i = 0; i < NamesList.Count(); i++)
-            {
-                NamesList[i] = (i+1).ToString() +". "+ NamesList[i];
+            else { 
+                //NamesList.Add(everyName);
             }
             myList.ItemsSource = NamesList;
 
@@ -51,5 +56,6 @@ namespace workoutPlanner
         //    //exName = true;
         //    //Navigation.PushAsync(new ExcerciseDetails());
         //}
+
     }
 }
