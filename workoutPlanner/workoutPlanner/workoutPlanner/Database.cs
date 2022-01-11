@@ -16,94 +16,84 @@ namespace workoutPlanner
 
         public Database(string dbPath)
         {
-            
             _dbdb = new SQLiteAsyncConnection(dbPath);
             _dbdb.CreateTableAsync<Plan>().Wait();
             _dbdb.CreateTableAsync<Exercise>().Wait();
-            _dbdb.CreateTableAsync<PlanExercise>().Wait();
 
             ////////////////////////////////////////////////////
             //testowanie
-            var plan1 = new Plan
-            {
-                Name = "1Plan Test",
-                Details = "1details Plan Test"
-            };
-
-            var plan2 = new Plan
-            {
-                Name = "2Plan Test",
-                Details = "2details Plan Test"
-            };
-
-            var plan3 = new Plan
-            {
-                Name = "3Plan Test",
-                Details = "3details Plan Test"
-            };
-
             var exercise1 = new Exercise
             {
-                Name = "1Exercise Test",
-                Category = "1category Exercise Test"
+                Name = "Bench press",
+                Category = "Chest",
+                Img = "benchPress.png",
+                Details = "The bench press helps build many muscles in the upper body. You can do this exercise with either a barbell or dumbbells. Perform bench presses regularly as part of an upper-body workout for increased strength and muscle development."
             };
 
             var exercise2 = new Exercise
             {
-                Name = "2Exercise Test",
-                Category = "2category Exercise Test"
+                Name = "Dumbbell bent-over row on bench",
+                Category = "Back",
+                Img = "dumbbellBentOverRow.png",
+                Details = "The one-arm dumbbell row is a good addition to any dumbbell workout. This movement targets the upper and lower back, shoulders, biceps, and hips while improving core stability.1 Five different joint actions take place in this compound exercise. Beginners can use light weights as they build strength. This is also a good exercise to do as part of a circuit training routine."
             };
 
             var exercise3 = new Exercise
             {
-                Name = "3Exercise Test",
-                Category = "3category Exercise Test"
+                Name = "Hip thrust",
+                Category = "Lower body",
+                Img = "pants.png",
+                Details = "Also Known As: Hip thruster, weighted hip bridge, weighted glute bridge\n\n" +
+                "Targets: Gluteus minimus, gluteus medius, gluteus maximus, hamstrings, adductors, and quadriceps\n\n" +
+                "Equipment Needed: Barbell, weight plates, dumbbell, or kettlebell\n\n" +
+                "Level: Intermediate\n\n" +
+                "The hip thrust, or hip thruster, has gained widespread popularity over the past few years. The move is a variation of a glute bridge, but it is performed using a barbell and with the body lifted off the floor. It targets the gluteal muscles better than many other lower-body movements. " +
+                "The hip thruster is effective for improving hip extension by engaging the hamstrings and gluteal muscles.Your hips extend when they move from a flexed position(where the hips are lower than or behind the shoulders and knees) to a fully extended position where the hips, shoulders, and knees are in line. " +
+                "Some popular variations of hip thruster also engage the gluteal muscles that wrap around the sides of the hips, the abductors. To do these moves, you'll need to use a circular resistance band (sometimes called a hip thruster band).\n\n" +
+                "Benefits: There are a few solid reasons that the hip thruster is becoming an essential movement for leg day at the gym."
             };
 
-            var exercise4 = new Exercise
-            {
-                Name = "4Exercise Test",
-                Category = "4category Exercise Test"
-            };
+            ////dodawane
+            //var exercise4 = new Exercise
+            //{
+            //    Name = "bicycle crunches",
+            //    Category = "abs",
+            //    Img = "bicycleCrunches.png"
+            //};
+            ////dodawane
+            //var exercise5 = new Exercise
+            //{
+            //    Name = "side plank leg lift",
+            //    Category = "legs",
+            //    Img = "sidePlankLegLift.png"
+            //};
+
+            //if(Exercise!=null) //bez wstawiania kazdorazowego
 
             _dbdb.InsertAsync(exercise1);
             _dbdb.InsertAsync(exercise2);
             _dbdb.InsertAsync(exercise3);
-            _dbdb.InsertAsync(exercise4);
+            //_dbdb.InsertAsync(exercise4);
+            //_dbdb.InsertAsync(exercise5);
 
-            _dbdb.InsertAsync(plan1);
-            _dbdb.InsertAsync(plan2);
-            _dbdb.InsertAsync(plan3);
+            string listOfNames = ';' + exercise1.Name + ';' + exercise2.Name;
 
+            var name1 = new Plan
+            {
+                NamePlan = "Plan1",
+                ListOfExcercisesName = listOfNames
+            };
 
-            plan1.ExercisesInPlan = new List<Exercise> {};
-            plan1.ExercisesInPlan.Add(exercise1);
-            plan1.ExercisesInPlan.Add(exercise2);
+            var name2 = new Plan();
 
-            plan2.ExercisesInPlan = new List<Exercise> { };
-            plan2.ExercisesInPlan.Add(exercise3);
-            plan2.ExercisesInPlan.Add(exercise4);
+            _dbdb.InsertAsync(name1);
+            _dbdb.InsertAsync(name2);
 
-            plan3.ExercisesInPlan = new List<Exercise> { };
-            plan3.ExercisesInPlan.Add(exercise1);
-            plan3.ExercisesInPlan.Add(exercise2);
-            plan3.ExercisesInPlan.Add(exercise3);
-            plan3.ExercisesInPlan.Add(exercise4);
+            name2.NamePlan = "Plan2";
+            name2.ListOfExcercisesName = ';' + exercise2.Name + ';' + exercise3.Name;
 
-            //plan1.ExercisesInPlan = new List<Exercise> { exercise1 };            
-            //_dbdb.UpdateAsync(plan1);
-            _dbdb.UpdateWithChildrenAsync(plan1);
-            _dbdb.UpdateWithChildrenAsync(plan2);
-            _dbdb.UpdateWithChildrenAsync(plan3);
-
-            //to jest nawet chyba niepotrzebne
-            var personStored1 = _dbdb.GetWithChildrenAsync<Plan>(plan1.ID);
-            var personStored2 = _dbdb.GetWithChildrenAsync<Plan>(plan2.ID);
-            var personStored3 = _dbdb.GetWithChildrenAsync<Plan>(plan3.ID);
-            var eventStored1 = _dbdb.GetWithChildrenAsync<Exercise>(exercise1.ID);
-            var eventStored2 = _dbdb.GetWithChildrenAsync<Exercise>(exercise2.ID);
-            var eventStored3 = _dbdb.GetWithChildrenAsync<Exercise>(exercise3.ID);
-            var eventStored4 = _dbdb.GetWithChildrenAsync<Exercise>(exercise4.ID);
+            _dbdb.UpdateAsync(name1);
+            _dbdb.UpdateAsync(name2);
         }
         //testowanie
         ////////////////////////////////////////////////////
@@ -118,17 +108,17 @@ namespace workoutPlanner
         {
             return _dbdb.Table<Exercise>().ToListAsync();
         }
-        //save plan
-        public Task<int> SavePlanAsync(Plan plan)
+        //save name
+        public Task<int> SavePlanAsync(Plan name)
         {
-            return _dbdb.InsertAsync(plan);
+            return _dbdb.InsertAsync(name);
         }
         //save exercise
         public Task<int> SaveExerciseAsync(Exercise exercise)
         {
             return _dbdb.InsertAsync(exercise);
         }
-        //delete plan
+        //delete name
         public Task<int> DeletePlanAsync(Plan plan)
         {
             return _dbdb.DeleteAsync(plan);
@@ -138,33 +128,39 @@ namespace workoutPlanner
         {
             return _dbdb.DeleteAsync(exercise);
         }
-        //update plan
-        public Task<int> UpdatePlanAsync(Plan plan)
+        //update name
+        public Task<int> UpdatePlanAsync(Plan name)
         {
-            if (plan.ID != 0)
+            if (name.IDPlan != 0)
             {
                 //return _dbdb.
-                //_dbdb.UpdateWithChildren(plan);
-                return _dbdb.UpdateAsync(plan);
+                //_dbdb.UpdateWithChildren(name);
+                return _dbdb.UpdateAsync(name);
             }
             else
             {
-                return _dbdb.InsertAsync(plan);
+                return _dbdb.InsertAsync(name);
             }
         }
         //update exercise
         public Task<int> UpdateExerciseAsync(Exercise exercise)
         {
-            if (exercise.ID != 0)
-            {
-                //return _dbdb.
-                //_dbdb.UpdateWithChildren(exercise);
-                return _dbdb.UpdateAsync(exercise);
-            }
-            else
-            {
-                return _dbdb.InsertAsync(exercise);
-            }
+            return _dbdb.UpdateAsync(exercise); // nowa zmiana
+            //if (exercise.ID != 0)
+            //{
+            //    //return _dbdb.
+            //    //_dbdb.UpdateWithChildren(exercise);
+            //    return _dbdb.UpdateAsync(exercise);
+            //}
+            //else
+            //{
+            //    return _dbdb.InsertAsync(exercise);
+            //}
         }
+        //zwraca liste nazw
+        //public Task<List<string>> ExcerciseQuery()
+        //{
+        //    return _dbdb.QueryAsync<List<string>>("SELECT Name FROM [Excercise]");
+        //}
     }
 }

@@ -13,14 +13,15 @@ namespace workoutPlanner
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlanPage : ContentPage
     {
-        //variable uded to add exercisees to the plan
-        public static bool addToThePlan = false;
+        //variable that represents the selected plan        
+        public static Plan selectedPlan = null;
+        public static bool updateSelectedPlanBool = false;
+        public static bool deleteSelectedPlanBool = false;
+        public static bool addNewPlanBool = false;
 
-        //variable that represents the selected plan
-        public static Plan selectedItem = null;
         public PlanPage()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         //method that shows current data in table
@@ -28,80 +29,72 @@ namespace workoutPlanner
         {
             base.OnAppearing();
             collectionView.ItemsSource = await App.Database.GetPlansAsync();
+
+            //when data appearing, selectedPlan is null
+            selectedPlan = null;
+            //when data appearing, update/add bools are false
+            updateSelectedPlanBool = false;
+            addNewPlanBool = false;
+            //when data appearing, every data from AddUpdatePlan are empty
+            AddUpdatePlan.SemicoloneveryName = string.Empty;
+            AddUpdatePlan.newEx = string.Empty;
+            AddUpdatePlan.NamesList.Clear();
+        }
+ 
+        void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedPlan = e.CurrentSelection[0] as Plan;
         }
 
-        //adding new plan
-        async void AddPlanClicked(object sender, EventArgs e)
+        private async void planDetails_Clicked(object sender, EventArgs e)
         {
-            //when name isn't empty
-            if (!string.IsNullOrWhiteSpace(nameEntry.Text))
+            if (selectedPlan != null)
             {
-                await App.Database.SavePlanAsync(new Plan
+                await Navigation.PushAsync(new PlanDetails());
+            }
+            else
+            {
+                await DisplayAlert(":)", "Select plan first", "OK");
+            }
+        }
+
+        private async void update_Clicked(object sender, EventArgs e)
+        {
+            if (selectedPlan != null)
+            {
+                updateSelectedPlanBool = true;
+                await Navigation.PushAsync(new AddUpdatePlan());
+            }
+            else
+            {
+                await DisplayAlert(":)", "Select a plan first", "OK");
+            }
+        }
+        private async void AddPlan_Clicked(object sender, EventArgs e)
+        { 
+            selectedPlan = null;
+            addNewPlanBool = true;
+            await Navigation.PushAsync(new AddUpdatePlan());
+        }
+        private async void delete_Clicked(object sender, EventArgs e)
+        {
+            if (selectedPlan != null)
+            {
+                deleteSelectedPlanBool = await DisplayAlert("Are you sure?", "The plan will be deleted", "OK", "NO");
+                if (deleteSelectedPlanBool)
                 {
-                    Name = nameEntry.Text,
-                    Details = detailsEntry.Text
-                });
-                await DisplayAlert("Success", "Plan added", "OK");
+                    //Delete exercise  
+                    await App.Database.DeletePlanAsync(selectedPlan);
+                    await DisplayAlert("Success", "Plan deleted", "OK");
 
-                nameEntry.Text = detailsEntry.Text = string.Empty;
-                collectionView.ItemsSource = await App.Database.GetPlansAsync();
+                    //Get All Exercises  
+                    collectionView.ItemsSource = await App.Database.GetPlansAsync();
+                }
             }
-        }
-        async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            selectedItem = e.CurrentSelection[0] as Plan;
-            //when selected, name and details show in entry
-            nameEntry.Text = selectedItem.Name;
-            detailsEntry.Text = selectedItem.Details;
-
-            //dla testu
-            if (selectedItem.ExercisesInPlan != null)
+            else
             {
-                test.Text = selectedItem.ExercisesInPlan[0].Category.ToString();
+                await DisplayAlert(":)", "Select a plan first", "OK");
             }
-            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "_dbdb.db");
-
-            Console.WriteLine(databasePath);
-            test.Text = databasePath;
-            //C:\Users\pipat\AppData\Local\Packages\9edf7a7b-9cf2-4878-9e67-59ad451d441a_0f9wbgk7cg3pc\LocalState\_dbdb.db
-            //C:\Users\pipat\AppData\Local\Packages\9edf7a7b-9cf2-4878-9e67-59ad451d441a_0f9wbgk7cg3pc\LocalState\_dbdb.db
-            //dla testu, czy dziala dodawanie cwiczen do planu
-            //Get All Persons  
-            //exerciseCollectionView.ItemsSource = await App.Database.GetPlansAsync();
-        }
-
-        async private void DeleteClicked(object sender, EventArgs e)
-        {
-            if (selectedItem != null)
-            {
-                //Delete Person  
-                await App.Database.DeletePlanAsync(selectedItem);
-                await DisplayAlert("Success", "Plan deleted", "OK");
-
-                //Get All Persons  
-                collectionView.ItemsSource = await App.Database.GetPlansAsync();
-            }
-        }
-
-        async private void UpdateClicked(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(nameEntry.Text))
-            {
-                selectedItem.Name = nameEntry.Text;
-                selectedItem.Details = detailsEntry.Text;
-                await App.Database.UpdatePlanAsync(selectedItem);
-                
-                await DisplayAlert("Success", "Plan updated", "OK");
-
-                nameEntry.Text = detailsEntry.Text = string.Empty;
-                collectionView.ItemsSource = await App.Database.GetPlansAsync();
-            }
-        }
-
-        private void addExerciseToThePlan_Clicked(object sender, EventArgs e)
-        {            
-            addToThePlan = true;
-            Navigation.PushAsync(new ExercisePage());
         }
     }
 }

@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Text;
 
 
-
-
 namespace workoutPlanner
 {
     public class Exercise
@@ -16,13 +14,14 @@ namespace workoutPlanner
         public string Name { get; set; }
         public string Category { get; set; }
         public string Img { get; set; }
+        public string Details { get; set; }
 
-        [ManyToMany(typeof(PlanExercise))]
-        public List<Plan> PlansWithExercise { get; set; }
+        //[ManyToMany(typeof(PlanExercise))]
+        //public List<Plan> PlansWithExercise { get; set; }
 
         //public override string ToString()
         //{
-        //    return Name;
+        //    return ListOfExcercisesName;
         //}
     }
 }

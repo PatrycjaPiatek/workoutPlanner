@@ -21,21 +21,6 @@
         </Style>
     </ContentPage.Resources>
     <StackLayout Margin="20,35,20,20">
-        <Entry x:Name="nameEntry"
-               Placeholder="Enter name"
-               BackgroundColor="#48185f"/>
-        <Entry x:Name="categoryEntry"
-               Placeholder="Enter category" 
-               BackgroundColor="#48185f"/>
-        <Button Text="Add new exercise"
-                Clicked="AddExerciseClicked" />
-        <Button x:Name ="delete"
-                Text="Delete selected exercise"
-                Clicked="DeleteClicked" />
-        <Button x:Name ="update"
-                Text="Update selected exercise"
-                Clicked="UpdateClicked" />
-
         <CollectionView x:Name="exerciseCollectionView"
                         SelectionMode="Single"
                         SelectionChanged="OnSelectionChanged">
@@ -47,14 +32,15 @@
                               ColumnDefinitions="Auto, *">
                             <Image Grid.RowSpan="2"
                                    Source="{Binding Img}"
-                                   Aspect="AspectFill"
+                                   Aspect="AspectFit"
                                    HeightRequest="60"
                                    WidthRequest="60" />
                             <Label Grid.Column="1"
                                    Text="{Binding Name}"
                                    FontAttributes="Bold"
                                    TextColor="#48185f"
-                                   FontSize="Medium" />
+                                   FontSize="Medium" 
+                                   Grid.ColumnSpan="3"/>
                             <Label Grid.Row="1"
                                    Grid.Column="1"
                                    Text="{Binding Category}"
@@ -72,5 +58,71 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Button Text="Add"
+                    Clicked="AddExerciseClicked" 
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    BackgroundColor="#8952b4"
+                    CornerRadius="7"
+                    BorderColor="#48185f"
+                    BorderWidth="3"
+                    TextColor="#48185f"
+                    FontAttributes="Bold"/>
+            <Button x:Name ="update"
+                    Text="Edit"
+                    Clicked="UpdateClicked" 
+                    Grid.Column="1"
+                    BackgroundColor="#8952b4"
+                    CornerRadius="7"
+                    BorderColor="#48185f"
+                    BorderWidth="3"
+                    TextColor="#48185f"
+                    FontAttributes="Bold"/>
+            <Button x:Name ="delete"
+                    Text="Delete"
+                    Clicked="DeleteClicked"
+                    Grid.Column="2"
+                    BackgroundColor="#8952b4"
+                    CornerRadius="7"
+                    BorderColor="#48185f"
+                    BorderWidth="3"
+                    TextColor="#48185f"
+                    FontAttributes="Bold"/>
+            <Button x:Name ="details"
+                    Text="Details"
+                    Clicked="details_Clicked"
+                    Grid.Column="3"
+                    BackgroundColor="#8952b4"
+                    CornerRadius="7"
+                    BorderColor="#48185f"
+                    BorderWidth="3"
+                    TextColor="#48185f"
+                    FontAttributes="Bold"/>
+            <!--
+            <Image x:Name="resultImage"
+                   Margin="10,10,10,1"
+                   HeightRequest="150"
+                   WidthRequest="150"
+                   BackgroundColor="Transparent"
+                   Source="photo.png">
+            </Image>
+            <Button x:Name ="pickImg"
+                    Text="pick image"
+                    Clicked="pickImg_Clicked_1" />
+            <Entry x:Name="nameEntry"
+                   Placeholder="Enter name"
+                   BackgroundColor="Transparent"/>
+            <Entry x:Name="categoryEntry"
+                   Placeholder="Enter category" 
+                   BackgroundColor="Transparent"/>
+            <Entry x:Name="detailsEntry"
+                   Placeholder="Enter details" 
+                   BackgroundColor="Transparent"/>
+            -->
+        </Grid>
     </StackLayout>
 </ContentPage>

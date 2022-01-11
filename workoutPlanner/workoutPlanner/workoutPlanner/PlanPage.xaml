@@ -21,75 +21,68 @@
         </Style>
     </ContentPage.Resources>
     <StackLayout Margin="20,35,20,20">
-        <Entry x:Name="nameEntry"
-               Placeholder="Enter name"
-               BackgroundColor="#48185f"/>
-        <Entry x:Name="test" Text="testowanie" TextColor="Green"/>
-        <Entry x:Name="detailsEntry"
-               Placeholder="Enter details"
-               BackgroundColor="#48185f"/>
-        <Button Text="Add new plan"
-                Clicked="AddPlanClicked" />
-        <Button x:Name ="delete"
-                Text="Delete selected plan"
-                Clicked="DeleteClicked" />
-        <Button x:Name ="update"
-                Text="Update selected plan"
-                Clicked="UpdateClicked" />
-        <Button x:Name ="addExerciseToThePlan"
-                Text="add exercise to the plan"
-                Clicked="addExerciseToThePlan_Clicked"/>
-        
-        
-        
         <CollectionView x:Name="collectionView"
                         SelectionMode="Single"
                         SelectionChanged="OnSelectionChanged">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
-                        <Label Text="{Binding Name}"
+                        <Label Text="{Binding NamePlan}"
                                FontSize="Medium" 
                                TextColor="#48185f"
                                FontAttributes="Bold"/>
-                        <Label Text="{Binding Details}"
+                        <Label Text="{Binding IDPlan}"
                                TextColor="#48185f"
                                FontSize="Small" />
-                        <Label Text="{Binding ID}"
-                               TextColor="#48185f"
-                               FontSize="Small" />
-
-                        <Label Text="{Binding ExercisesInPlan}"/>
-                        <ListView x:Name="listView">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Grid Padding="10"
-                                                  RowDefinitions="Auto, *"
-                                                  ColumnDefinitions="Auto, *">
-                                                <Image Grid.RowSpan="2"
-                                                       Source="{Binding Img}"
-                                                       Aspect="AspectFill"
-                                                       HeightRequest="60"
-                                                       WidthRequest="60" />
-                                                <Label Grid.Column="1"
-                                                       Text="{Binding Name}"
-                                                       FontAttributes="Bold" />
-                                                <Label Grid.Row="1"
-                                                       Grid.Column="1"
-                                                       Text="{Binding Category}"
-                                                       VerticalOptions="End" />
-                                            </Grid>
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                        
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Button x:Name="AddPlan"
+                    Clicked="AddPlan_Clicked"
+                    Text="Add"                    
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    BackgroundColor="#8952b4"
+                    CornerRadius="7"
+                    BorderColor="#48185f"
+                    BorderWidth="3"
+                    TextColor="#48185f"
+                    FontAttributes="Bold"/>
+            <Button x:Name ="update"
+                    Text="Edit"
+                    Clicked="update_Clicked"
+                    Grid.Column="1"
+                    BackgroundColor="#8952b4"
+                    CornerRadius="7"
+                    BorderColor="#48185f"
+                    BorderWidth="3"
+                    TextColor="#48185f"
+                    FontAttributes="Bold"/>
+            <Button x:Name ="delete"
+                    Text="Delete"
+                    Clicked="delete_Clicked"
+                    Grid.Column="2"
+                    BackgroundColor="#8952b4"
+                    CornerRadius="7"
+                    BorderColor="#48185f"
+                    BorderWidth="3"
+                    TextColor="#48185f"
+                    FontAttributes="Bold"/>
+            <Button x:Name ="planDetails"
+                    Clicked="planDetails_Clicked"
+                    Text="Details"
+                    Grid.Column="3"
+                    BackgroundColor="#8952b4"
+                    CornerRadius="7"
+                    BorderColor="#48185f"
+                    BorderWidth="3"
+                    TextColor="#48185f"
+                    FontAttributes="Bold"/>
+        </Grid>
     </StackLayout>
 </ContentPage>

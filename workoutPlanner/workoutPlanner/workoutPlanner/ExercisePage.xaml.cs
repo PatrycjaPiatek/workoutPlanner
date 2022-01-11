@@ -15,21 +15,19 @@ namespace workoutPlanner
     {
         //variable that represents the selected exercise
         public static Exercise selectedExercise = null;
+        //list of names, fajnie gdyby byla robiona z zapytania sql
+        public static List<string> ListOfNames = new List<string> { "bench press", "dumbbell bent-over row on bench", "hip trust" };
+        //public string selectedCategory = "Accessories";
+        public string selectedSource = "photo.png";
+        public static bool addBool = false;
+        public static bool updateBool = false;
+        bool deleteBool = false;
+
+        //public static Plan sP = null;
+
         public ExercisePage()
         {
             InitializeComponent();
-        }
-        async private void Add()
-        {
-            await App.Database.SaveExerciseAsync(new Exercise
-            {
-                Name = "bench press",
-                Category = "chest",
-                Img = "benchPress.png"
-
-            });            
-            
-            exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
         }
 
         //method that shows current data in table
@@ -37,89 +35,138 @@ namespace workoutPlanner
         {
             base.OnAppearing();
             exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+            selectedExercise = null;
+            addBool = false;
+            updateBool = false;
+            //sP = null;
         }
-
-        //adding new exercise
-        async void AddExerciseClicked(object sender, EventArgs e)
-        {
-            //when name isn't empty
-            if (!string.IsNullOrWhiteSpace(nameEntry.Text))
-            {
-                await App.Database.SaveExerciseAsync(new Exercise
-                {
-                    Name = nameEntry.Text,
-                    Category = categoryEntry.Text
-                });
-                await DisplayAlert("Success", "Exercise added", "OK");
-
-                nameEntry.Text = categoryEntry.Text = string.Empty;
-                exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
-            }
-        }
+        //select excercise
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {            
+        {
             //wybrane cwiczenie
             selectedExercise = e.CurrentSelection[0] as Exercise;
-            nameEntry.Text = selectedExercise.Name;
-            categoryEntry.Text = selectedExercise.Category;
-            //Navigation.PushAsync(new PlanPage());
+            //string newName = "";
+            //newName = selectedExercise.Name;
 
-            if (PlanPage.addToThePlan)
+            if (AddUpdatePlan.addExerciseToThePlan)
             {
-                //stary sposob
-                //PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { selectedExercise };
-
-                //nowy sposob
-                PlanPage.selectedItem.ExercisesInPlan = new List<Exercise> { };
-                PlanPage.selectedItem.ExercisesInPlan.Add(selectedExercise);
-
-                //plan1.ExercisesInPlan = new List<Exercise> { };
-                //plan1.ExercisesInPlan.Add(exercise1);
-                ////plan1.ExercisesInPlan = new List<Exercise> { exercise1 };            
-                //_dbdb.UpdateAsync(plan1);
-
-                //Update Plan  
-                await App.Database.UpdatePlanAsync(PlanPage.selectedItem);
-
-                //moze dac tak jeszcze
-                //App.Database._
-                //var personStored = App.Database.GetPlansAsync();
-                //var eventStored = App.Database.GetExercisesAsync();
+                if (PlanPage.updateSelectedPlanBool)
+                {
+                    AddUpdatePlan.newEx += ';' + selectedExercise.Name;
+                }
+                if (PlanPage.addNewPlanBool)
+                {
+                    AddUpdatePlan.newEx = ';' + selectedExercise.Name;
+                }
+                
                 //////////////  
-                PlanPage.addToThePlan = false;
+                AddUpdatePlan.addExerciseToThePlan = false;
 
-                //person1.ExercisesInPlan = new List<Event> { event1 };
-                //db.UpdateWithChildren(person1);
-                await DisplayAlert("Success", "Exercise added", "OK");
-                await Navigation.PushAsync(new PlanPage());
+                if (PlanPage.updateSelectedPlanBool)
+                {
+                    PlanPage.addNewPlanBool = false;
+                    //AddUpdatePlan.planName.Text = PlanPage.selectedPlan.NamePlan;
+                    //planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
+
+                    AddUpdatePlan.SemicoloneveryName = PlanPage.selectedPlan.ListOfExcercisesName + AddUpdatePlan.newEx;
+
+                    //if first ex is added by user
+                    if (AddUpdatePlan.SemicoloneveryName != "")
+                    {
+                        if (AddUpdatePlan.SemicoloneveryName[0] == ';')
+                        {
+                            AddUpdatePlan.SemicoloneveryName = AddUpdatePlan.SemicoloneveryName.Substring(1);
+                        }
+                    }
+
+                    AddUpdatePlan.NamesList = AddUpdatePlan.SemicoloneveryName.Split(';').ToList();
+                    for (int i = 0; i < AddUpdatePlan.NamesList.Count(); i++)
+                    {
+                        AddUpdatePlan.NamesList[i] = (i + 1).ToString() + ". " + AddUpdatePlan.NamesList[i];
+                    }
+                    //AddUpdatePlan.myList.ItemsSource = AddUpdatePlan.NamesList;
+                }
+                //plan name const?
+                if (PlanPage.updateSelectedPlanBool)
+                {
+                    //if (!string.IsNullOrWhiteSpace(AddUpdatePlan.planName.Text))
+                    //{
+                        //PlanPage.selectedPlan.NamePlan = planName.Text;
+                        //string names = "";
+
+                        PlanPage.selectedPlan.ListOfExcercisesName = AddUpdatePlan.SemicoloneveryName;
+
+                        await App.Database.UpdatePlanAsync(PlanPage.selectedPlan);
+                        await DisplayAlert("Success", "Plan updated", "OK");
+                    //}
+
+                    ////clear the data
+                    //AddUpdatePlan.planName.Text = "";
+                    //AddUpdatePlan.SemicoloneveryName = "";
+                    //AddUpdatePlan.newEx = "";
+                    //AddUpdatePlan.NamesList.Clear();
+                    PlanPage.updateSelectedPlanBool = false;
+                    PlanPage.addNewPlanBool = false;
+                    //await Navigation.PushAsync(new PlanPage());
+                }
+
+                //await DisplayAlert("Success", "Exercise added", "OK");
+                //sP = PlanPage.selectedPlan;
+                await Navigation.PopAsync();
             }
         }
-
+        //delete excercise
         async private void DeleteClicked(object sender, EventArgs e)
         {
             if (selectedExercise != null)
             {
-                //Delete exercise  
-                await App.Database.DeleteExerciseAsync(selectedExercise);
-                await DisplayAlert("Success", "Exercise deleted", "OK");
+                deleteBool = await DisplayAlert("Are you sure?", "Exercise will be deleted", "OK", "NO");
+                if (deleteBool)
+                {
+                    //Delete exercise  
+                    await App.Database.DeleteExerciseAsync(selectedExercise);
+                    await DisplayAlert("Success", "Exercise deleted", "OK");
 
-                //Get All Exercises  
-                exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+                    //Get All Exercises  
+                    exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+                }
+            }
+            else
+            {
+                await DisplayAlert(":)", "Select excercise first", "OK");
             }
         }
 
+        //adding new exercise
+        async private void AddExerciseClicked(object sender, EventArgs e)
+        {
+            addBool = true;
+            await Navigation.PushAsync(new AddUpdateExcercise());
+        }
         async private void UpdateClicked(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(nameEntry.Text))
+            //updateSelectedPlanBool = true;
+            if (selectedExercise != null)
             {
-                selectedExercise.Name = nameEntry.Text;
-                selectedExercise.Category = categoryEntry.Text;
-                await App.Database.UpdateExerciseAsync(selectedExercise);
+                updateBool = true;
+                await Navigation.PushAsync(new AddUpdateExcercise());
+            }
+            else
+            {
+                await DisplayAlert(":)", "Select excercise first", "OK");
+            }
+        }
 
-                await DisplayAlert("Success", "Exercise updated", "OK");
-
-                nameEntry.Text = categoryEntry.Text = string.Empty;
-                exerciseCollectionView.ItemsSource = await App.Database.GetExercisesAsync();
+        private async void details_Clicked(object sender, EventArgs e)
+        {
+            //updateSelectedPlanBool = true;
+            if (selectedExercise != null)
+            {
+                await Navigation.PushAsync(new ExcerciseDetails());
+            }
+            else
+            {
+                await DisplayAlert(":)", "Select excercise first", "OK");
             }
         }
 
