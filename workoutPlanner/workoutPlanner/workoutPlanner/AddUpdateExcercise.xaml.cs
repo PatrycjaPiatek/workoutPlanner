@@ -106,6 +106,7 @@ namespace workoutPlanner
                 await Navigation.PushAsync(new ExercisePage());
             }
         }
+
         private async void pickImg_Clicked(object sender, EventArgs e)
         {
             var result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions

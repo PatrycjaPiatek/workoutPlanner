@@ -28,24 +28,17 @@ namespace workoutPlanner
             planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
 
             everyName = PlanPage.selectedPlan.ListOfExcercisesName;            
-            if(everyName.Length>0)
-            {
-                if (everyName[0] == ';')
-                {
-                    everyName = everyName.Substring(1);
-                }
-                NamesList = everyName.Split(';').ToList();
 
-                for (int i = 0; i < NamesList.Count(); i++)
-                {
-                    NamesList[i] = (i + 1).ToString() + ". " + NamesList[i];
-                }
-            }
-            else
+            if (everyName[0] == ';')
             {
-                //NamesList.Add(everyName);
+                everyName = everyName.Substring(1);
             }
-            
+            NamesList = everyName.Split(';').ToList();
+
+            for (int i = 0; i < NamesList.Count(); i++)
+            {
+                NamesList[i] = (i+1).ToString() +". "+ NamesList[i];
+            }
             myList.ItemsSource = NamesList;
 
             PlanPage.selectedPlan = null;
