@@ -21,6 +21,25 @@
         </Style>
     </ContentPage.Resources>
     <StackLayout Margin="20,35,20,20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Back"
+                    Clicked="Back_Clicked"
+                    Text="&lt;-"                    
+                    BackgroundColor="#8952b4"
+                    CornerRadius="7"
+                    BorderColor="#48185f"
+                    BorderWidth="3"
+                    TextColor="#48185f"
+                    FontAttributes="Bold"
+                    Grid.Column="0"/>
+        </Grid>
         <CollectionView x:Name="collectionView"
                         SelectionMode="Single"
                         SelectionChanged="OnSelectionChanged">

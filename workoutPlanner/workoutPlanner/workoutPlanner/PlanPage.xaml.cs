@@ -13,7 +13,7 @@ namespace workoutPlanner
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlanPage : ContentPage
     {
-        //variable uded to add exercisees to the plan
+        //variable used to add exercisees to the plan
         public static bool addToThePlan = false;
 
         //variable that represents the selected plan
@@ -165,6 +165,11 @@ namespace workoutPlanner
             AddUpdatePlan.SemicoloneveryName = String.Empty;
             addBool = true;
             await Navigation.PushAsync(new AddUpdatePlan());
+        }
+
+        private async void Back_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MainPage());
         }
     }
 }

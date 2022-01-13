@@ -62,6 +62,7 @@ namespace workoutPlanner
 
                 await DisplayAlert("Success", "Exercise added", "OK");
                 await Navigation.PushAsync(new AddUpdatePlan());
+                //await Navigation.PopAsync();
             }
         }
         //delete excercise
@@ -117,6 +118,11 @@ namespace workoutPlanner
             {
                 await DisplayAlert(":)", "Select excercise first", "OK");
             }
+        }
+
+        private async void Back_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MainPage());
         }
 
         //private void addExerciseToThePlan_Clicked(object sender, EventArgs e)
