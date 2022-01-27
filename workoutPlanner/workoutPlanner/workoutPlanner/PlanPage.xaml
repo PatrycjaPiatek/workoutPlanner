@@ -31,9 +31,9 @@
                                FontSize="Medium" 
                                TextColor="#48185f"
                                FontAttributes="Bold"/>
-                        <Label Text="{Binding IDPlan}"
+                        <!--<Label Text="{Binding IDPlan}"
                                TextColor="#48185f"
-                               FontSize="Small" />
+                               FontSize="Small" /> -->
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
