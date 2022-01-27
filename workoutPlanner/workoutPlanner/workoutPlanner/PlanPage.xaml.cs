@@ -44,6 +44,7 @@ namespace workoutPlanner
         void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedPlan = e.CurrentSelection[0] as Plan;
+            AddUpdatePlan.planNameStatic = selectedPlan.NamePlan;
         }
 
         private async void planDetails_Clicked(object sender, EventArgs e)

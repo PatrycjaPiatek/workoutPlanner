@@ -19,6 +19,7 @@ namespace workoutPlanner
         private bool deleteExerciseFromThePlan = false;
         //allows to execute appropriate code from excercisePage.cs
         public static bool addExerciseToThePlan = false;
+        public static string planNameStatic;
         public AddUpdatePlan()
         {
             InitializeComponent();
@@ -46,8 +47,10 @@ namespace workoutPlanner
 
             if (PlanPage.updateSelectedPlanBool)
             {
+                //planNameStatic = PlanPage.selectedPlan.NamePlan;
                 PlanPage.addNewPlanBool = false;
-                planName.Text = PlanPage.selectedPlan.NamePlan;
+                planName.Text = planNameStatic;
+                //planName.Text = PlanPage.selectedPlan.NamePlan;
                 planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
 
                 SemicoloneveryName = PlanPage.selectedPlan.ListOfExcercisesName + newEx;
@@ -114,11 +117,13 @@ namespace workoutPlanner
                 }
             }
 
+
             //plan name const?
             if (PlanPage.updateSelectedPlanBool)
             {
                 if (!string.IsNullOrWhiteSpace(planName.Text))
                 {
+                    //AddUpdatePlan.planName.Text = AddUpdatePlan.planNameStatic;
                     PlanPage.selectedPlan.NamePlan = planName.Text;
                     //string names = "";
 
@@ -140,6 +145,7 @@ namespace workoutPlanner
         }
         private async void addNewExcerciseBtn_Clicked(object sender, EventArgs e)
         {
+            planNameStatic = planName.Text;
             addExerciseToThePlan = true;
             await Navigation.PushAsync(new ExercisePage());
         }

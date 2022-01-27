@@ -47,6 +47,8 @@ namespace workoutPlanner
 
             if (AddUpdatePlan.addExerciseToThePlan)
             {
+                //planNameStatic = planName.Text;
+                //AddUpdatePlan.planName.Text = AddUpdatePlan.planNameStatic;
                 if (PlanPage.updateSelectedPlanBool)
                 {
                     AddUpdatePlan.newEx += ';' + selectedExercise.Name;
