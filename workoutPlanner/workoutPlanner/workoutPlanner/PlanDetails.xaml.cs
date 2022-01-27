@@ -25,7 +25,7 @@ namespace workoutPlanner
             //myList.ItemTemplate = template;
 
             planName.Text = PlanPage.selectedPlan.NamePlan;
-            planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
+            //planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
 
             everyName = PlanPage.selectedPlan.ListOfExcercisesName;
             if (everyName.Length > 0)
