@@ -25,7 +25,8 @@ namespace workoutPlanner
             InitializeComponent();
 
             if (PlanPage.addNewPlanBool)
-            {                
+            {
+                planName.Text = planNameStatic;
                 SemicoloneveryName += newEx;
 
                 //if first ex is added by user
@@ -51,7 +52,7 @@ namespace workoutPlanner
                 PlanPage.addNewPlanBool = false;
                 planName.Text = planNameStatic;
                 //planName.Text = PlanPage.selectedPlan.NamePlan;
-                planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
+                //planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
 
                 SemicoloneveryName = PlanPage.selectedPlan.ListOfExcercisesName + newEx;
 
