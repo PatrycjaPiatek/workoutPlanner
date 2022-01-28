@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.IO;
 
 namespace workoutPlanner
 {
@@ -116,11 +117,16 @@ namespace workoutPlanner
 
             if (result != null)
             {
-                var stream = await result.OpenReadAsync();
-                defaultImage.Source = ImageSource.FromStream(() => stream);
-                selectedSource = result.FullPath;
+                var newImg = Path.Combine(FileSystem.CacheDirectory, result.FileName); //await result.OpenReadAsync();
+                using (var stream = await result.OpenReadAsync())
+                using (var newStream = File.OpenWrite(newImg))
+                    await stream.CopyToAsync(newStream);
+
+                defaultImage.Source = newImg;
+                selectedSource = newImg;
             }
         }
+        
 
         private void MainPicker_SelectedIndexChanged(object sender, EventArgs e)
         {

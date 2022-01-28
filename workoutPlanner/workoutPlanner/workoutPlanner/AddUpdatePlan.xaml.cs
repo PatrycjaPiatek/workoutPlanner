@@ -110,6 +110,9 @@ namespace workoutPlanner
                     NamesList.Clear();
                     PlanPage.updateSelectedPlanBool = false;
                     PlanPage.addNewPlanBool = false;
+
+                    AddUpdatePlan.planNameStatic = "";
+
                     await Navigation.PushAsync(new PlanPage());
                 }
                 else
@@ -141,6 +144,9 @@ namespace workoutPlanner
                 NamesList.Clear();
                 PlanPage.updateSelectedPlanBool = false;
                 PlanPage.addNewPlanBool = false;
+
+                AddUpdatePlan.planNameStatic = "";
+
                 await Navigation.PushAsync(new PlanPage());
             }
         }

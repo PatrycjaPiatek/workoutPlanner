@@ -72,7 +72,8 @@ namespace workoutPlanner
             }
         }
         private async void AddPlan_Clicked(object sender, EventArgs e)
-        { 
+        {
+            AddUpdatePlan.planNameStatic = "";
             selectedPlan = null;
             addNewPlanBool = true;
             await Navigation.PushAsync(new AddUpdatePlan());
