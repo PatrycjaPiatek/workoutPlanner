@@ -61,7 +61,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Button x:Name ="addNewExcerciseBtn"
-                    Text="Add a new excercise"
+                    Text="Add a new exercise"
                     Clicked="addNewExcerciseBtn_Clicked"
                     BackgroundColor="#8952b4"
                     CornerRadius="7"
