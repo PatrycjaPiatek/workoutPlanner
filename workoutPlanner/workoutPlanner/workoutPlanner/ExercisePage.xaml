@@ -22,6 +22,33 @@
         </Style>
     </ContentPage.Resources>
     <StackLayout Margin="20,35,20,20">
+        <Frame
+            Padding="3,3,3,3"
+            CornerRadius ="10"
+            IsClippedToBounds="True"
+            BackgroundColor="#48185f">
+            <Frame
+                Padding="10"
+                CornerRadius ="7"
+                IsClippedToBounds="True"                
+                BackgroundColor="#8952b4">
+                <StackLayout>
+                    <Label x:Name="yourExercises"                       
+                           Text="Your exercises:"
+                           FontAttributes="Bold"
+                           TextColor="#48185f"
+                           FontSize="Title"
+                           >
+                    </Label>
+                    <!-- <Label x:Name="planID"
+                           Text="planID"
+                           FontAttributes="Bold"
+                           TextColor="#48185f"
+                           FontSize="Title">
+                    </Label> -->
+                </StackLayout>
+            </Frame>
+        </Frame>
         <CollectionView x:Name="exerciseCollectionView"
                         SelectionMode="Single"
                         SelectionChanged="OnSelectionChanged">
