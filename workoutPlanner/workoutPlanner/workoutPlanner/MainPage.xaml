@@ -8,7 +8,7 @@
 
     <Grid HorizontalOptions="Center"
               VerticalOptions="Center"
-              Margin="50">
+              Margin="30, 10, 30, 30">
         
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -21,35 +21,17 @@
         <ImageButton x:Name="btnPlans"
                     Grid.Row="0"
                     Grid.Column="0"
-                    Source="btn_plans4.png"
+                    Source="btn_plans5.png"
                     BackgroundColor="Transparent"
-                    Clicked="btnPlans_Clicked"/>        
-        <Label Text="plans"
-                   FontSize="25"                   
-                   TextColor="#48185F"
-                   FontAttributes="Bold"               
-                   HorizontalOptions="Center"
-                   VerticalTextAlignment="Center"
-                   Margin="0,100,0,0"
-                   Grid.Row="0"
-                   Grid.Column="0"
-                   WidthRequest="70"/>
+                    Clicked="btnPlans_Clicked"/>    
 
         <ImageButton x:Name="btnExercises"
                     Grid.Row="1"
                     Grid.Column="0"
-                    Source="btn_exercises.png"
+                    Source="btn_exercises5.png"
                     BackgroundColor="Transparent"
                     Clicked="btnExercises_Clicked"/>
-        <Label Text="exercises"
-                   FontSize="25"                   
-                   TextColor="#48185F"
-                   FontAttributes="Bold"               
-                   HorizontalOptions="Center"
-                   VerticalTextAlignment="Center"
-                   Margin="0,100,0,0"
-                   Grid.Row="1"
-                   Grid.Column="0"/>     
+
     </Grid>
     
 </ContentPage>
