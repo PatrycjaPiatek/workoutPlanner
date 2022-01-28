@@ -19,9 +19,12 @@ namespace workoutPlanner
         public static bool deleteSelectedPlanBool = false;
         public static bool addNewPlanBool = false;
 
+        //protected override bool OnBackButtonPressed() => false;
+
         public PlanPage()
         {
-            InitializeComponent();            
+            InitializeComponent(); 
+            
         }
 
         //method that shows current data in table
@@ -40,7 +43,24 @@ namespace workoutPlanner
             AddUpdatePlan.newEx = string.Empty;
             AddUpdatePlan.NamesList.Clear();
         }
- 
+
+        protected override bool OnBackButtonPressed()
+        {
+            BackToMainMenu();
+            return true;
+        }
+
+        private async void BackToMainMenu()
+        {
+            //oproznia stos
+            var existingPages = Navigation.NavigationStack.ToList();
+            for (int i = 0; i < existingPages.Count - 1; i++)
+            {
+                Navigation.RemovePage(existingPages[i]);
+            }
+            await Navigation.PushAsync(new MainPage());
+        }
+
         void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             selectedPlan = e.CurrentSelection[0] as Plan;

@@ -48,7 +48,26 @@ namespace workoutPlanner
 
             PlanPage.selectedPlan = null;
         }
+        protected override bool OnBackButtonPressed()
+        {
+            BackToMainMenu();
+            return true;
+        }
 
+        private async void BackToMainMenu()
+        {
+            //oproznia stos
+            var existingPages = Navigation.NavigationStack.ToList();
+            for(int i = 0; i<existingPages.Count-1; i++)
+            {
+                Navigation.RemovePage(existingPages[i]);
+            }
+            //foreach (var page in existingPages)
+            //{
+            //    Navigation.RemovePage(page);
+            //}
+            await Navigation.PushAsync(new PlanPage());
+        }
         //private void myList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
         //    ////wybrane cwiczenie
