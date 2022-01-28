@@ -48,12 +48,7 @@
                                    VerticalOptions="End" 
                                    TextColor="#48185f"
                                    FontSize="Small" />
-                            <Label Grid.RowSpan="2"
-                                   Grid.Column="2"
-                                   Text="{Binding ID}"
-                                   VerticalOptions="End" 
-                                   TextColor="#48185f"
-                                   FontSize="Small" />
+
                         </Grid>
                     </StackLayout>
                 </DataTemplate>
@@ -63,7 +58,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Button Text="Add"
+            <Button x:Name ="add"
+                    IsVisible="{Binding IsAddVisible}"
+                    Text="Add"
                     Clicked="AddExerciseClicked" 
                     Grid.Column="0"
                     Grid.Row="0"

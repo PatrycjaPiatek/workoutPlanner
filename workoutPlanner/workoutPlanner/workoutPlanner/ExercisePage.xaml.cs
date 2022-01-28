@@ -36,6 +36,15 @@ namespace workoutPlanner
             selectedExercise = null;
             addBool = false;
             updateBool = false;
+            if (AddUpdatePlan.addExerciseToThePlan)
+            {
+                add.IsEnabled = false;
+                delete.IsEnabled = false;
+                update.IsEnabled = false;
+                details.IsEnabled = false;
+
+            }
+            
         }
         protected override bool OnBackButtonPressed()
         {
@@ -63,6 +72,7 @@ namespace workoutPlanner
 
             if (AddUpdatePlan.addExerciseToThePlan)
             {
+                
                 //planNameStatic = planName.Text;
                 //AddUpdatePlan.planName.Text = AddUpdatePlan.planNameStatic;
                 if (PlanPage.updateSelectedPlanBool)
