@@ -38,6 +38,27 @@ namespace workoutPlanner
                 detailsEntry.Text = ExercisePage.selectedExercise.Details;
             }
         }
+        protected override bool OnBackButtonPressed()
+        {
+            BackToMainMenu();
+            return true;
+        }
+
+        private async void BackToMainMenu()
+        {
+            //oproznia stos
+            var existingPages = Navigation.NavigationStack.ToList();
+            for (int i = 0; i < existingPages.Count - 1; i++)
+            {
+                Navigation.RemovePage(existingPages[i]);
+            }
+
+            bool sure = await DisplayAlert("Are you sure?", "Changes will not be saved ", "OK", "NO");
+            if (sure)
+            {
+                await Navigation.PushAsync(new ExercisePage());
+            }
+        }
 
         private async void saveBtn_Clicked(object sender, EventArgs e)
         {
