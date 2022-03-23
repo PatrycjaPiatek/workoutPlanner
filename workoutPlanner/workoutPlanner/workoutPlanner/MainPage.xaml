@@ -3,12 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="workoutPlanner.MainPage"
-             Background="#e0adf8"
-             NavigationPage.HasNavigationBar="false">
+             Background="#e0adf8">
 
     <Grid HorizontalOptions="Center"
               VerticalOptions="Center"
-              Margin="30, 10, 30, 30">
+              Margin="50">
         
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -21,17 +20,35 @@
         <ImageButton x:Name="btnPlans"
                     Grid.Row="0"
                     Grid.Column="0"
-                    Source="btn_plans5.png"
+                    Source="btn_plans4.png"
                     BackgroundColor="Transparent"
-                    Clicked="btnPlans_Clicked"/>    
+                    Clicked="btnPlans_Clicked"/>        
+        <Label Text="plans"
+                   FontSize="25"                   
+                   TextColor="#48185F"
+                   FontAttributes="Bold"               
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   Margin="0,100,0,0"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   WidthRequest="70"/>
 
         <ImageButton x:Name="btnExercises"
                     Grid.Row="1"
                     Grid.Column="0"
-                    Source="btn_exercises5.png"
+                    Source="btn_exercises.png"
                     BackgroundColor="Transparent"
                     Clicked="btnExercises_Clicked"/>
-
+        <Label Text="exercises"
+                   FontSize="25"                   
+                   TextColor="#48185F"
+                   FontAttributes="Bold"               
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   Margin="0,100,0,0"
+                   Grid.Row="1"
+                   Grid.Column="0"/>     
     </Grid>
     
 </ContentPage>

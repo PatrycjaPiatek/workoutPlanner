@@ -19,14 +19,12 @@ namespace workoutPlanner
         private bool deleteExerciseFromThePlan = false;
         //allows to execute appropriate code from excercisePage.cs
         public static bool addExerciseToThePlan = false;
-        public static string planNameStatic;
         public AddUpdatePlan()
         {
             InitializeComponent();
 
             if (PlanPage.addNewPlanBool)
-            {
-                planName.Text = planNameStatic;
+            {                
                 SemicoloneveryName += newEx;
 
                 //if first ex is added by user
@@ -48,11 +46,9 @@ namespace workoutPlanner
 
             if (PlanPage.updateSelectedPlanBool)
             {
-                //planNameStatic = PlanPage.selectedPlan.NamePlan;
                 PlanPage.addNewPlanBool = false;
-                planName.Text = planNameStatic;
-                //planName.Text = PlanPage.selectedPlan.NamePlan;
-                //planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
+                planName.Text = PlanPage.selectedPlan.NamePlan;
+                planID.Text = PlanPage.selectedPlan.IDPlan.ToString();
 
                 SemicoloneveryName = PlanPage.selectedPlan.ListOfExcercisesName + newEx;
 
@@ -72,27 +68,6 @@ namespace workoutPlanner
                 }
                 myList.ItemsSource = NamesList;
             }
-        }
-        protected override bool OnBackButtonPressed()
-        {
-            BackToMainMenu();
-            return true;
-        }
-
-        private async void BackToMainMenu()
-        {
-            //oproznia stos
-            var existingPages = Navigation.NavigationStack.ToList();
-            for (int i = 0; i < existingPages.Count - 1; i++)
-            {
-                Navigation.RemovePage(existingPages[i]);
-            }
-
-            bool sure = await DisplayAlert("Are you sure?", "Changes will not be saved ", "OK", "NO");
-            if (sure)
-            {
-                await Navigation.PushAsync(new PlanPage());
-            }            
         }
         private async void saveBtn_Clicked(object sender, EventArgs e)
         {
@@ -131,9 +106,6 @@ namespace workoutPlanner
                     NamesList.Clear();
                     PlanPage.updateSelectedPlanBool = false;
                     PlanPage.addNewPlanBool = false;
-
-                    AddUpdatePlan.planNameStatic = "";
-
                     await Navigation.PushAsync(new PlanPage());
                 }
                 else
@@ -142,13 +114,11 @@ namespace workoutPlanner
                 }
             }
 
-
             //plan name const?
             if (PlanPage.updateSelectedPlanBool)
             {
                 if (!string.IsNullOrWhiteSpace(planName.Text))
                 {
-                    //AddUpdatePlan.planName.Text = AddUpdatePlan.planNameStatic;
                     PlanPage.selectedPlan.NamePlan = planName.Text;
                     //string names = "";
 
@@ -165,15 +135,11 @@ namespace workoutPlanner
                 NamesList.Clear();
                 PlanPage.updateSelectedPlanBool = false;
                 PlanPage.addNewPlanBool = false;
-
-                AddUpdatePlan.planNameStatic = "";
-
                 await Navigation.PushAsync(new PlanPage());
             }
         }
         private async void addNewExcerciseBtn_Clicked(object sender, EventArgs e)
         {
-            planNameStatic = planName.Text;
             addExerciseToThePlan = true;
             await Navigation.PushAsync(new ExercisePage());
         }

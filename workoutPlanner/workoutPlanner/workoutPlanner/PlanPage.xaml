@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="workoutPlanner.PlanPage"
-             Background="#e0adf8"
-             NavigationPage.HasNavigationBar="false">
+             Background="#e0adf8">
     <ContentPage.Resources>
         <Style TargetType="StackLayout">
             <Setter Property="VisualStateManager.VisualStateGroups">
@@ -22,33 +21,6 @@
         </Style>
     </ContentPage.Resources>
     <StackLayout Margin="20,35,20,20">
-        <Frame
-            Padding="3,3,3,3"
-            CornerRadius ="10"
-            IsClippedToBounds="True"
-            BackgroundColor="#48185f">
-            <Frame
-                Padding="10"
-                CornerRadius ="7"
-                IsClippedToBounds="True"                
-                BackgroundColor="#8952b4">
-                <StackLayout>
-                    <Label x:Name="yourPlans"                       
-                           Text="Your plans:"
-                           FontAttributes="Bold"
-                           TextColor="#48185f"
-                           FontSize="Title"
-                           >
-                    </Label>
-                    <!-- <Label x:Name="planID"
-                           Text="planID"
-                           FontAttributes="Bold"
-                           TextColor="#48185f"
-                           FontSize="Title">
-                    </Label> -->
-                </StackLayout>
-            </Frame>
-        </Frame>
         <CollectionView x:Name="collectionView"
                         SelectionMode="Single"
                         SelectionChanged="OnSelectionChanged">
@@ -59,9 +31,9 @@
                                FontSize="Medium" 
                                TextColor="#48185f"
                                FontAttributes="Bold"/>
-                        <!--<Label Text="{Binding IDPlan}"
+                        <Label Text="{Binding IDPlan}"
                                TextColor="#48185f"
-                               FontSize="Small" /> -->
+                               FontSize="Small" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

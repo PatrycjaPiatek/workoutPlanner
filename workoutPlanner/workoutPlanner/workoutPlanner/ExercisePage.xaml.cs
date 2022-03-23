@@ -36,31 +36,6 @@ namespace workoutPlanner
             selectedExercise = null;
             addBool = false;
             updateBool = false;
-            if (AddUpdatePlan.addExerciseToThePlan)
-            {
-                add.IsEnabled = false;
-                delete.IsEnabled = false;
-                update.IsEnabled = false;
-                details.IsEnabled = false;
-
-            }
-            
-        }
-        protected override bool OnBackButtonPressed()
-        {
-            BackToMainMenu();
-            return true;
-        }
-
-        private async void BackToMainMenu()
-        {
-            //oproznia stos
-            var existingPages = Navigation.NavigationStack.ToList();
-            for (int i = 0; i < existingPages.Count - 1; i++)
-            {
-                Navigation.RemovePage(existingPages[i]);
-            }
-            await Navigation.PushAsync(new MainPage());
         }
         //select excercise
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -72,9 +47,6 @@ namespace workoutPlanner
 
             if (AddUpdatePlan.addExerciseToThePlan)
             {
-                
-                //planNameStatic = planName.Text;
-                //AddUpdatePlan.planName.Text = AddUpdatePlan.planNameStatic;
                 if (PlanPage.updateSelectedPlanBool)
                 {
                     AddUpdatePlan.newEx += ';' + selectedExercise.Name;

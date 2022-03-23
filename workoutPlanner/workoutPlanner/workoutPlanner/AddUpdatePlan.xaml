@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="workoutPlanner.AddUpdatePlan"
-             Background="#e0adf8"
-             NavigationPage.HasNavigationBar="false">
+             Background="#e0adf8">
     <ContentPage.Resources>
         <Style TargetType="StackLayout">
             <Setter Property="VisualStateManager.VisualStateGroups">
@@ -44,12 +43,12 @@
                        FontSize="Title"
                        BackgroundColor="Transparent">
                 </Entry>
-                <!--<Label x:Name="planID"
+                <Label x:Name="planID"
                        Text="planID"
                        FontAttributes="Bold"
                        TextColor="#48185f"
                        FontSize="Title">
-                </Label> -->
+                </Label>
             </StackLayout>
         </Frame>
         <Grid Margin="0,7,0,7">
@@ -61,7 +60,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Button x:Name ="addNewExcerciseBtn"
-                    Text="Add a new exercise"
+                    Text="Add a new excercise"
                     Clicked="addNewExcerciseBtn_Clicked"
                     BackgroundColor="#8952b4"
                     CornerRadius="7"

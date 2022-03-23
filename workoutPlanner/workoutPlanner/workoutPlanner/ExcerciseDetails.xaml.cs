@@ -26,21 +26,5 @@ namespace workoutPlanner
             excerciseCategory.Text = ExercisePage.selectedExercise.Category;
             excerciseDetails.Text = ExercisePage.selectedExercise.Details;
         }
-        protected override bool OnBackButtonPressed()
-        {
-            BackToMainMenu();
-            return true;
-        }
-
-        private async void BackToMainMenu()
-        {
-            //oproznia stos
-            var existingPages = Navigation.NavigationStack.ToList();
-            for (int i = 0; i < existingPages.Count - 1; i++)
-            {
-                Navigation.RemovePage(existingPages[i]);
-            }
-            await Navigation.PushAsync(new ExercisePage());
-        }
     }
 }
