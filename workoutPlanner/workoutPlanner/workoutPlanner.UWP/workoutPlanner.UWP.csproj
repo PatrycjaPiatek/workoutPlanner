@@ -138,11 +138,13 @@
     <Content Include="benchPress.png" />
     <Content Include="bicycleCrunches.png" />
     <Content Include="btn_exercises.png" />
+    <Content Include="btn_exercises5.png" />
     <Content Include="btn_plans4.png" />
     <Content Include="btn_plans.png" />
     <Content Include="btn_plans1.png" />
     <Content Include="btn_plans2.png" />
     <Content Include="btn_plans3.png" />
+    <Content Include="btn_plans5.png" />
     <Content Include="dumbbellBentOverRow.png" />
     <Content Include="pants.png" />
     <Content Include="photo.png" />

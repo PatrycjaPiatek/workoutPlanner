@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.IO;
 
 namespace workoutPlanner
 {
@@ -35,6 +36,27 @@ namespace workoutPlanner
                 nameEntry.Text = ExercisePage.selectedExercise.Name;
                 MainPicker.SelectedItem = ExercisePage.selectedExercise.Category;
                 detailsEntry.Text = ExercisePage.selectedExercise.Details;
+            }
+        }
+        protected override bool OnBackButtonPressed()
+        {
+            BackToMainMenu();
+            return true;
+        }
+
+        private async void BackToMainMenu()
+        {
+            //oproznia stos
+            var existingPages = Navigation.NavigationStack.ToList();
+            for (int i = 0; i < existingPages.Count - 1; i++)
+            {
+                Navigation.RemovePage(existingPages[i]);
+            }
+
+            bool sure = await DisplayAlert("Are you sure?", "Changes will not be saved ", "OK", "NO");
+            if (sure)
+            {
+                await Navigation.PushAsync(new ExercisePage());
             }
         }
 
@@ -116,11 +138,16 @@ namespace workoutPlanner
 
             if (result != null)
             {
-                var stream = await result.OpenReadAsync();
-                defaultImage.Source = ImageSource.FromStream(() => stream);
-                selectedSource = result.FullPath;
+                var newImg = Path.Combine(FileSystem.CacheDirectory, result.FileName); //await result.OpenReadAsync();
+                using (var stream = await result.OpenReadAsync())
+                using (var newStream = File.OpenWrite(newImg))
+                    await stream.CopyToAsync(newStream);
+
+                defaultImage.Source = newImg;
+                selectedSource = newImg;
             }
         }
+        
 
         private void MainPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
