@@ -1,6 +1,6 @@
 # workoutPlanner
 
-Cross-platform application thanks to which the user can create his exercises and organize them into plans. The application was written in C# using Xamarin Forms. The application allows user to add, delete, edit and view the entered data. The application works on Android and Windows.
+Cross-platform application where user can create his exercises and organize them into plans. The application was written in C# using Xamarin Forms. The application allows user to add, delete, edit and view the entered data. The application works on Android and Windows.
 
 User Interface
  
