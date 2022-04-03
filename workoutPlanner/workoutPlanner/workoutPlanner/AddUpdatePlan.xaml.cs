@@ -250,8 +250,7 @@ namespace workoutPlanner
                 {
                     await DisplayAlert(":)", "Select excercise first", "OK");
                 }
-            }
-            
+            }            
 
             //await Navigation.PushAsync(new PlanPage());
         }

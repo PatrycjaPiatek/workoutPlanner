@@ -148,7 +148,6 @@ namespace workoutPlanner
             }
         }
         
-
         private void MainPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedCategory = MainPicker.Items[MainPicker.SelectedIndex];
